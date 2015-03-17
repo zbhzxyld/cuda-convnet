@@ -1,0 +1,1417 @@
+Initialized data layer 'data', producing 9075 outputs
+Initialized data layer 'labels', producing 1 outputs
+Initialized data layer 'pose', producing 1 outputs
+Initialized data layer 'light', producing 1 outputs
+Initialized data layer 'expression', producing 1 outputs
+Initialized convolutional layer 'conv1', producing 52x52 16-channel output
+Initialized max-pooling layer 'pool1', producing 26x26 16-channel output
+Initialized convolutional layer 'conv2', producing 24x24 32-channel output
+Initialized max-pooling layer 'pool2', producing 12x12 32-channel output
+Initialized locally-connected layer 'local3', producing 10x10 48-channel output
+Initialized max-pooling layer 'pool3', producing 5x5 48-channel output
+Initialized locally-connected layer 'local4', producing 4x4 64-channel output
+Initialized fully-connected layer 'fc5', producing 160 outputs
+Initialized fully-connected layer 'fc-softmax', producing 4131 outputs
+Initialized softmax layer 'probs', producing 4131 outputs
+Initialized fully-connected layer 'fc-pose', producing 2 outputs
+Initialized fully-connected layer 'fc-light', producing 27 outputs
+Initialized fully-connected layer 'fc-expression', producing 23 outputs
+Initialized logistic regression cost 'logprob'
+Initialized L2-sn cost 'L2-SN'
+Initialized attr (21 attributes) cost 'pose-cost'
+Initialized attr (21 attributes) cost 'light-cost'
+Initialized attr (21 attributes) cost 'expression-cost'
+Initialized neuron layer 'conv1_neuron', producing 43264 outputs
+Initialized neuron layer 'conv2_neuron', producing 18432 outputs
+Initialized neuron layer 'local3_neuron', producing 4800 outputs
+Initialized neuron layer 'local4_neuron', producing 1024 outputs
+Initialized neuron layer 'fc5_neuron', producing 160 outputs
+Initialized neuron layer 'fc-softmax_neuron', producing 4131 outputs
+Initialized neuron layer 'fc-pose_neuron', producing 2 outputs
+Initialized neuron layer 'fc-light_neuron', producing 27 outputs
+Initialized neuron layer 'fc-expression_neuron', producing 23 outputs
+=========================
+Importing _ConvNet C++ module
+=========================
+Training ConvNet
+Check gradients and quit?                           : 0   [DEFAULT]
+Compress checkpoints?                               : 0   [DEFAULT]
+Conserve GPU memory (slower)?                       : 0   [DEFAULT]
+Convert given conv layers to unshared local         :     
+Cropped DP: crop border size                        : 4   [DEFAULT]
+Cropped DP: logreg layer name (for --multiview-test):     [DEFAULT]
+Cropped DP: test on multiple patches?               : 0   [DEFAULT]
+Data batch range: testing                           : 901-910 
+Data batch range: training                          : 1-900 
+Data path                                           : /data1/xiangyuzhu/webface/deepid2/part2/ 
+Data path for test                                  : /data1/xiangyuzhu/webface/deepid2/part2/ 
+Data provider                                       : xgw-deepid-attr-online 
+GPU override                                        : -1  [DEFAULT]
+Layer definition file                               : net-define-deepid2-attr-parallel.cfg 
+Layer parameter file                                : net-param-deepid2-attr-parallel.cfg 
+Load file                                           :     [DEFAULT]
+Maximum save file size (MB)                         : 0   [DEFAULT]
+Minibatch size                                      : 128 [DEFAULT]
+Number of GPUs                                      : 1   [DEFAULT]
+Number of epochs                                    : 1   
+Save path                                           : ../models/deepid_attr/ 
+Test and quit?                                      : 0   [DEFAULT]
+Test on one batch at a time?                        : 1   [DEFAULT]
+Testing frequency                                   : 50  
+Unshare weight matrices in given layers             :     
+=========================
+Running on CUDA device(s) -2
+Current time: Thu Feb  5 21:46:31 2015
+Saving checkpoints to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+=========================
+1.1... logprob:  8.274977, 0.999234 L2-SN:  10.073347 light-cost:  50.847343 pose-cost:  0.125362 expression-cost:  0.214163 (18.737 sec)
+1.2... logprob:  8.151045, 0.998906 L2-SN:  12.024071 light-cost:  37.829384 pose-cost:  0.099232 expression-cost:  0.075567 (17.139 sec)
+1.3... logprob:  8.105441, 0.998203 L2-SN:  11.424111 light-cost:  37.340919 pose-cost:  0.097036 expression-cost:  0.067670 (16.925 sec)
+1.4... logprob:  8.075920, 0.997812 L2-SN:  11.881294 light-cost:  36.309080 pose-cost:  0.097543 expression-cost:  0.081918 (17.400 sec)
+1.5... logprob:  8.030471, 0.996641 L2-SN:  15.867690 light-cost:  35.844817 pose-cost:  0.099150 expression-cost:  0.126876 (17.955 sec)
+1.6... logprob:  7.964473, 0.995469 L2-SN:  26.188228 light-cost:  36.777775 pose-cost:  0.102215 expression-cost:  0.235263 (16.660 sec)
+1.7... logprob:  7.851732, 0.993891 L2-SN:  42.166363 light-cost:  36.529389 pose-cost:  0.105668 expression-cost:  0.319312 (17.077 sec)
+1.8... logprob:  7.695305, 0.992328 L2-SN:  59.457823 light-cost:  36.592075 pose-cost:  0.112776 expression-cost:  0.370762 (16.365 sec)
+1.9... logprob:  7.525764, 0.989828 L2-SN:  75.345105 light-cost:  34.728587 pose-cost:  0.116213 expression-cost:  0.439993 (16.313 sec)
+1.10... logprob:  7.335375, 0.985359 L2-SN:  90.311538 light-cost:  33.982132 pose-cost:  0.121485 expression-cost:  0.502034 (19.600 sec)
+1.11... logprob:  7.158593, 0.982672 L2-SN:  102.671991 light-cost:  32.768033 pose-cost:  0.129322 expression-cost:  0.527437 (16.288 sec)
+1.12... logprob:  7.011592, 0.977187 L2-SN:  114.175891 light-cost:  32.224930 pose-cost:  0.134144 expression-cost:  0.510229 (19.568 sec)
+1.13... logprob:  6.864136, 0.971313 L2-SN:  123.337221 light-cost:  32.092092 pose-cost:  0.141256 expression-cost:  0.519095 (16.202 sec)
+1.14... logprob:  6.724629, 0.965469 L2-SN:  130.836822 light-cost:  32.127925 pose-cost:  0.132330 expression-cost:  0.552794 (19.413 sec)
+1.15... logprob:  6.593092, 0.959406 L2-SN:  140.823320 light-cost:  31.690032 pose-cost:  0.133626 expression-cost:  0.575205 (16.465 sec)
+1.16... logprob:  6.468461, 0.951313 L2-SN:  147.159164 light-cost:  31.773008 pose-cost:  0.132676 expression-cost:  0.551948 (17.553 sec)
+1.17... logprob:  6.338695, 0.943750 L2-SN:  155.247863 light-cost:  31.134297 pose-cost:  0.149255 expression-cost:  0.573019 (18.888 sec)
+1.18... logprob:  6.229318, 0.938422 L2-SN:  161.984969 light-cost:  30.839902 pose-cost:  0.136164 expression-cost:  0.603735 (16.799 sec)
+1.19... logprob:  6.108877, 0.927125 L2-SN:  170.799383 light-cost:  31.018824 pose-cost:  0.130813 expression-cost:  0.582779 (19.238 sec)
+1.20... logprob:  6.015508, 0.918344 L2-SN:  177.661741 light-cost:  30.316047 pose-cost:  0.141789 expression-cost:  0.562320 (16.347 sec)
+1.21... logprob:  5.885149, 0.906875 L2-SN:  184.068847 light-cost:  29.699192 pose-cost:  0.147276 expression-cost:  0.564900 (16.582 sec)
+1.22... logprob:  5.768544, 0.896969 L2-SN:  190.958011 light-cost:  29.590046 pose-cost:  0.130896 expression-cost:  0.551568 (16.988 sec)
+1.23... logprob:  5.653167, 0.884484 L2-SN:  199.045135 light-cost:  29.702321 pose-cost:  0.139752 expression-cost:  0.538159 (16.488 sec)
+1.24... logprob:  5.560385, 0.875016 L2-SN:  204.287257 light-cost:  29.101330 pose-cost:  0.144143 expression-cost:  0.555317 (17.690 sec)
+1.25... logprob:  5.457148, 0.865656 L2-SN:  210.962705 light-cost:  28.994227 pose-cost:  0.140412 expression-cost:  0.522190 (16.989 sec)
+1.26... logprob:  5.348180, 0.851484 L2-SN:  218.698398 light-cost:  29.150496 pose-cost:  0.144754 expression-cost:  0.518456 (17.483 sec)
+1.27... logprob:  5.257439, 0.842125 L2-SN:  222.779494 light-cost:  28.778770 pose-cost:  0.136645 expression-cost:  0.494422 (17.709 sec)
+1.28... logprob:  5.124047, 0.826203 L2-SN:  232.846803 light-cost:  28.747925 pose-cost:  0.140341 expression-cost:  0.497412 (17.769 sec)
+1.29... logprob:  5.031060, 0.814688 L2-SN:  238.083661 light-cost:  28.670005 pose-cost:  0.151655 expression-cost:  0.501441 (19.358 sec)
+1.30... logprob:  4.932738, 0.803672 L2-SN:  245.125158 light-cost:  28.229401 pose-cost:  0.122261 expression-cost:  0.492911 (17.212 sec)
+1.31... logprob:  4.820066, 0.788531 L2-SN:  250.425335 light-cost:  27.933771 pose-cost:  0.122231 expression-cost:  0.438395 (18.364 sec)
+1.32... logprob:  4.730869, 0.778203 L2-SN:  256.469086 light-cost:  28.015986 pose-cost:  0.124213 expression-cost:  0.440998 (17.390 sec)
+1.33... logprob:  4.634721, 0.762813 L2-SN:  260.408419 light-cost:  27.809025 pose-cost:  0.126477 expression-cost:  0.414210 (16.906 sec)
+1.34... logprob:  4.561712, 0.752656 L2-SN:  265.247015 light-cost:  27.565485 pose-cost:  0.128689 expression-cost:  0.376801 (17.106 sec)
+1.35... logprob:  4.451671, 0.739328 L2-SN:  272.116568 light-cost:  27.352876 pose-cost:  0.120220 expression-cost:  0.386574 (16.564 sec)
+1.36... logprob:  4.366620, 0.727469 L2-SN:  276.685225 light-cost:  27.284732 pose-cost:  0.117878 expression-cost:  0.361693 (16.332 sec)
+1.37... logprob:  4.260972, 0.708609 L2-SN:  278.745554 light-cost:  27.039169 pose-cost:  0.119541 expression-cost:  0.354254 (18.547 sec)
+1.38... logprob:  4.174875, 0.697875 L2-SN:  286.226346 light-cost:  26.630560 pose-cost:  0.117633 expression-cost:  0.346505 (16.286 sec)
+1.39... logprob:  4.115234, 0.692031 L2-SN:  288.563542 light-cost:  26.423676 pose-cost:  0.111931 expression-cost:  0.320837 (19.446 sec)
+1.40... logprob:  4.007929, 0.674906 L2-SN:  292.055537 light-cost:  26.658455 pose-cost:  0.113630 expression-cost:  0.307700 (16.034 sec)
+1.41... logprob:  3.925029, 0.663750 L2-SN:  296.170487 light-cost:  26.156124 pose-cost:  0.110474 expression-cost:  0.305305 (18.259 sec)
+1.42... logprob:  3.846162, 0.652422 L2-SN:  300.753864 light-cost:  26.263886 pose-cost:  0.111407 expression-cost:  0.302625 (17.275 sec)
+1.43... logprob:  3.781260, 0.641172 L2-SN:  301.866398 light-cost:  26.387317 pose-cost:  0.108876 expression-cost:  0.277816 (16.898 sec)
+1.44... logprob:  3.714926, 0.632781 L2-SN:  304.626407 light-cost:  26.025308 pose-cost:  0.106336 expression-cost:  0.259521 (19.612 sec)
+1.45... logprob:  3.612762, 0.617219 L2-SN:  307.923134 light-cost:  25.682292 pose-cost:  0.104703 expression-cost:  0.253522 (16.483 sec)
+1.46... logprob:  3.552818, 0.608250 L2-SN:  309.350219 light-cost:  25.565487 pose-cost:  0.104520 expression-cost:  0.243093 (17.626 sec)
+1.47... logprob:  3.498373, 0.600594 L2-SN:  312.090310 light-cost:  25.735831 pose-cost:  0.101892 expression-cost:  0.230397 (17.270 sec)
+1.48... logprob:  3.428403, 0.588906 L2-SN:  312.997542 light-cost:  25.704134 pose-cost:  0.103034 expression-cost:  0.222614 (16.844 sec)
+1.49... logprob:  3.366009, 0.578109 L2-SN:  314.334320 light-cost:  25.412760 pose-cost:  0.104427 expression-cost:  0.210922 (19.542 sec)
+1.50... logprob:  3.298864, 0.565969 L2-SN:  316.105056 light-cost:  25.350484 pose-cost:  0.107037 expression-cost:  0.197665 
+======================Test output======================
+logprob:  3.282527, 0.565156 L2-SN:  312.533896 light-cost:  24.611408 pose-cost:  0.098781 expression-cost:  0.186996 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 5.611525e-02 [1.092909e-04] 
+Layer 'conv1' biases: 3.778412e-02 [2.749384e-06] 
+Layer 'conv2' weights[0]: 3.487685e-02 [3.712477e-05] 
+Layer 'conv2' biases: 2.404578e-02 [2.185003e-06] 
+Layer 'local3' weights[0]: 3.002436e-02 [2.385652e-06] 
+Layer 'local3' biases: 6.575451e-04 [1.822827e-07] 
+Layer 'local4' weights[0]: 3.012570e-02 [1.451536e-06] 
+Layer 'local4' biases: 7.309549e-04 [1.803457e-07] 
+Layer 'fc5' weights[0]: 8.202666e-03 [3.033113e-06]
+Layer 'fc5' weights[1]: 9.936229e-03 [1.214540e-05] 
+Layer 'fc5' biases: 6.786665e-03 [1.598856e-06] 
+Layer 'fc-softmax' weights[0]: 1.651895e-02 [3.890845e-06] 
+Layer 'fc-softmax' biases: 1.716338e-03 [1.102124e-06] 
+Layer 'fc-pose' weights[0]: 4.397831e-03 [7.972596e-07] 
+Layer 'fc-pose' biases: 2.544805e-04 [3.959897e-07] 
+Layer 'fc-light' weights[0]: 8.697132e-03 [1.496930e-06] 
+Layer 'fc-light' biases: 1.141196e-02 [5.404144e-07] 
+Layer 'fc-expression' weights[0]: 4.117531e-03 [9.659192e-07] 
+Layer 'fc-expression' biases: 7.172850e-04 [5.595402e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (47.213 sec)
+1.51... logprob:  3.243847, 0.557859 L2-SN:  317.352289 light-cost:  25.148765 pose-cost:  0.106213 expression-cost:  0.181190 (17.027 sec)
+1.52... logprob:  3.177853, 0.549297 L2-SN:  319.503925 light-cost:  25.358331 pose-cost:  0.102245 expression-cost:  0.186982 (16.863 sec)
+1.53... logprob:  3.124253, 0.540875 L2-SN:  321.827318 light-cost:  25.033930 pose-cost:  0.100874 expression-cost:  0.188583 (18.105 sec)
+1.54... logprob:  3.063247, 0.530625 L2-SN:  320.221834 light-cost:  24.959817 pose-cost:  0.096320 expression-cost:  0.174466 (18.044 sec)
+1.55... logprob:  3.007186, 0.520344 L2-SN:  322.622955 light-cost:  24.816611 pose-cost:  0.101283 expression-cost:  0.167549 (17.234 sec)
+1.56... logprob:  2.969173, 0.515344 L2-SN:  323.933687 light-cost:  24.813062 pose-cost:  0.099270 expression-cost:  0.156490 (16.510 sec)
+1.57... logprob:  2.930483, 0.508984 L2-SN:  322.441685 light-cost:  24.729511 pose-cost:  0.097676 expression-cost:  0.156132 (19.619 sec)
+1.58... logprob:  2.875125, 0.498078 L2-SN:  324.407895 light-cost:  24.501071 pose-cost:  0.095638 expression-cost:  0.151119 (16.415 sec)
+1.59... logprob:  2.829044, 0.491406 L2-SN:  323.315943 light-cost:  24.738008 pose-cost:  0.096829 expression-cost:  0.143658 (18.678 sec)
+1.60... logprob:  2.800845, 0.488797 L2-SN:  323.677066 light-cost:  24.188800 pose-cost:  0.096023 expression-cost:  0.132047 (17.376 sec)
+1.61... logprob:  2.739742, 0.479578 L2-SN:  325.831465 light-cost:  24.466271 pose-cost:  0.096307 expression-cost:  0.142194 (16.744 sec)
+1.62... logprob:  2.695819, 0.469516 L2-SN:  323.382113 light-cost:  24.532969 pose-cost:  0.096409 expression-cost:  0.127450 (17.016 sec)
+1.63... logprob:  2.653362, 0.461734 L2-SN:  326.771251 light-cost:  24.296772 pose-cost:  0.097514 expression-cost:  0.120708 (16.403 sec)
+1.64... logprob:  2.625916, 0.457625 L2-SN:  323.182871 light-cost:  24.286532 pose-cost:  0.094490 expression-cost:  0.118373 (16.905 sec)
+1.65... logprob:  2.567372, 0.449188 L2-SN:  322.608813 light-cost:  24.089152 pose-cost:  0.093724 expression-cost:  0.110949 (16.489 sec)
+1.66... logprob:  2.554648, 0.446984 L2-SN:  322.394569 light-cost:  23.915082 pose-cost:  0.098787 expression-cost:  0.117408 (19.794 sec)
+1.67... logprob:  2.516814, 0.440734 L2-SN:  323.908882 light-cost:  24.115890 pose-cost:  0.094898 expression-cost:  0.107715 (17.757 sec)
+1.68... logprob:  2.476248, 0.431188 L2-SN:  322.646658 light-cost:  23.829702 pose-cost:  0.093714 expression-cost:  0.102356 (16.578 sec)
+1.69... logprob:  2.442253, 0.427781 L2-SN:  323.762567 light-cost:  23.801064 pose-cost:  0.091579 expression-cost:  0.106289 (19.656 sec)
+1.70... logprob:  2.395899, 0.418836 L2-SN:  323.104879 light-cost:  23.992382 pose-cost:  0.092927 expression-cost:  0.101090 (16.586 sec)
+1.71... logprob:  2.350248, 0.413687 L2-SN:  321.494079 light-cost:  23.644545 pose-cost:  0.092605 expression-cost:  0.093197 (18.615 sec)
+1.72... logprob:  2.339016, 0.408875 L2-SN:  320.844418 light-cost:  23.989694 pose-cost:  0.093166 expression-cost:  0.095761 (17.286 sec)
+1.73... logprob:  2.297116, 0.404391 L2-SN:  321.897887 light-cost:  24.013417 pose-cost:  0.095552 expression-cost:  0.091993 (17.116 sec)
+1.74... logprob:  2.285032, 0.403016 L2-SN:  320.729807 light-cost:  23.413288 pose-cost:  0.091451 expression-cost:  0.083311 (19.637 sec)
+1.75... logprob:  2.236570, 0.392875 L2-SN:  320.406677 light-cost:  23.558780 pose-cost:  0.091505 expression-cost:  0.084748 (16.724 sec)
+1.76... logprob:  2.205987, 0.385953 L2-SN:  318.830325 light-cost:  23.269170 pose-cost:  0.091081 expression-cost:  0.082488 (18.720 sec)
+1.77... logprob:  2.191687, 0.382906 L2-SN:  317.835343 light-cost:  23.418233 pose-cost:  0.090291 expression-cost:  0.079908 (16.635 sec)
+1.78... logprob:  2.165820, 0.380234 L2-SN:  316.688469 light-cost:  23.538779 pose-cost:  0.091629 expression-cost:  0.080037 (16.629 sec)
+1.79... logprob:  2.143381, 0.375625 L2-SN:  318.550614 light-cost:  23.324766 pose-cost:  0.092597 expression-cost:  0.079519 (19.041 sec)
+1.80... logprob:  2.129393, 0.375500 L2-SN:  316.037642 light-cost:  23.334312 pose-cost:  0.092853 expression-cost:  0.077973 (17.384 sec)
+1.81... logprob:  2.089299, 0.363578 L2-SN:  315.795276 light-cost:  23.279690 pose-cost:  0.092255 expression-cost:  0.071262 (19.138 sec)
+1.82... logprob:  2.064734, 0.361750 L2-SN:  316.214822 light-cost:  23.201969 pose-cost:  0.090978 expression-cost:  0.067618 (17.753 sec)
+1.83... logprob:  2.046397, 0.359812 L2-SN:  314.398380 light-cost:  23.164049 pose-cost:  0.090431 expression-cost:  0.068188 (17.412 sec)
+1.84... logprob:  2.019244, 0.351281 L2-SN:  313.268867 light-cost:  23.075368 pose-cost:  0.090187 expression-cost:  0.068497 (18.117 sec)
+1.85... logprob:  1.986038, 0.348734 L2-SN:  313.717073 light-cost:  23.175836 pose-cost:  0.089943 expression-cost:  0.070944 (16.816 sec)
+1.86... logprob:  1.959404, 0.342359 L2-SN:  312.017902 light-cost:  23.213364 pose-cost:  0.091885 expression-cost:  0.061434 (19.798 sec)
+1.87... logprob:  1.949425, 0.340078 L2-SN:  311.838771 light-cost:  22.964895 pose-cost:  0.090276 expression-cost:  0.064128 (16.588 sec)
+1.88... logprob:  1.930862, 0.338141 L2-SN:  311.603392 light-cost:  23.053297 pose-cost:  0.088895 expression-cost:  0.062439 (18.411 sec)
+1.89... logprob:  1.908352, 0.333734 L2-SN:  308.681502 light-cost:  23.066238 pose-cost:  0.090251 expression-cost:  0.060490 (17.159 sec)
+1.90... logprob:  1.890823, 0.334391 L2-SN:  309.037271 light-cost:  23.007401 pose-cost:  0.091084 expression-cost:  0.061685 (16.876 sec)
+1.91... logprob:  1.868399, 0.327437 L2-SN:  307.420158 light-cost:  22.935623 pose-cost:  0.088764 expression-cost:  0.056690 (20.514 sec)
+1.92... logprob:  1.848808, 0.324484 L2-SN:  307.099494 light-cost:  22.812348 pose-cost:  0.089593 expression-cost:  0.056368 (17.012 sec)
+1.93... logprob:  1.840231, 0.322828 L2-SN:  307.254861 light-cost:  22.576247 pose-cost:  0.089301 expression-cost:  0.055247 (19.048 sec)
+1.94... logprob:  1.815048, 0.318125 L2-SN:  306.336244 light-cost:  22.999398 pose-cost:  0.088985 expression-cost:  0.053647 (16.475 sec)
+1.95... logprob:  1.800179, 0.316937 L2-SN:  304.173051 light-cost:  22.610085 pose-cost:  0.088078 expression-cost:  0.051889 (17.571 sec)
+1.96... logprob:  1.784676, 0.315000 L2-SN:  304.529391 light-cost:  22.936308 pose-cost:  0.089631 expression-cost:  0.051037 (18.752 sec)
+1.97... logprob:  1.766491, 0.307391 L2-SN:  302.986863 light-cost:  22.797442 pose-cost:  0.089192 expression-cost:  0.046960 (16.995 sec)
+1.98... logprob:  1.753361, 0.307266 L2-SN:  302.601482 light-cost:  22.615087 pose-cost:  0.088853 expression-cost:  0.049290 (17.086 sec)
+1.99... logprob:  1.735749, 0.304750 L2-SN:  302.633291 light-cost:  22.932521 pose-cost:  0.089070 expression-cost:  0.049540 (17.603 sec)
+1.100... logprob:  1.706841, 0.299641 L2-SN:  301.291912 light-cost:  22.606348 pose-cost:  0.089235 expression-cost:  0.044497 
+======================Test output======================
+logprob:  1.695626, 0.305437 L2-SN:  307.316006 light-cost:  22.575666 pose-cost:  0.089307 expression-cost:  0.041635 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 6.340735e-02 [1.233150e-04] 
+Layer 'conv1' biases: 8.763154e-02 [1.985267e-06] 
+Layer 'conv2' weights[0]: 3.632183e-02 [4.466038e-05] 
+Layer 'conv2' biases: 5.810589e-02 [2.232509e-06] 
+Layer 'local3' weights[0]: 2.831756e-02 [2.949301e-06] 
+Layer 'local3' biases: 1.319035e-03 [1.907738e-07] 
+Layer 'local4' weights[0]: 2.862027e-02 [1.839023e-06] 
+Layer 'local4' biases: 1.511648e-03 [2.384896e-07] 
+Layer 'fc5' weights[0]: 9.053280e-03 [2.903294e-06]
+Layer 'fc5' weights[1]: 1.131075e-02 [1.244464e-05] 
+Layer 'fc5' biases: 1.207363e-02 [1.683579e-06] 
+Layer 'fc-softmax' weights[0]: 2.434393e-02 [2.814472e-06] 
+Layer 'fc-softmax' biases: 2.363299e-03 [8.558703e-07] 
+Layer 'fc-pose' weights[0]: 3.062854e-03 [4.080263e-07] 
+Layer 'fc-pose' biases: 5.773192e-04 [2.286044e-07] 
+Layer 'fc-light' weights[0]: 9.550986e-03 [1.108023e-06] 
+Layer 'fc-light' biases: 1.682737e-02 [5.219858e-07] 
+Layer 'fc-expression' weights[0]: 2.527556e-03 [2.234588e-07] 
+Layer 'fc-expression' biases: 7.525780e-04 [1.586128e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (41.649 sec)
+1.101... logprob:  1.706342, 0.298141 L2-SN:  300.752438 light-cost:  22.363535 pose-cost:  0.089151 expression-cost:  0.046969 (16.538 sec)
+1.102... logprob:  1.692377, 0.297250 L2-SN:  299.522028 light-cost:  22.727305 pose-cost:  0.090033 expression-cost:  0.044346 (19.491 sec)
+1.103... logprob:  1.657536, 0.291547 L2-SN:  297.204756 light-cost:  22.572668 pose-cost:  0.089173 expression-cost:  0.044699 (16.355 sec)
+1.104... logprob:  1.650141, 0.288906 L2-SN:  296.640794 light-cost:  22.618052 pose-cost:  0.088266 expression-cost:  0.044393 (19.422 sec)
+1.105... logprob:  1.632899, 0.286172 L2-SN:  297.814954 light-cost:  22.722404 pose-cost:  0.087422 expression-cost:  0.040620 (16.356 sec)
+1.106... logprob:  1.612744, 0.284625 L2-SN:  296.722588 light-cost:  22.348414 pose-cost:  0.087780 expression-cost:  0.043830 (16.446 sec)
+1.107... logprob:  1.605042, 0.282297 L2-SN:  295.544679 light-cost:  22.470449 pose-cost:  0.087389 expression-cost:  0.041578 (18.880 sec)
+1.108... logprob:  1.600656, 0.281219 L2-SN:  294.961541 light-cost:  22.464373 pose-cost:  0.087060 expression-cost:  0.041162 (16.462 sec)
+1.109... logprob:  1.578914, 0.277703 L2-SN:  292.850864 light-cost:  22.287969 pose-cost:  0.089507 expression-cost:  0.041298 (18.402 sec)
+1.110... logprob:  1.561695, 0.272797 L2-SN:  292.688185 light-cost:  22.567890 pose-cost:  0.087288 expression-cost:  0.039269 (18.537 sec)
+1.111... logprob:  1.554762, 0.272188 L2-SN:  292.125886 light-cost:  22.480587 pose-cost:  0.087415 expression-cost:  0.038621 (17.172 sec)
+1.112... logprob:  1.546496, 0.271406 L2-SN:  292.553435 light-cost:  22.120617 pose-cost:  0.087135 expression-cost:  0.038188 (17.927 sec)
+1.113... logprob:  1.537960, 0.266625 L2-SN:  291.159841 light-cost:  22.325432 pose-cost:  0.086900 expression-cost:  0.035856 (17.318 sec)
+1.114... logprob:  1.516185, 0.266266 L2-SN:  290.124698 light-cost:  22.526950 pose-cost:  0.088700 expression-cost:  0.038958 (19.829 sec)
+1.115... logprob:  1.505068, 0.265469 L2-SN:  288.975224 light-cost:  22.394070 pose-cost:  0.088596 expression-cost:  0.037195 (16.919 sec)
+1.116... logprob:  1.485886, 0.260352 L2-SN:  288.505446 light-cost:  22.351003 pose-cost:  0.087372 expression-cost:  0.033918 (18.038 sec)
+1.117... logprob:  1.472137, 0.257172 L2-SN:  287.156875 light-cost:  22.493713 pose-cost:  0.086626 expression-cost:  0.036694 (17.118 sec)
+1.118... logprob:  1.458090, 0.256328 L2-SN:  287.001413 light-cost:  22.144516 pose-cost:  0.087030 expression-cost:  0.032933 (16.428 sec)
+1.119... logprob:  1.454912, 0.254906 L2-SN:  285.404964 light-cost:  22.104048 pose-cost:  0.088208 expression-cost:  0.032783 (19.566 sec)
+1.120... logprob:  1.453367, 0.253984 L2-SN:  287.043713 light-cost:  21.980167 pose-cost:  0.086878 expression-cost:  0.034867 (16.908 sec)
+1.121... logprob:  1.443698, 0.252609 L2-SN:  284.610344 light-cost:  22.272809 pose-cost:  0.086471 expression-cost:  0.032840 (17.451 sec)
+1.122... logprob:  1.427722, 0.248781 L2-SN:  282.432899 light-cost:  22.194813 pose-cost:  0.086140 expression-cost:  0.032950 (17.336 sec)
+1.123... logprob:  1.424111, 0.249469 L2-SN:  282.741965 light-cost:  22.323881 pose-cost:  0.087879 expression-cost:  0.032604 (16.239 sec)
+1.124... logprob:  1.402092, 0.245344 L2-SN:  282.247724 light-cost:  22.013919 pose-cost:  0.086274 expression-cost:  0.031938 (18.173 sec)
+1.125... logprob:  1.393402, 0.243609 L2-SN:  282.525387 light-cost:  22.335187 pose-cost:  0.087663 expression-cost:  0.030508 (17.035 sec)
+1.126... logprob:  1.387085, 0.241453 L2-SN:  280.795468 light-cost:  22.211562 pose-cost:  0.086362 expression-cost:  0.030449 (19.736 sec)
+1.127... logprob:  1.360742, 0.239625 L2-SN:  279.975876 light-cost:  22.133262 pose-cost:  0.087341 expression-cost:  0.030531 (17.057 sec)
+1.128... logprob:  1.358184, 0.236391 L2-SN:  279.761595 light-cost:  21.968918 pose-cost:  0.088772 expression-cost:  0.029222 (17.561 sec)
+1.129... logprob:  1.352713, 0.235031 L2-SN:  279.291941 light-cost:  21.969016 pose-cost:  0.088245 expression-cost:  0.029094 (19.351 sec)
+1.130... logprob:  1.333123, 0.232172 L2-SN:  278.629204 light-cost:  21.911872 pose-cost:  0.087392 expression-cost:  0.029246 (17.032 sec)
+1.131... logprob:  1.332158, 0.232656 L2-SN:  278.097868 light-cost:  22.151871 pose-cost:  0.086794 expression-cost:  0.026567 (19.862 sec)
+1.132... logprob:  1.335637, 0.232922 L2-SN:  278.017982 light-cost:  21.794481 pose-cost:  0.086300 expression-cost:  0.027723 (16.650 sec)
+1.133... logprob:  1.317125, 0.229937 L2-SN:  276.449973 light-cost:  22.141525 pose-cost:  0.086002 expression-cost:  0.026746 (17.800 sec)
+1.134... logprob:  1.298350, 0.226469 L2-SN:  275.382541 light-cost:  21.945324 pose-cost:  0.087468 expression-cost:  0.027126 (17.548 sec)
+1.135... logprob:  1.302119, 0.227219 L2-SN:  275.401257 light-cost:  21.666241 pose-cost:  0.086399 expression-cost:  0.026819 (16.956 sec)
+1.136... logprob:  1.283192, 0.223094 L2-SN:  274.589057 light-cost:  21.990094 pose-cost:  0.086718 expression-cost:  0.026180 (19.193 sec)
+1.137... logprob:  1.258540, 0.217703 L2-SN:  275.014613 light-cost:  21.658691 pose-cost:  0.085842 expression-cost:  0.026659 (17.261 sec)
+1.138... logprob:  1.262834, 0.219719 L2-SN:  274.057275 light-cost:  22.035811 pose-cost:  0.085780 expression-cost:  0.026853 (17.005 sec)
+1.139... logprob:  1.263065, 0.220031 L2-SN:  272.047117 light-cost:  21.736523 pose-cost:  0.087024 expression-cost:  0.025514 (16.996 sec)
+1.140... logprob:  1.261497, 0.221547 L2-SN:  271.576814 light-cost:  21.779388 pose-cost:  0.085546 expression-cost:  0.025244 (16.323 sec)
+1.141... logprob:  1.242585, 0.217375 L2-SN:  270.352369 light-cost:  21.598803 pose-cost:  0.084364 expression-cost:  0.024260 (19.529 sec)
+1.142... logprob:  1.229173, 0.214422 L2-SN:  270.578385 light-cost:  22.110567 pose-cost:  0.086254 expression-cost:  0.024396 (17.415 sec)
+1.143... logprob:  1.227068, 0.214062 L2-SN:  270.116375 light-cost:  21.777742 pose-cost:  0.085676 expression-cost:  0.024831 (18.690 sec)
+1.144... logprob:  1.213762, 0.213484 L2-SN:  269.873930 light-cost:  21.736675 pose-cost:  0.085878 expression-cost:  0.023886 (21.799 sec)
+1.145... logprob:  1.211843, 0.210906 L2-SN:  268.273276 light-cost:  21.569075 pose-cost:  0.085565 expression-cost:  0.023707 (23.110 sec)
+1.146... logprob:  1.192671, 0.205094 L2-SN:  268.919037 light-cost:  21.801274 pose-cost:  0.084988 expression-cost:  0.023265 (16.565 sec)
+1.147... logprob:  1.192329, 0.208984 L2-SN:  268.298837 light-cost:  21.739644 pose-cost:  0.084890 expression-cost:  0.023564 (16.573 sec)
+1.148... logprob:  1.178464, 0.203703 L2-SN:  267.348551 light-cost:  21.768908 pose-cost:  0.085480 expression-cost:  0.023078 (19.306 sec)
+1.149... logprob:  1.191994, 0.205484 L2-SN:  265.031483 light-cost:  21.423018 pose-cost:  0.085078 expression-cost:  0.022351 (16.353 sec)
+1.150... logprob:  1.181663, 0.207234 L2-SN:  264.505283 light-cost:  21.502956 pose-cost:  0.085532 expression-cost:  0.022102 
+======================Test output======================
+logprob:  1.215543, 0.209266 L2-SN:  254.617270 light-cost:  21.439927 pose-cost:  0.085976 expression-cost:  0.021574 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 6.750814e-02 [7.540090e-05] 
+Layer 'conv1' biases: 1.413990e-01 [2.366834e-06] 
+Layer 'conv2' weights[0]: 3.742716e-02 [3.881678e-05] 
+Layer 'conv2' biases: 9.130003e-02 [1.815340e-06] 
+Layer 'local3' weights[0]: 2.672655e-02 [2.818352e-06] 
+Layer 'local3' biases: 1.862340e-03 [1.857982e-07] 
+Layer 'local4' weights[0]: 2.740166e-02 [1.852200e-06] 
+Layer 'local4' biases: 2.297195e-03 [2.534475e-07] 
+Layer 'fc5' weights[0]: 1.019406e-02 [2.586007e-06]
+Layer 'fc5' weights[1]: 1.170560e-02 [1.056093e-05] 
+Layer 'fc5' biases: 1.649726e-02 [1.554806e-06] 
+Layer 'fc-softmax' weights[0]: 2.889798e-02 [2.179911e-06] 
+Layer 'fc-softmax' biases: 2.787356e-03 [7.094368e-07] 
+Layer 'fc-pose' weights[0]: 2.663611e-03 [4.905813e-07] 
+Layer 'fc-pose' biases: 9.750999e-04 [3.467658e-07] 
+Layer 'fc-light' weights[0]: 1.082555e-02 [1.008849e-06] 
+Layer 'fc-light' biases: 2.110611e-02 [4.978542e-07] 
+Layer 'fc-expression' weights[0]: 1.804374e-03 [1.848995e-07] 
+Layer 'fc-expression' biases: 7.994210e-04 [1.409873e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (45.429 sec)
+1.151... logprob:  1.163679, 0.203953 L2-SN:  265.151485 light-cost:  21.659119 pose-cost:  0.085196 expression-cost:  0.022059 (19.221 sec)
+1.152... logprob:  1.156339, 0.201219 L2-SN:  265.955932 light-cost:  21.474887 pose-cost:  0.086773 expression-cost:  0.022298 (17.082 sec)
+1.153... logprob:  1.144974, 0.201203 L2-SN:  264.099340 light-cost:  21.792013 pose-cost:  0.086695 expression-cost:  0.022007 (18.456 sec)
+1.154... logprob:  1.142221, 0.198625 L2-SN:  262.200738 light-cost:  21.810531 pose-cost:  0.085957 expression-cost:  0.021447 (22.642 sec)
+1.155... logprob:  1.136903, 0.198750 L2-SN:  263.716247 light-cost:  21.696701 pose-cost:  0.085653 expression-cost:  0.021242 (19.654 sec)
+1.156... logprob:  1.136263, 0.196750 L2-SN:  261.164596 light-cost:  21.386131 pose-cost:  0.086309 expression-cost:  0.020447 (16.194 sec)
+1.157... logprob:  1.131320, 0.198109 L2-SN:  261.528836 light-cost:  21.410328 pose-cost:  0.085272 expression-cost:  0.020405 (17.917 sec)
+1.158... logprob:  1.115415, 0.192328 L2-SN:  262.634726 light-cost:  21.422491 pose-cost:  0.086292 expression-cost:  0.020517 (17.221 sec)
+1.159... logprob:  1.113018, 0.192328 L2-SN:  260.870234 light-cost:  21.283905 pose-cost:  0.085630 expression-cost:  0.019938 (16.149 sec)
+1.160... logprob:  1.100233, 0.191469 L2-SN:  260.339485 light-cost:  21.397550 pose-cost:  0.084878 expression-cost:  0.020618 (16.902 sec)
+1.161... logprob:  1.104006, 0.191406 L2-SN:  260.194443 light-cost:  21.642480 pose-cost:  0.086140 expression-cost:  0.021049 (17.302 sec)
+1.162... logprob:  1.097273, 0.191188 L2-SN:  260.689223 light-cost:  21.223191 pose-cost:  0.085461 expression-cost:  0.019742 (16.309 sec)
+1.163... logprob:  1.094668, 0.190828 L2-SN:  260.255359 light-cost:  21.721198 pose-cost:  0.085493 expression-cost:  0.019777 (16.613 sec)
+1.164... logprob:  1.084888, 0.187859 L2-SN:  257.797735 light-cost:  21.461131 pose-cost:  0.084394 expression-cost:  0.019457 (16.284 sec)
+1.165... logprob:  1.076847, 0.184922 L2-SN:  258.117611 light-cost:  21.528039 pose-cost:  0.083928 expression-cost:  0.018978 (19.359 sec)
+1.166... logprob:  1.062616, 0.185922 L2-SN:  256.725673 light-cost:  21.260799 pose-cost:  0.085445 expression-cost:  0.019485 (17.025 sec)
+1.167... logprob:  1.057875, 0.182750 L2-SN:  257.616180 light-cost:  21.208822 pose-cost:  0.085502 expression-cost:  0.018820 (18.224 sec)
+1.168... logprob:  1.065091, 0.185359 L2-SN:  257.032330 light-cost:  21.009718 pose-cost:  0.085392 expression-cost:  0.019285 (18.068 sec)
+1.169... logprob:  1.061205, 0.184156 L2-SN:  256.603546 light-cost:  21.372967 pose-cost:  0.085343 expression-cost:  0.018142 (17.353 sec)
+1.170... logprob:  1.039997, 0.181875 L2-SN:  255.267665 light-cost:  21.373707 pose-cost:  0.084540 expression-cost:  0.019058 (20.477 sec)
+1.171... logprob:  1.038353, 0.179750 L2-SN:  255.320126 light-cost:  21.465059 pose-cost:  0.084855 expression-cost:  0.018576 (17.143 sec)
+1.172... logprob:  1.034385, 0.179484 L2-SN:  253.830434 light-cost:  21.322502 pose-cost:  0.083906 expression-cost:  0.018374 (18.448 sec)
+1.173... logprob:  1.025496, 0.179078 L2-SN:  253.386688 light-cost:  21.212435 pose-cost:  0.083355 expression-cost:  0.017468 (17.280 sec)
+1.174... logprob:  1.019044, 0.177359 L2-SN:  253.127513 light-cost:  20.975583 pose-cost:  0.084301 expression-cost:  0.017439 (18.098 sec)
+1.175... logprob:  1.018888, 0.177047 L2-SN:  252.495363 light-cost:  21.022083 pose-cost:  0.084210 expression-cost:  0.017393 (18.123 sec)
+1.176... logprob:  1.011348, 0.176781 L2-SN:  252.879938 light-cost:  21.150453 pose-cost:  0.083836 expression-cost:  0.017197 (19.505 sec)
+1.177... logprob:  1.006429, 0.173766 L2-SN:  251.439194 light-cost:  21.125528 pose-cost:  0.084674 expression-cost:  0.017281 (16.299 sec)
+1.178... logprob:  0.994143, 0.173469 L2-SN:  251.477107 light-cost:  21.249582 pose-cost:  0.085167 expression-cost:  0.017189 (17.082 sec)
+1.179... logprob:  0.997588, 0.172187 L2-SN:  252.045194 light-cost:  21.359011 pose-cost:  0.083071 expression-cost:  0.016863 (16.433 sec)
+1.180... logprob:  0.995120, 0.172781 L2-SN:  251.029449 light-cost:  21.110186 pose-cost:  0.084934 expression-cost:  0.016068 (16.506 sec)
+1.181... logprob:  0.980411, 0.169781 L2-SN:  249.528150 light-cost:  21.291032 pose-cost:  0.084863 expression-cost:  0.017040 (16.500 sec)
+1.182... logprob:  0.982231, 0.172187 L2-SN:  249.263850 light-cost:  20.996487 pose-cost:  0.084175 expression-cost:  0.016551 (16.355 sec)
+1.183... logprob:  0.966489, 0.167672 L2-SN:  248.435292 light-cost:  20.999575 pose-cost:  0.084259 expression-cost:  0.015755 (16.469 sec)
+1.184... logprob:  0.968905, 0.170031 L2-SN:  248.006223 light-cost:  20.810582 pose-cost:  0.083798 expression-cost:  0.015997 (16.142 sec)
+1.185... logprob:  0.962894, 0.165297 L2-SN:  247.527033 light-cost:  20.837087 pose-cost:  0.083526 expression-cost:  0.016213 (19.225 sec)
+1.186... logprob:  0.962787, 0.166703 L2-SN:  248.334653 light-cost:  21.067856 pose-cost:  0.083152 expression-cost:  0.016616 (16.403 sec)
+1.187... logprob:  0.959148, 0.168977 L2-SN:  246.572508 light-cost:  20.970889 pose-cost:  0.083213 expression-cost:  0.015938 (17.713 sec)
+1.188... logprob:  0.947803, 0.164906 L2-SN:  245.395328 light-cost:  20.865368 pose-cost:  0.084803 expression-cost:  0.015576 (17.362 sec)
+1.189... logprob:  0.949279, 0.165531 L2-SN:  246.819028 light-cost:  20.829264 pose-cost:  0.082826 expression-cost:  0.015933 (16.957 sec)
+1.190... logprob:  0.935592, 0.160219 L2-SN:  246.279903 light-cost:  20.804689 pose-cost:  0.083614 expression-cost:  0.015936 (19.532 sec)
+1.191... logprob:  0.934285, 0.160750 L2-SN:  245.186014 light-cost:  21.187886 pose-cost:  0.083084 expression-cost:  0.015452 (16.240 sec)
+1.192... logprob:  0.938512, 0.161406 L2-SN:  245.753514 light-cost:  20.842025 pose-cost:  0.084393 expression-cost:  0.015295 (18.771 sec)
+1.193... logprob:  0.922643, 0.159328 L2-SN:  244.187305 light-cost:  21.128613 pose-cost:  0.082830 expression-cost:  0.014687 (16.748 sec)
+1.194... logprob:  0.923247, 0.160375 L2-SN:  244.833472 light-cost:  20.902666 pose-cost:  0.082411 expression-cost:  0.015258 (17.225 sec)
+1.195... logprob:  0.923007, 0.158812 L2-SN:  243.894823 light-cost:  21.026965 pose-cost:  0.082431 expression-cost:  0.015345 (19.388 sec)
+1.196... logprob:  0.918555, 0.158391 L2-SN:  243.005751 light-cost:  21.003323 pose-cost:  0.083672 expression-cost:  0.015130 (15.960 sec)
+1.197... logprob:  0.902505, 0.155516 L2-SN:  242.773337 light-cost:  20.946553 pose-cost:  0.083512 expression-cost:  0.015186 (16.201 sec)
+1.198... logprob:  0.901711, 0.152281 L2-SN:  243.699686 light-cost:  20.874408 pose-cost:  0.081834 expression-cost:  0.014907 (16.157 sec)
+1.199... logprob:  0.897241, 0.154516 L2-SN:  243.045674 light-cost:  21.107660 pose-cost:  0.082700 expression-cost:  0.014819 (16.420 sec)
+1.200... logprob:  0.891919, 0.153969 L2-SN:  242.254206 light-cost:  20.835282 pose-cost:  0.084356 expression-cost:  0.014663 
+======================Test output======================
+logprob:  0.909312, 0.157031 L2-SN:  240.201315 light-cost:  20.943122 pose-cost:  0.084094 expression-cost:  0.015229 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 7.115299e-02 [6.408070e-05] 
+Layer 'conv1' biases: 1.870703e-01 [2.756395e-06] 
+Layer 'conv2' weights[0]: 3.889510e-02 [3.085322e-05] 
+Layer 'conv2' biases: 1.209756e-01 [1.684380e-06] 
+Layer 'local3' weights[0]: 2.524373e-02 [2.720681e-06] 
+Layer 'local3' biases: 2.318024e-03 [1.681458e-07] 
+Layer 'local4' weights[0]: 2.638265e-02 [1.934783e-06] 
+Layer 'local4' biases: 3.090433e-03 [2.613775e-07] 
+Layer 'fc5' weights[0]: 1.136345e-02 [2.384782e-06]
+Layer 'fc5' weights[1]: 1.168767e-02 [9.758026e-06] 
+Layer 'fc5' biases: 2.041674e-02 [1.510305e-06] 
+Layer 'fc-softmax' weights[0]: 3.188046e-02 [1.723117e-06] 
+Layer 'fc-softmax' biases: 3.105000e-03 [5.746890e-07] 
+Layer 'fc-pose' weights[0]: 2.664798e-03 [3.098346e-07] 
+Layer 'fc-pose' biases: 1.340209e-03 [1.807412e-07] 
+Layer 'fc-light' weights[0]: 1.205261e-02 [9.955378e-07] 
+Layer 'fc-light' biases: 2.488857e-02 [5.386147e-07] 
+Layer 'fc-expression' weights[0]: 1.377409e-03 [1.224641e-07] 
+Layer 'fc-expression' biases: 8.447100e-04 [1.030039e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (42.708 sec)
+1.201... logprob:  0.907392, 0.156000 L2-SN:  241.249453 light-cost:  20.965730 pose-cost:  0.082948 expression-cost:  0.014406 (19.209 sec)
+1.202... logprob:  0.889922, 0.153797 L2-SN:  240.283491 light-cost:  20.758239 pose-cost:  0.081828 expression-cost:  0.014590 (17.065 sec)
+1.203... logprob:  0.883179, 0.153000 L2-SN:  240.348032 light-cost:  21.071314 pose-cost:  0.082654 expression-cost:  0.014289 (17.621 sec)
+1.204... logprob:  0.883745, 0.151109 L2-SN:  241.099743 light-cost:  20.721669 pose-cost:  0.082378 expression-cost:  0.014370 (16.735 sec)
+1.205... logprob:  0.890845, 0.152656 L2-SN:  241.309706 light-cost:  20.990736 pose-cost:  0.082623 expression-cost:  0.014499 (16.549 sec)
+1.206... logprob:  0.872463, 0.147828 L2-SN:  240.570196 light-cost:  20.803551 pose-cost:  0.083485 expression-cost:  0.013795 (16.757 sec)
+1.207... logprob:  0.857992, 0.147703 L2-SN:  238.666837 light-cost:  21.062744 pose-cost:  0.082374 expression-cost:  0.013632 (16.592 sec)
+1.208... logprob:  0.857603, 0.147328 L2-SN:  238.294189 light-cost:  20.693132 pose-cost:  0.083395 expression-cost:  0.013895 (16.944 sec)
+1.209... logprob:  0.861137, 0.149797 L2-SN:  238.399689 light-cost:  20.529311 pose-cost:  0.083888 expression-cost:  0.013954 (16.544 sec)
+1.210... logprob:  0.857840, 0.146234 L2-SN:  237.935300 light-cost:  20.641317 pose-cost:  0.082532 expression-cost:  0.013425 (16.161 sec)
+1.211... logprob:  0.851220, 0.144109 L2-SN:  238.301146 light-cost:  20.801861 pose-cost:  0.083771 expression-cost:  0.013574 (16.822 sec)
+1.212... logprob:  0.856593, 0.147875 L2-SN:  236.411258 light-cost:  20.658615 pose-cost:  0.081777 expression-cost:  0.013521 (16.399 sec)
+1.213... logprob:  0.848336, 0.146313 L2-SN:  237.252330 light-cost:  20.845669 pose-cost:  0.081853 expression-cost:  0.013253 (17.700 sec)
+1.214... logprob:  0.844572, 0.146469 L2-SN:  236.193737 light-cost:  20.675478 pose-cost:  0.082728 expression-cost:  0.013290 (18.355 sec)
+1.215... logprob:  0.837228, 0.142437 L2-SN:  237.368799 light-cost:  20.595588 pose-cost:  0.082103 expression-cost:  0.013300 (17.309 sec)
+1.216... logprob:  0.824297, 0.141250 L2-SN:  235.887151 light-cost:  20.586827 pose-cost:  0.081916 expression-cost:  0.013579 (20.737 sec)
+1.217... logprob:  0.836620, 0.142563 L2-SN:  235.935269 light-cost:  20.546928 pose-cost:  0.081702 expression-cost:  0.013112 (16.993 sec)
+1.218... logprob:  0.826259, 0.141828 L2-SN:  234.491487 light-cost:  20.585353 pose-cost:  0.080895 expression-cost:  0.013527 (18.553 sec)
+1.219... logprob:  0.825343, 0.142031 L2-SN:  234.688247 light-cost:  20.571309 pose-cost:  0.081987 expression-cost:  0.012890 (17.053 sec)
+1.220... logprob:  0.831664, 0.142313 L2-SN:  234.456935 light-cost:  20.544345 pose-cost:  0.081143 expression-cost:  0.013118 (16.179 sec)
+1.221... logprob:  0.813770, 0.138703 L2-SN:  233.779802 light-cost:  20.461642 pose-cost:  0.081425 expression-cost:  0.012973 (17.508 sec)
+1.222... logprob:  0.815522, 0.139078 L2-SN:  234.332563 light-cost:  20.761793 pose-cost:  0.081322 expression-cost:  0.012890 (16.970 sec)
+1.223... logprob:  0.820816, 0.139453 L2-SN:  233.451734 light-cost:  20.363005 pose-cost:  0.082121 expression-cost:  0.012820 (18.470 sec)
+1.224... logprob:  0.805496, 0.137547 L2-SN:  232.700650 light-cost:  20.400532 pose-cost:  0.082335 expression-cost:  0.012516 (17.564 sec)
+1.225... logprob:  0.802506, 0.136016 L2-SN:  232.205603 light-cost:  20.431144 pose-cost:  0.081354 expression-cost:  0.012356 (16.209 sec)
+1.226... logprob:  0.798769, 0.134766 L2-SN:  232.040711 light-cost:  20.623895 pose-cost:  0.081158 expression-cost:  0.012554 (18.981 sec)
+1.227... logprob:  0.792736, 0.135109 L2-SN:  232.600234 light-cost:  20.435113 pose-cost:  0.080887 expression-cost:  0.012533 (16.284 sec)
+1.228... logprob:  0.796659, 0.134797 L2-SN:  231.907766 light-cost:  20.777443 pose-cost:  0.081390 expression-cost:  0.012592 (16.775 sec)
+1.229... logprob:  0.791524, 0.135781 L2-SN:  232.427620 light-cost:  20.730655 pose-cost:  0.080430 expression-cost:  0.012403 (16.899 sec)
+1.230... logprob:  0.793845, 0.136437 L2-SN:  231.541721 light-cost:  20.529981 pose-cost:  0.080115 expression-cost:  0.012564 (17.105 sec)
+1.231... logprob:  0.772630, 0.131312 L2-SN:  229.062376 light-cost:  20.471846 pose-cost:  0.080605 expression-cost:  0.012494 (18.673 sec)
+1.232... logprob:  0.779932, 0.133359 L2-SN:  229.611795 light-cost:  20.201851 pose-cost:  0.081531 expression-cost:  0.012124 (16.313 sec)
+1.233... logprob:  0.777411, 0.134711 L2-SN:  230.022492 light-cost:  20.301608 pose-cost:  0.080838 expression-cost:  0.012155 (19.791 sec)
+1.234... logprob:  0.769300, 0.130016 L2-SN:  230.075892 light-cost:  20.442031 pose-cost:  0.079702 expression-cost:  0.012025 (16.493 sec)
+1.235... logprob:  0.765222, 0.132859 L2-SN:  228.051872 light-cost:  20.416733 pose-cost:  0.080315 expression-cost:  0.012000 (16.335 sec)
+1.236... logprob:  0.762748, 0.130406 L2-SN:  229.584072 light-cost:  20.486758 pose-cost:  0.080381 expression-cost:  0.012019 (16.560 sec)
+1.237... logprob:  0.761381, 0.130125 L2-SN:  228.599402 light-cost:  20.373376 pose-cost:  0.079421 expression-cost:  0.011902 (16.466 sec)
+1.238... logprob:  0.768409, 0.132062 L2-SN:  229.642125 light-cost:  20.559330 pose-cost:  0.080423 expression-cost:  0.011873 (18.906 sec)
+1.239... logprob:  0.764280, 0.128188 L2-SN:  228.140540 light-cost:  20.447972 pose-cost:  0.080733 expression-cost:  0.012244 (16.294 sec)
+1.240... logprob:  0.748591, 0.127859 L2-SN:  228.135118 light-cost:  20.351848 pose-cost:  0.080322 expression-cost:  0.011715 (18.533 sec)
+1.241... logprob:  0.754293, 0.127297 L2-SN:  228.229460 light-cost:  20.259981 pose-cost:  0.080467 expression-cost:  0.011825 (16.580 sec)
+1.242... logprob:  0.743293, 0.125984 L2-SN:  226.506719 light-cost:  20.136318 pose-cost:  0.080199 expression-cost:  0.011746 (17.160 sec)
+1.243... logprob:  0.744657, 0.127438 L2-SN:  226.602688 light-cost:  20.361320 pose-cost:  0.080359 expression-cost:  0.011541 (18.704 sec)
+1.244... logprob:  0.745224, 0.130203 L2-SN:  225.671115 light-cost:  20.361305 pose-cost:  0.079859 expression-cost:  0.011584 (16.239 sec)
+1.245... logprob:  0.736896, 0.125766 L2-SN:  225.326894 light-cost:  20.385207 pose-cost:  0.078692 expression-cost:  0.011506 (18.472 sec)
+1.246... logprob:  0.731076, 0.123688 L2-SN:  225.781920 light-cost:  20.087969 pose-cost:  0.079456 expression-cost:  0.011495 (16.257 sec)
+1.247... logprob:  0.727608, 0.124547 L2-SN:  224.808255 light-cost:  20.103214 pose-cost:  0.079559 expression-cost:  0.011773 (16.961 sec)
+1.248... logprob:  0.724131, 0.122516 L2-SN:  226.149339 light-cost:  20.485032 pose-cost:  0.078341 expression-cost:  0.011330 (16.892 sec)
+1.249... logprob:  0.731035, 0.125594 L2-SN:  225.309029 light-cost:  20.039137 pose-cost:  0.079416 expression-cost:  0.011440 (16.774 sec)
+1.250... logprob:  0.731861, 0.126562 L2-SN:  226.229956 light-cost:  20.321566 pose-cost:  0.079609 expression-cost:  0.011067 
+======================Test output======================
+logprob:  0.747932, 0.124781 L2-SN:  221.057050 light-cost:  20.531848 pose-cost:  0.079453 expression-cost:  0.012382 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 7.507599e-02 [6.701123e-05] 
+Layer 'conv1' biases: 2.263096e-01 [1.843228e-06] 
+Layer 'conv2' weights[0]: 4.050241e-02 [3.316551e-05] 
+Layer 'conv2' biases: 1.474026e-01 [1.416716e-06] 
+Layer 'local3' weights[0]: 2.386511e-02 [3.089882e-06] 
+Layer 'local3' biases: 2.706082e-03 [1.871088e-07] 
+Layer 'local4' weights[0]: 2.550448e-02 [2.433855e-06] 
+Layer 'local4' biases: 3.878447e-03 [3.454359e-07] 
+Layer 'fc5' weights[0]: 1.244665e-02 [2.723133e-06]
+Layer 'fc5' weights[1]: 1.147516e-02 [1.120914e-05] 
+Layer 'fc5' biases: 2.408165e-02 [1.825986e-06] 
+Layer 'fc-softmax' weights[0]: 3.397268e-02 [1.608990e-06] 
+Layer 'fc-softmax' biases: 3.365824e-03 [5.467197e-07] 
+Layer 'fc-pose' weights[0]: 2.998475e-03 [2.759316e-07] 
+Layer 'fc-pose' biases: 1.700657e-03 [1.838256e-07] 
+Layer 'fc-light' weights[0]: 1.324816e-02 [9.207691e-07] 
+Layer 'fc-light' biases: 2.834918e-02 [5.242124e-07] 
+Layer 'fc-expression' weights[0]: 1.092397e-03 [1.064835e-07] 
+Layer 'fc-expression' biases: 8.842241e-04 [9.805746e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (41.303 sec)
+1.251... logprob:  0.714245, 0.122266 L2-SN:  223.843213 light-cost:  20.216225 pose-cost:  0.079452 expression-cost:  0.011294 (19.420 sec)
+1.252... logprob:  0.714393, 0.121328 L2-SN:  223.436868 light-cost:  20.343926 pose-cost:  0.079463 expression-cost:  0.011238 (16.701 sec)
+1.253... logprob:  0.711158, 0.120156 L2-SN:  223.647353 light-cost:  20.374151 pose-cost:  0.079709 expression-cost:  0.011060 (16.518 sec)
+1.254... logprob:  0.716722, 0.122500 L2-SN:  223.443334 light-cost:  19.835293 pose-cost:  0.077931 expression-cost:  0.011251 (19.487 sec)
+1.255... logprob:  0.702922, 0.120281 L2-SN:  222.607651 light-cost:  20.019686 pose-cost:  0.079548 expression-cost:  0.011116 (16.637 sec)
+1.256... logprob:  0.710715, 0.120391 L2-SN:  221.972271 light-cost:  20.223653 pose-cost:  0.079544 expression-cost:  0.011216 (19.998 sec)
+1.257... logprob:  0.710749, 0.120266 L2-SN:  222.717471 light-cost:  20.060947 pose-cost:  0.078835 expression-cost:  0.011142 (16.808 sec)
+1.258... logprob:  0.701637, 0.119234 L2-SN:  223.303025 light-cost:  20.121335 pose-cost:  0.077911 expression-cost:  0.011179 (17.460 sec)
+1.259... logprob:  0.692722, 0.116969 L2-SN:  222.198377 light-cost:  20.098629 pose-cost:  0.078244 expression-cost:  0.010839 (17.121 sec)
+1.260... logprob:  0.701239, 0.119281 L2-SN:  221.279470 light-cost:  20.068418 pose-cost:  0.079061 expression-cost:  0.010813 (15.363 sec)
+1.261... logprob:  0.691885, 0.115953 L2-SN:  221.516196 light-cost:  20.213576 pose-cost:  0.078334 expression-cost:  0.010814 (19.636 sec)
+1.262... logprob:  0.686038, 0.115062 L2-SN:  220.886001 light-cost:  20.034489 pose-cost:  0.077510 expression-cost:  0.010939 (16.479 sec)
+1.263... logprob:  0.689832, 0.116391 L2-SN:  220.450911 light-cost:  19.940057 pose-cost:  0.077655 expression-cost:  0.010997 (16.826 sec)
+1.264... logprob:  0.684965, 0.115969 L2-SN:  220.064353 light-cost:  20.226186 pose-cost:  0.078460 expression-cost:  0.010687 (18.662 sec)
+1.265... logprob:  0.679495, 0.113875 L2-SN:  220.171501 light-cost:  20.082528 pose-cost:  0.079940 expression-cost:  0.010942 (17.008 sec)
+1.266... logprob:  0.684298, 0.117219 L2-SN:  220.281102 light-cost:  20.005669 pose-cost:  0.077325 expression-cost:  0.010558 (17.204 sec)
+1.267... logprob:  0.671070, 0.113562 L2-SN:  220.155716 light-cost:  19.783235 pose-cost:  0.077645 expression-cost:  0.010689 (16.357 sec)
+1.268... logprob:  0.679953, 0.114094 L2-SN:  219.944261 light-cost:  19.729711 pose-cost:  0.079396 expression-cost:  0.010809 (16.964 sec)
+1.269... logprob:  0.669658, 0.114375 L2-SN:  218.510629 light-cost:  20.058876 pose-cost:  0.077236 expression-cost:  0.010665 (16.991 sec)
+1.270... logprob:  0.677705, 0.116406 L2-SN:  219.554648 light-cost:  19.979682 pose-cost:  0.078469 expression-cost:  0.010416 (16.820 sec)
+1.271... logprob:  0.666961, 0.115031 L2-SN:  217.193944 light-cost:  19.936633 pose-cost:  0.077481 expression-cost:  0.010652 (17.024 sec)
+1.272... logprob:  0.663496, 0.113078 L2-SN:  217.753661 light-cost:  19.703328 pose-cost:  0.077817 expression-cost:  0.010505 (17.100 sec)
+1.273... logprob:  0.660539, 0.111719 L2-SN:  218.080225 light-cost:  19.759190 pose-cost:  0.077578 expression-cost:  0.010305 (16.450 sec)
+1.274... logprob:  0.658680, 0.111016 L2-SN:  217.174520 light-cost:  19.817688 pose-cost:  0.076731 expression-cost:  0.010482 (16.557 sec)
+1.275... logprob:  0.657771, 0.110609 L2-SN:  216.868663 light-cost:  19.821485 pose-cost:  0.076921 expression-cost:  0.010631 (16.465 sec)
+1.276... logprob:  0.653271, 0.110266 L2-SN:  217.289150 light-cost:  19.820058 pose-cost:  0.077650 expression-cost:  0.010555 (16.261 sec)
+1.277... logprob:  0.647487, 0.108469 L2-SN:  216.441830 light-cost:  19.880127 pose-cost:  0.077070 expression-cost:  0.010520 (16.832 sec)
+1.278... logprob:  0.650184, 0.111234 L2-SN:  216.943828 light-cost:  20.147022 pose-cost:  0.077662 expression-cost:  0.010257 (16.440 sec)
+1.279... logprob:  0.657116, 0.110812 L2-SN:  216.410737 light-cost:  20.034261 pose-cost:  0.077415 expression-cost:  0.010288 (16.613 sec)
+1.280... logprob:  0.651733, 0.111172 L2-SN:  216.267933 light-cost:  20.182356 pose-cost:  0.076712 expression-cost:  0.010327 (16.449 sec)
+1.281... logprob:  0.650275, 0.110500 L2-SN:  216.088203 light-cost:  19.762376 pose-cost:  0.076189 expression-cost:  0.010209 (18.355 sec)
+1.282... logprob:  0.650908, 0.109125 L2-SN:  216.500972 light-cost:  19.898834 pose-cost:  0.076609 expression-cost:  0.010142 (17.428 sec)
+1.283... logprob:  0.646086, 0.107906 L2-SN:  216.626497 light-cost:  20.075723 pose-cost:  0.077042 expression-cost:  0.010130 (16.775 sec)
+1.284... logprob:  0.632033, 0.107875 L2-SN:  214.728539 light-cost:  19.850386 pose-cost:  0.076694 expression-cost:  0.010421 (19.491 sec)
+1.285... logprob:  0.639907, 0.109250 L2-SN:  216.207714 light-cost:  19.833171 pose-cost:  0.076748 expression-cost:  0.010366 (17.112 sec)
+1.286... logprob:  0.633042, 0.108453 L2-SN:  214.494904 light-cost:  19.649194 pose-cost:  0.076955 expression-cost:  0.010180 (18.428 sec)
+1.287... logprob:  0.627957, 0.104781 L2-SN:  214.725931 light-cost:  20.128562 pose-cost:  0.075884 expression-cost:  0.009978 (17.429 sec)
+1.288... logprob:  0.630270, 0.106703 L2-SN:  213.762611 light-cost:  19.747852 pose-cost:  0.076634 expression-cost:  0.010180 (17.097 sec)
+1.289... logprob:  0.629538, 0.107516 L2-SN:  213.542131 light-cost:  20.089850 pose-cost:  0.075788 expression-cost:  0.010158 (19.639 sec)
+1.290... logprob:  0.623837, 0.102797 L2-SN:  214.708742 light-cost:  19.855871 pose-cost:  0.075221 expression-cost:  0.009917 (17.203 sec)
+1.291... logprob:  0.627352, 0.105531 L2-SN:  213.120483 light-cost:  19.741348 pose-cost:  0.076196 expression-cost:  0.010117 (16.913 sec)
+1.292... logprob:  0.620722, 0.104250 L2-SN:  213.112649 light-cost:  19.901146 pose-cost:  0.075820 expression-cost:  0.010078 (17.144 sec)
+1.293... logprob:  0.615982, 0.104469 L2-SN:  212.500247 light-cost:  19.709545 pose-cost:  0.077356 expression-cost:  0.009892 (18.850 sec)
+1.294... logprob:  0.619893, 0.104781 L2-SN:  212.335554 light-cost:  19.763889 pose-cost:  0.075964 expression-cost:  0.009796 (17.427 sec)
+1.295... logprob:  0.613382, 0.104828 L2-SN:  212.513286 light-cost:  19.922536 pose-cost:  0.074037 expression-cost:  0.009810 (16.684 sec)
+1.296... logprob:  0.616992, 0.104219 L2-SN:  212.053938 light-cost:  19.590523 pose-cost:  0.075926 expression-cost:  0.009860 (18.947 sec)
+1.297... logprob:  0.615345, 0.103781 L2-SN:  212.676692 light-cost:  19.628946 pose-cost:  0.074940 expression-cost:  0.009745 (17.242 sec)
+1.298... logprob:  0.605268, 0.102500 L2-SN:  211.121352 light-cost:  19.628648 pose-cost:  0.075378 expression-cost:  0.009839 (17.355 sec)
+1.299... logprob:  0.604837, 0.101234 L2-SN:  211.777201 light-cost:  19.778115 pose-cost:  0.075502 expression-cost:  0.009749 (18.712 sec)
+1.300... logprob:  0.602185, 0.101516 L2-SN:  211.614426 light-cost:  19.490646 pose-cost:  0.075338 expression-cost:  0.009738 
+======================Test output======================
+logprob:  0.613708, 0.101938 L2-SN:  211.636969 light-cost:  19.362332 pose-cost:  0.077039 expression-cost:  0.010176 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 7.927859e-02 [6.182110e-05] 
+Layer 'conv1' biases: 2.607736e-01 [2.605595e-06] 
+Layer 'conv2' weights[0]: 4.221325e-02 [3.155261e-05] 
+Layer 'conv2' biases: 1.697460e-01 [1.792268e-06] 
+Layer 'local3' weights[0]: 2.258467e-02 [3.078831e-06] 
+Layer 'local3' biases: 3.042740e-03 [1.671540e-07] 
+Layer 'local4' weights[0]: 2.474043e-02 [2.505072e-06] 
+Layer 'local4' biases: 4.644458e-03 [3.530411e-07] 
+Layer 'fc5' weights[0]: 1.340888e-02 [2.550937e-06]
+Layer 'fc5' weights[1]: 1.115885e-02 [1.043297e-05] 
+Layer 'fc5' biases: 2.748486e-02 [1.621671e-06] 
+Layer 'fc-softmax' weights[0]: 3.548197e-02 [1.425847e-06] 
+Layer 'fc-softmax' biases: 3.583253e-03 [5.018236e-07] 
+Layer 'fc-pose' weights[0]: 3.457621e-03 [2.687827e-07] 
+Layer 'fc-pose' biases: 2.036039e-03 [1.547819e-07] 
+Layer 'fc-light' weights[0]: 1.442651e-02 [6.471064e-07] 
+Layer 'fc-light' biases: 3.157336e-02 [3.969698e-07] 
+Layer 'fc-expression' weights[0]: 8.949333e-04 [6.789950e-08] 
+Layer 'fc-expression' biases: 9.359085e-04 [5.707038e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (42.740 sec)
+1.301... logprob:  0.605216, 0.101984 L2-SN:  211.476642 light-cost:  19.764292 pose-cost:  0.075203 expression-cost:  0.009922 (16.354 sec)
+1.302... logprob:  0.607244, 0.102609 L2-SN:  211.173003 light-cost:  19.316611 pose-cost:  0.075717 expression-cost:  0.009815 (20.105 sec)
+1.303... logprob:  0.601126, 0.101297 L2-SN:  211.149824 light-cost:  19.360839 pose-cost:  0.075155 expression-cost:  0.009632 (16.285 sec)
+1.304... logprob:  0.601146, 0.100687 L2-SN:  209.919288 light-cost:  19.646799 pose-cost:  0.075020 expression-cost:  0.009693 (16.574 sec)
+1.305... logprob:  0.594921, 0.100125 L2-SN:  210.124812 light-cost:  19.685236 pose-cost:  0.075239 expression-cost:  0.009801 (18.299 sec)
+1.306... logprob:  0.595886, 0.099766 L2-SN:  210.102324 light-cost:  19.637582 pose-cost:  0.074944 expression-cost:  0.009722 (16.171 sec)
+1.307... logprob:  0.581932, 0.096625 L2-SN:  210.534204 light-cost:  19.679647 pose-cost:  0.074554 expression-cost:  0.009686 (16.998 sec)
+1.308... logprob:  0.588388, 0.097984 L2-SN:  209.503212 light-cost:  19.630717 pose-cost:  0.074047 expression-cost:  0.009613 (16.151 sec)
+1.309... logprob:  0.593121, 0.098922 L2-SN:  209.329438 light-cost:  19.459206 pose-cost:  0.074074 expression-cost:  0.009560 (17.308 sec)
+1.310... logprob:  0.590291, 0.098141 L2-SN:  209.993785 light-cost:  19.692547 pose-cost:  0.075278 expression-cost:  0.009577 (18.084 sec)
+1.311... logprob:  0.580669, 0.098359 L2-SN:  207.849322 light-cost:  19.424752 pose-cost:  0.074678 expression-cost:  0.009514 (17.064 sec)
+1.312... logprob:  0.576754, 0.095828 L2-SN:  208.324187 light-cost:  19.278373 pose-cost:  0.074706 expression-cost:  0.009606 (17.105 sec)
+1.313... logprob:  0.585262, 0.098594 L2-SN:  207.467844 light-cost:  19.579486 pose-cost:  0.074973 expression-cost:  0.009640 (16.292 sec)
+1.314... logprob:  0.582910, 0.097156 L2-SN:  207.989895 light-cost:  19.804229 pose-cost:  0.074822 expression-cost:  0.009723 (17.846 sec)
+1.315... logprob:  0.576626, 0.096734 L2-SN:  207.714745 light-cost:  19.807232 pose-cost:  0.073916 expression-cost:  0.009568 (17.995 sec)
+1.316... logprob:  0.572331, 0.095719 L2-SN:  207.735284 light-cost:  19.615776 pose-cost:  0.075184 expression-cost:  0.009419 (17.431 sec)
+1.317... logprob:  0.575670, 0.096406 L2-SN:  206.672765 light-cost:  19.364736 pose-cost:  0.074448 expression-cost:  0.009431 (19.650 sec)
+1.318... logprob:  0.572513, 0.095609 L2-SN:  206.609307 light-cost:  19.398910 pose-cost:  0.074005 expression-cost:  0.009449 (16.985 sec)
+1.319... logprob:  0.562269, 0.093719 L2-SN:  206.799888 light-cost:  19.640610 pose-cost:  0.073824 expression-cost:  0.009289 (17.180 sec)
+1.320... logprob:  0.561649, 0.094672 L2-SN:  205.994826 light-cost:  19.375920 pose-cost:  0.074201 expression-cost:  0.009245 (18.015 sec)
+1.321... logprob:  0.564350, 0.096234 L2-SN:  205.896259 light-cost:  19.592270 pose-cost:  0.074460 expression-cost:  0.009513 (16.826 sec)
+1.322... logprob:  0.565794, 0.094641 L2-SN:  206.073742 light-cost:  19.464535 pose-cost:  0.074197 expression-cost:  0.009287 (19.549 sec)
+1.323... logprob:  0.565692, 0.093937 L2-SN:  205.273148 light-cost:  19.064654 pose-cost:  0.073737 expression-cost:  0.009578 (17.576 sec)
+1.324... logprob:  0.557971, 0.094203 L2-SN:  205.753576 light-cost:  19.385511 pose-cost:  0.073581 expression-cost:  0.009304 (16.904 sec)
+1.325... logprob:  0.560744, 0.094859 L2-SN:  206.083443 light-cost:  19.332642 pose-cost:  0.073947 expression-cost:  0.009318 (17.113 sec)
+1.326... logprob:  0.555521, 0.094125 L2-SN:  204.181850 light-cost:  19.402738 pose-cost:  0.074414 expression-cost:  0.009462 (19.332 sec)
+1.327... logprob:  0.555667, 0.093797 L2-SN:  205.743659 light-cost:  19.488133 pose-cost:  0.074417 expression-cost:  0.009423 (19.140 sec)
+1.328... logprob:  0.550291, 0.091141 L2-SN:  205.051076 light-cost:  19.209234 pose-cost:  0.073934 expression-cost:  0.009332 (18.271 sec)
+1.329... logprob:  0.550945, 0.092250 L2-SN:  204.556318 light-cost:  19.217019 pose-cost:  0.073384 expression-cost:  0.009224 (23.076 sec)
+1.330... logprob:  0.545539, 0.089641 L2-SN:  204.475919 light-cost:  19.238040 pose-cost:  0.072710 expression-cost:  0.009197 (16.968 sec)
+1.331... logprob:  0.552296, 0.092000 L2-SN:  203.997277 light-cost:  19.470667 pose-cost:  0.073386 expression-cost:  0.009336 (19.517 sec)
+1.332... logprob:  0.543381, 0.092844 L2-SN:  203.698676 light-cost:  19.256272 pose-cost:  0.073321 expression-cost:  0.009347 (17.057 sec)
+1.333... logprob:  0.553449, 0.092313 L2-SN:  204.369023 light-cost:  19.190533 pose-cost:  0.073242 expression-cost:  0.009342 (16.999 sec)
+1.334... logprob:  0.542840, 0.091516 L2-SN:  202.902400 light-cost:  19.312250 pose-cost:  0.072632 expression-cost:  0.009125 (16.539 sec)
+1.335... logprob:  0.544452, 0.091563 L2-SN:  204.659395 light-cost:  19.281821 pose-cost:  0.072982 expression-cost:  0.009195 (16.331 sec)
+1.336... logprob:  0.546491, 0.092375 L2-SN:  203.357417 light-cost:  19.221138 pose-cost:  0.073204 expression-cost:  0.009272 (16.311 sec)
+1.337... logprob:  0.545538, 0.090578 L2-SN:  203.073190 light-cost:  19.045122 pose-cost:  0.073144 expression-cost:  0.009281 (17.031 sec)
+1.338... logprob:  0.540759, 0.090438 L2-SN:  202.846543 light-cost:  19.556422 pose-cost:  0.073045 expression-cost:  0.009349 (16.579 sec)
+1.339... logprob:  0.540995, 0.090766 L2-SN:  203.153846 light-cost:  19.373056 pose-cost:  0.072839 expression-cost:  0.009197 (19.325 sec)
+1.340... logprob:  0.533446, 0.089109 L2-SN:  202.184011 light-cost:  19.401235 pose-cost:  0.071868 expression-cost:  0.009123 (16.698 sec)
+1.341... logprob:  0.533083, 0.088203 L2-SN:  202.294188 light-cost:  19.364167 pose-cost:  0.071370 expression-cost:  0.008971 (18.945 sec)
+1.342... logprob:  0.534333, 0.089000 L2-SN:  202.743250 light-cost:  19.555142 pose-cost:  0.072984 expression-cost:  0.009058 (17.073 sec)
+1.343... logprob:  0.537377, 0.089688 L2-SN:  203.092405 light-cost:  19.267517 pose-cost:  0.072395 expression-cost:  0.009150 (16.825 sec)
+1.344... logprob:  0.528663, 0.087609 L2-SN:  202.172010 light-cost:  19.298436 pose-cost:  0.072651 expression-cost:  0.009049 (19.146 sec)
+1.345... logprob:  0.522594, 0.089156 L2-SN:  201.322528 light-cost:  19.021286 pose-cost:  0.072211 expression-cost:  0.009125 (16.634 sec)
+1.346... logprob:  0.527914, 0.088813 L2-SN:  202.183010 light-cost:  19.248462 pose-cost:  0.072642 expression-cost:  0.009058 (19.927 sec)
+1.347... logprob:  0.532755, 0.088875 L2-SN:  201.375659 light-cost:  19.315922 pose-cost:  0.071302 expression-cost:  0.009074 (16.834 sec)
+1.348... logprob:  0.521927, 0.087484 L2-SN:  201.663767 light-cost:  19.287995 pose-cost:  0.072590 expression-cost:  0.009067 (17.150 sec)
+1.349... logprob:  0.518015, 0.083391 L2-SN:  200.761976 light-cost:  19.046245 pose-cost:  0.072108 expression-cost:  0.009008 (16.519 sec)
+1.350... logprob:  0.530012, 0.089172 L2-SN:  200.891242 light-cost:  19.279755 pose-cost:  0.071930 expression-cost:  0.008968 
+======================Test output======================
+logprob:  0.524755, 0.086063 L2-SN:  196.566872 light-cost:  19.447107 pose-cost:  0.072459 expression-cost:  0.008967 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 8.349413e-02 [7.324270e-05] 
+Layer 'conv1' biases: 2.905442e-01 [1.491218e-06] 
+Layer 'conv2' weights[0]: 4.403370e-02 [2.806021e-05] 
+Layer 'conv2' biases: 1.889126e-01 [1.172671e-06] 
+Layer 'local3' weights[0]: 2.139909e-02 [2.876227e-06] 
+Layer 'local3' biases: 3.339742e-03 [1.455006e-07] 
+Layer 'local4' weights[0]: 2.406977e-02 [2.472658e-06] 
+Layer 'local4' biases: 5.391390e-03 [3.547279e-07] 
+Layer 'fc5' weights[0]: 1.425543e-02 [2.274890e-06]
+Layer 'fc5' weights[1]: 1.079184e-02 [9.316598e-06] 
+Layer 'fc5' biases: 3.069867e-02 [1.432455e-06] 
+Layer 'fc-softmax' weights[0]: 3.659192e-02 [1.272178e-06] 
+Layer 'fc-softmax' biases: 3.778053e-03 [4.468396e-07] 
+Layer 'fc-pose' weights[0]: 3.969059e-03 [2.841641e-07] 
+Layer 'fc-pose' biases: 2.404726e-03 [2.038931e-07] 
+Layer 'fc-light' weights[0]: 1.551298e-02 [7.794635e-07] 
+Layer 'fc-light' biases: 3.466604e-02 [5.497157e-07] 
+Layer 'fc-expression' weights[0]: 7.527469e-04 [4.766484e-08] 
+Layer 'fc-expression' biases: 9.777297e-04 [4.262597e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (40.907 sec)
+1.351... logprob:  0.527293, 0.088281 L2-SN:  200.524868 light-cost:  19.163448 pose-cost:  0.071999 expression-cost:  0.009016 (16.817 sec)
+1.352... logprob:  0.513684, 0.085797 L2-SN:  201.006927 light-cost:  19.118759 pose-cost:  0.072414 expression-cost:  0.009272 (16.314 sec)
+1.353... logprob:  0.521775, 0.087078 L2-SN:  200.512221 light-cost:  19.433493 pose-cost:  0.071868 expression-cost:  0.009180 (16.198 sec)
+1.354... logprob:  0.510789, 0.083750 L2-SN:  200.467730 light-cost:  19.245494 pose-cost:  0.071463 expression-cost:  0.008994 (15.579 sec)
+1.355... logprob:  0.512878, 0.083984 L2-SN:  199.733448 light-cost:  19.271124 pose-cost:  0.071532 expression-cost:  0.008874 (15.591 sec)
+1.356... logprob:  0.513920, 0.085422 L2-SN:  199.914507 light-cost:  19.142836 pose-cost:  0.072138 expression-cost:  0.008865 (15.661 sec)
+1.357... logprob:  0.507984, 0.084422 L2-SN:  199.047928 light-cost:  19.135723 pose-cost:  0.070531 expression-cost:  0.008861 (15.677 sec)
+1.358... logprob:  0.511363, 0.084453 L2-SN:  199.339432 light-cost:  18.995519 pose-cost:  0.072373 expression-cost:  0.008966 (16.485 sec)
+1.359... logprob:  0.503509, 0.084906 L2-SN:  198.273976 light-cost:  18.949783 pose-cost:  0.071140 expression-cost:  0.008899 (17.624 sec)
+1.360... logprob:  0.504833, 0.084328 L2-SN:  198.281701 light-cost:  18.975737 pose-cost:  0.070920 expression-cost:  0.008837 (17.043 sec)
+1.361... logprob:  0.510914, 0.085609 L2-SN:  198.460997 light-cost:  18.869911 pose-cost:  0.071779 expression-cost:  0.008964 (17.776 sec)
+1.362... logprob:  0.506717, 0.085250 L2-SN:  199.070243 light-cost:  19.169500 pose-cost:  0.071108 expression-cost:  0.009056 (17.117 sec)
+1.363... logprob:  0.508959, 0.086156 L2-SN:  198.692315 light-cost:  19.076472 pose-cost:  0.071550 expression-cost:  0.008885 (16.362 sec)
+1.364... logprob:  0.499455, 0.083641 L2-SN:  197.041006 light-cost:  19.049332 pose-cost:  0.071457 expression-cost:  0.008901 (17.969 sec)
+1.365... logprob:  0.507407, 0.085734 L2-SN:  198.073126 light-cost:  19.144296 pose-cost:  0.071011 expression-cost:  0.008794 (17.473 sec)
+1.366... logprob:  0.499146, 0.083734 L2-SN:  198.196089 light-cost:  19.064014 pose-cost:  0.071435 expression-cost:  0.008810 (16.766 sec)
+1.367... logprob:  0.492686, 0.081516 L2-SN:  197.829724 light-cost:  19.045874 pose-cost:  0.071713 expression-cost:  0.008845 (17.517 sec)
+1.368... logprob:  0.493622, 0.082312 L2-SN:  197.414666 light-cost:  19.220148 pose-cost:  0.071400 expression-cost:  0.008799 (16.733 sec)
+1.369... logprob:  0.497917, 0.083187 L2-SN:  196.929373 light-cost:  19.346691 pose-cost:  0.070802 expression-cost:  0.008999 (15.907 sec)
+1.370... logprob:  0.489839, 0.081641 L2-SN:  197.070845 light-cost:  19.087335 pose-cost:  0.071828 expression-cost:  0.008882 (17.681 sec)
+1.371... logprob:  0.495210, 0.083062 L2-SN:  196.300416 light-cost:  19.428730 pose-cost:  0.070894 expression-cost:  0.008813 (17.027 sec)
+1.372... logprob:  0.490251, 0.081594 L2-SN:  196.260260 light-cost:  19.067228 pose-cost:  0.070046 expression-cost:  0.008706 (18.059 sec)
+1.373... logprob:  0.485937, 0.081281 L2-SN:  196.891508 light-cost:  18.758115 pose-cost:  0.070159 expression-cost:  0.008696 (16.369 sec)
+1.374... logprob:  0.491433, 0.081516 L2-SN:  196.587382 light-cost:  19.021445 pose-cost:  0.070018 expression-cost:  0.008778 (16.354 sec)
+1.375... logprob:  0.485281, 0.079859 L2-SN:  196.063996 light-cost:  18.993978 pose-cost:  0.070924 expression-cost:  0.008725 (16.278 sec)
+1.376... logprob:  0.489476, 0.080969 L2-SN:  196.002284 light-cost:  19.148082 pose-cost:  0.070246 expression-cost:  0.008784 (16.269 sec)
+1.377... logprob:  0.481648, 0.079109 L2-SN:  195.084080 light-cost:  18.861482 pose-cost:  0.070937 expression-cost:  0.008885 (16.280 sec)
+1.378... logprob:  0.486429, 0.082656 L2-SN:  195.548745 light-cost:  19.000188 pose-cost:  0.070715 expression-cost:  0.008736 (16.230 sec)
+1.379... logprob:  0.484151, 0.080062 L2-SN:  196.419400 light-cost:  18.901691 pose-cost:  0.070184 expression-cost:  0.008777 (16.163 sec)
+1.380... logprob:  0.485741, 0.081328 L2-SN:  195.134981 light-cost:  19.044276 pose-cost:  0.071025 expression-cost:  0.008876 (16.383 sec)
+1.381... logprob:  0.480988, 0.079766 L2-SN:  195.106602 light-cost:  19.168703 pose-cost:  0.069782 expression-cost:  0.008688 (16.138 sec)
+1.382... logprob:  0.475025, 0.078266 L2-SN:  194.500662 light-cost:  18.706696 pose-cost:  0.070009 expression-cost:  0.008700 (16.197 sec)
+1.383... logprob:  0.477848, 0.077563 L2-SN:  195.563137 light-cost:  18.955352 pose-cost:  0.070097 expression-cost:  0.008672 (16.228 sec)
+1.384... logprob:  0.473520, 0.079562 L2-SN:  194.499909 light-cost:  18.870931 pose-cost:  0.070377 expression-cost:  0.008686 (16.815 sec)
+1.385... logprob:  0.478135, 0.080562 L2-SN:  194.716232 light-cost:  18.963437 pose-cost:  0.069937 expression-cost:  0.008650 (16.032 sec)
+1.386... logprob:  0.474043, 0.078141 L2-SN:  194.055185 light-cost:  19.187746 pose-cost:  0.070092 expression-cost:  0.008701 (17.328 sec)
+1.387... logprob:  0.475757, 0.079609 L2-SN:  193.649123 light-cost:  19.042500 pose-cost:  0.070429 expression-cost:  0.008738 (17.826 sec)
+1.388... logprob:  0.469819, 0.077953 L2-SN:  193.914264 light-cost:  19.077756 pose-cost:  0.069599 expression-cost:  0.008677 (16.347 sec)
+1.389... logprob:  0.467610, 0.079312 L2-SN:  193.027026 light-cost:  18.859498 pose-cost:  0.069728 expression-cost:  0.008701 (17.011 sec)
+1.390... logprob:  0.466016, 0.077813 L2-SN:  192.906344 light-cost:  18.764847 pose-cost:  0.069045 expression-cost:  0.008668 (16.399 sec)
+1.391... logprob:  0.461603, 0.076531 L2-SN:  192.608365 light-cost:  18.826922 pose-cost:  0.069955 expression-cost:  0.008723 (16.456 sec)
+1.392... logprob:  0.467176, 0.076406 L2-SN:  193.576794 light-cost:  18.801397 pose-cost:  0.069659 expression-cost:  0.008616 (17.149 sec)
+1.393... logprob:  0.466424, 0.077063 L2-SN:  193.171491 light-cost:  18.957682 pose-cost:  0.069644 expression-cost:  0.008655 (17.082 sec)
+1.394... logprob:  0.463357, 0.076906 L2-SN:  191.883227 light-cost:  18.920838 pose-cost:  0.069347 expression-cost:  0.008668 (16.353 sec)
+1.395... logprob:  0.454724, 0.076609 L2-SN:  192.769218 light-cost:  18.813196 pose-cost:  0.069785 expression-cost:  0.008604 (16.320 sec)
+1.396... logprob:  0.458860, 0.076891 L2-SN:  192.186607 light-cost:  18.886952 pose-cost:  0.068434 expression-cost:  0.008572 (16.447 sec)
+1.397... logprob:  0.466531, 0.079125 L2-SN:  191.534681 light-cost:  18.919007 pose-cost:  0.069500 expression-cost:  0.008611 (16.559 sec)
+1.398... logprob:  0.458630, 0.076344 L2-SN:  192.451362 light-cost:  18.873004 pose-cost:  0.069730 expression-cost:  0.008665 (16.405 sec)
+1.399... logprob:  0.459531, 0.075938 L2-SN:  192.782957 light-cost:  18.881838 pose-cost:  0.069763 expression-cost:  0.008521 (16.248 sec)
+1.400... logprob:  0.464004, 0.078781 L2-SN:  192.005385 light-cost:  18.746660 pose-cost:  0.068409 expression-cost:  0.008549 
+======================Test output======================
+logprob:  0.456150, 0.078172 L2-SN:  193.596980 light-cost:  18.641380 pose-cost:  0.070611 expression-cost:  0.008499 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 8.788975e-02 [5.669440e-05] 
+Layer 'conv1' biases: 3.169969e-01 [1.487072e-06] 
+Layer 'conv2' weights[0]: 4.578442e-02 [2.780700e-05] 
+Layer 'conv2' biases: 2.055723e-01 [1.075301e-06] 
+Layer 'local3' weights[0]: 2.030021e-02 [3.244858e-06] 
+Layer 'local3' biases: 3.607275e-03 [1.541876e-07] 
+Layer 'local4' weights[0]: 2.347136e-02 [2.717336e-06] 
+Layer 'local4' biases: 6.121747e-03 [3.735499e-07] 
+Layer 'fc5' weights[0]: 1.498476e-02 [2.435650e-06]
+Layer 'fc5' weights[1]: 1.041320e-02 [1.028056e-05] 
+Layer 'fc5' biases: 3.378638e-02 [1.548560e-06] 
+Layer 'fc-softmax' weights[0]: 3.740888e-02 [1.200213e-06] 
+Layer 'fc-softmax' biases: 3.954751e-03 [4.236726e-07] 
+Layer 'fc-pose' weights[0]: 4.432182e-03 [1.398994e-07] 
+Layer 'fc-pose' biases: 2.677694e-03 [3.054943e-08] 
+Layer 'fc-light' weights[0]: 1.649770e-02 [1.105575e-06] 
+Layer 'fc-light' biases: 3.758091e-02 [8.309479e-07] 
+Layer 'fc-expression' weights[0]: 6.494327e-04 [4.478272e-08] 
+Layer 'fc-expression' biases: 1.017179e-03 [3.778145e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (40.406 sec)
+1.401... logprob:  0.459803, 0.076516 L2-SN:  190.872625 light-cost:  18.603746 pose-cost:  0.069049 expression-cost:  0.008562 (16.452 sec)
+1.402... logprob:  0.452499, 0.075203 L2-SN:  191.820573 light-cost:  18.480799 pose-cost:  0.069995 expression-cost:  0.008558 (16.555 sec)
+1.403... logprob:  0.454475, 0.076172 L2-SN:  191.022374 light-cost:  18.772180 pose-cost:  0.068856 expression-cost:  0.008657 (16.667 sec)
+1.404... logprob:  0.449551, 0.074469 L2-SN:  191.313437 light-cost:  18.836094 pose-cost:  0.069703 expression-cost:  0.008625 (16.514 sec)
+1.405... logprob:  0.455930, 0.076266 L2-SN:  191.741580 light-cost:  18.804578 pose-cost:  0.068726 expression-cost:  0.008578 (16.447 sec)
+1.406... logprob:  0.452548, 0.078766 L2-SN:  190.154567 light-cost:  18.517859 pose-cost:  0.068576 expression-cost:  0.008593 (16.239 sec)
+1.407... logprob:  0.455846, 0.078750 L2-SN:  189.851428 light-cost:  18.659236 pose-cost:  0.068549 expression-cost:  0.008493 (15.610 sec)
+1.408... logprob:  0.443208, 0.073266 L2-SN:  190.500394 light-cost:  18.516398 pose-cost:  0.068963 expression-cost:  0.008555 (15.420 sec)
+1.409... logprob:  0.444700, 0.074531 L2-SN:  189.560949 light-cost:  18.794654 pose-cost:  0.069593 expression-cost:  0.008570 (16.124 sec)
+1.410... logprob:  0.453438, 0.076422 L2-SN:  190.573335 light-cost:  18.567376 pose-cost:  0.069099 expression-cost:  0.008557 (16.184 sec)
+1.411... logprob:  0.447294, 0.074313 L2-SN:  188.987296 light-cost:  18.944398 pose-cost:  0.069572 expression-cost:  0.008516 (16.163 sec)
+1.412... logprob:  0.450304, 0.075859 L2-SN:  190.440474 light-cost:  18.543900 pose-cost:  0.069192 expression-cost:  0.008605 (16.226 sec)
+1.413... logprob:  0.451338, 0.075031 L2-SN:  190.128813 light-cost:  18.821438 pose-cost:  0.068822 expression-cost:  0.008545 (16.195 sec)
+1.414... logprob:  0.439335, 0.073375 L2-SN:  189.357675 light-cost:  18.638579 pose-cost:  0.068556 expression-cost:  0.008558 (16.291 sec)
+1.415... logprob:  0.444385, 0.073688 L2-SN:  189.547591 light-cost:  18.660186 pose-cost:  0.068804 expression-cost:  0.008460 (16.233 sec)
+1.416... logprob:  0.445889, 0.074203 L2-SN:  189.617883 light-cost:  18.704879 pose-cost:  0.068534 expression-cost:  0.008512 (16.214 sec)
+1.417... logprob:  0.442191, 0.075469 L2-SN:  189.376812 light-cost:  18.539559 pose-cost:  0.069299 expression-cost:  0.008498 (16.274 sec)
+1.418... logprob:  0.443864, 0.074266 L2-SN:  188.823556 light-cost:  18.612308 pose-cost:  0.068660 expression-cost:  0.008594 (16.130 sec)
+1.419... logprob:  0.435113, 0.071906 L2-SN:  189.436772 light-cost:  18.794642 pose-cost:  0.068789 expression-cost:  0.008467 (16.192 sec)
+1.420... logprob:  0.436138, 0.073141 L2-SN:  188.676005 light-cost:  18.436848 pose-cost:  0.068576 expression-cost:  0.008469 (16.146 sec)
+1.421... logprob:  0.439644, 0.073609 L2-SN:  188.944998 light-cost:  18.743792 pose-cost:  0.068900 expression-cost:  0.008446 (16.200 sec)
+1.422... logprob:  0.434481, 0.072203 L2-SN:  188.944326 light-cost:  18.653095 pose-cost:  0.068322 expression-cost:  0.008546 (16.351 sec)
+1.423... logprob:  0.440998, 0.073703 L2-SN:  188.152911 light-cost:  18.606629 pose-cost:  0.067638 expression-cost:  0.008395 (17.145 sec)
+1.424... logprob:  0.436299, 0.072516 L2-SN:  188.369694 light-cost:  18.946461 pose-cost:  0.068769 expression-cost:  0.008537 (17.015 sec)
+1.425... logprob:  0.430791, 0.072109 L2-SN:  187.713063 light-cost:  18.600088 pose-cost:  0.068714 expression-cost:  0.008493 (16.430 sec)
+1.426... logprob:  0.428715, 0.070500 L2-SN:  187.750692 light-cost:  18.379142 pose-cost:  0.068858 expression-cost:  0.008465 (16.178 sec)
+1.427... logprob:  0.430308, 0.072094 L2-SN:  186.914534 light-cost:  18.481603 pose-cost:  0.067498 expression-cost:  0.008441 (15.947 sec)
+1.428... logprob:  0.431481, 0.071891 L2-SN:  186.533823 light-cost:  18.493016 pose-cost:  0.069034 expression-cost:  0.008450 (16.165 sec)
+1.429... logprob:  0.426919, 0.070906 L2-SN:  186.964188 light-cost:  18.469837 pose-cost:  0.067944 expression-cost:  0.008342 (16.218 sec)
+1.430... logprob:  0.433583, 0.073594 L2-SN:  187.052889 light-cost:  18.634573 pose-cost:  0.068092 expression-cost:  0.008420 (17.369 sec)
+1.431... logprob:  0.426799, 0.070563 L2-SN:  187.815010 light-cost:  18.358699 pose-cost:  0.069627 expression-cost:  0.008447 (18.990 sec)
+1.432... logprob:  0.428633, 0.071141 L2-SN:  187.053241 light-cost:  18.570928 pose-cost:  0.068163 expression-cost:  0.008381 (17.047 sec)
+1.433... logprob:  0.425518, 0.071266 L2-SN:  186.212378 light-cost:  18.573319 pose-cost:  0.068075 expression-cost:  0.008365 (16.399 sec)
+1.434... logprob:  0.426627, 0.072219 L2-SN:  187.038463 light-cost:  18.659882 pose-cost:  0.069318 expression-cost:  0.008437 (16.234 sec)
+1.435... logprob:  0.426219, 0.070469 L2-SN:  186.356351 light-cost:  18.506173 pose-cost:  0.067762 expression-cost:  0.008439 (16.153 sec)
+1.436... logprob:  0.425553, 0.070844 L2-SN:  186.199481 light-cost:  18.498656 pose-cost:  0.068991 expression-cost:  0.008423 (16.341 sec)
+1.437... logprob:  0.423954, 0.071328 L2-SN:  186.020117 light-cost:  18.652185 pose-cost:  0.067732 expression-cost:  0.008398 (16.241 sec)
+1.438... logprob:  0.421169, 0.070719 L2-SN:  185.752223 light-cost:  18.320078 pose-cost:  0.068577 expression-cost:  0.008397 (16.191 sec)
+1.439... logprob:  0.418322, 0.070438 L2-SN:  184.667587 light-cost:  18.358226 pose-cost:  0.067533 expression-cost:  0.008304 (16.807 sec)
+1.440... logprob:  0.421215, 0.070922 L2-SN:  185.683584 light-cost:  18.499323 pose-cost:  0.068038 expression-cost:  0.008356 (16.707 sec)
+1.441... logprob:  0.416730, 0.069984 L2-SN:  185.218831 light-cost:  18.459897 pose-cost:  0.067959 expression-cost:  0.008366 (16.518 sec)
+1.442... logprob:  0.415600, 0.068234 L2-SN:  186.227362 light-cost:  18.679883 pose-cost:  0.068481 expression-cost:  0.008370 (16.727 sec)
+1.443... logprob:  0.416684, 0.069734 L2-SN:  185.764542 light-cost:  18.304866 pose-cost:  0.068169 expression-cost:  0.008348 (16.446 sec)
+1.444... logprob:  0.416537, 0.068344 L2-SN:  185.655395 light-cost:  18.536627 pose-cost:  0.066890 expression-cost:  0.008358 (18.297 sec)
+1.445... logprob:  0.415202, 0.070656 L2-SN:  184.941627 light-cost:  18.660149 pose-cost:  0.068229 expression-cost:  0.008438 (17.701 sec)
+1.446... logprob:  0.413026, 0.069141 L2-SN:  184.665682 light-cost:  18.206194 pose-cost:  0.068124 expression-cost:  0.008266 (17.514 sec)
+1.447... logprob:  0.415024, 0.068937 L2-SN:  185.189173 light-cost:  18.501075 pose-cost:  0.067368 expression-cost:  0.008323 (17.283 sec)
+1.448... logprob:  0.409905, 0.067203 L2-SN:  184.616036 light-cost:  18.730988 pose-cost:  0.066407 expression-cost:  0.008333 (17.134 sec)
+1.449... logprob:  0.411771, 0.068203 L2-SN:  184.693342 light-cost:  18.410354 pose-cost:  0.067616 expression-cost:  0.008385 (17.273 sec)
+1.450... logprob:  0.413323, 0.069016 L2-SN:  184.179761 light-cost:  18.553457 pose-cost:  0.068212 expression-cost:  0.008371 
+======================Test output======================
+logprob:  0.420264, 0.068281 L2-SN:  181.325128 light-cost:  18.584514 pose-cost:  0.067612 expression-cost:  0.008790 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 9.243414e-02 [4.548920e-05] 
+Layer 'conv1' biases: 3.417371e-01 [8.444708e-07] 
+Layer 'conv2' weights[0]: 4.755076e-02 [2.338851e-05] 
+Layer 'conv2' biases: 2.200951e-01 [8.487997e-07] 
+Layer 'local3' weights[0]: 1.928565e-02 [2.985637e-06] 
+Layer 'local3' biases: 3.850842e-03 [1.250972e-07] 
+Layer 'local4' weights[0]: 2.293695e-02 [2.401129e-06] 
+Layer 'local4' biases: 6.833138e-03 [2.954677e-07] 
+Layer 'fc5' weights[0]: 1.561103e-02 [2.097550e-06]
+Layer 'fc5' weights[1]: 1.004817e-02 [8.531536e-06] 
+Layer 'fc5' biases: 3.678495e-02 [1.173201e-06] 
+Layer 'fc-softmax' weights[0]: 3.800279e-02 [1.077207e-06] 
+Layer 'fc-softmax' biases: 4.112594e-03 [3.870833e-07] 
+Layer 'fc-pose' weights[0]: 4.838028e-03 [1.614344e-07] 
+Layer 'fc-pose' biases: 3.021951e-03 [5.292243e-08] 
+Layer 'fc-light' weights[0]: 1.738016e-02 [7.431502e-07] 
+Layer 'fc-light' biases: 4.044104e-02 [4.906912e-07] 
+Layer 'fc-expression' weights[0]: 5.743548e-04 [3.691417e-08] 
+Layer 'fc-expression' biases: 1.059116e-03 [2.965364e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (40.976 sec)
+1.451... logprob:  0.410205, 0.067547 L2-SN:  184.784064 light-cost:  18.567852 pose-cost:  0.067266 expression-cost:  0.008371 (16.023 sec)
+1.452... logprob:  0.407533, 0.068906 L2-SN:  183.637489 light-cost:  18.486421 pose-cost:  0.068138 expression-cost:  0.008383 (16.063 sec)
+1.453... logprob:  0.408879, 0.067844 L2-SN:  184.226889 light-cost:  18.498139 pose-cost:  0.067422 expression-cost:  0.008342 (16.183 sec)
+1.454... logprob:  0.414065, 0.069250 L2-SN:  184.521696 light-cost:  18.418381 pose-cost:  0.066932 expression-cost:  0.008295 (17.030 sec)
+1.455... logprob:  0.404304, 0.067594 L2-SN:  183.487836 light-cost:  18.761185 pose-cost:  0.067274 expression-cost:  0.008315 (17.171 sec)
+1.456... logprob:  0.404321, 0.066734 L2-SN:  183.597807 light-cost:  18.193405 pose-cost:  0.067039 expression-cost:  0.008309 (16.849 sec)
+1.457... logprob:  0.406307, 0.067750 L2-SN:  183.759158 light-cost:  18.497016 pose-cost:  0.068486 expression-cost:  0.008321 (16.182 sec)
+1.458... logprob:  0.406197, 0.067891 L2-SN:  183.582653 light-cost:  18.466690 pose-cost:  0.067898 expression-cost:  0.008298 (16.174 sec)
+1.459... logprob:  0.402910, 0.068000 L2-SN:  182.234027 light-cost:  18.132015 pose-cost:  0.066823 expression-cost:  0.008293 (17.047 sec)
+1.460... logprob:  0.406191, 0.068609 L2-SN:  183.260000 light-cost:  18.487448 pose-cost:  0.067687 expression-cost:  0.008334 (16.165 sec)
+1.461... logprob:  0.402211, 0.066797 L2-SN:  182.763158 light-cost:  18.492989 pose-cost:  0.068171 expression-cost:  0.008314 (15.857 sec)
+1.462... logprob:  0.402645, 0.067328 L2-SN:  182.914891 light-cost:  18.389995 pose-cost:  0.067232 expression-cost:  0.008339 (15.317 sec)
+1.463... logprob:  0.406838, 0.069672 L2-SN:  182.574416 light-cost:  18.515305 pose-cost:  0.068280 expression-cost:  0.008306 (16.115 sec)
+1.464... logprob:  0.401897, 0.066641 L2-SN:  182.321345 light-cost:  18.415034 pose-cost:  0.066961 expression-cost:  0.008288 (16.145 sec)
+1.465... logprob:  0.400805, 0.066922 L2-SN:  182.206366 light-cost:  18.453009 pose-cost:  0.067143 expression-cost:  0.008322 (15.981 sec)
+1.466... logprob:  0.400017, 0.067469 L2-SN:  181.904155 light-cost:  18.362688 pose-cost:  0.067109 expression-cost:  0.008294 (16.111 sec)
+1.467... logprob:  0.395634, 0.064906 L2-SN:  181.938882 light-cost:  18.215524 pose-cost:  0.067335 expression-cost:  0.008264 (16.106 sec)
+1.468... logprob:  0.392962, 0.065437 L2-SN:  181.499565 light-cost:  18.340951 pose-cost:  0.067568 expression-cost:  0.008356 (16.327 sec)
+1.469... logprob:  0.395599, 0.066234 L2-SN:  181.491188 light-cost:  18.298526 pose-cost:  0.066574 expression-cost:  0.008302 (16.285 sec)
+1.470... logprob:  0.396149, 0.066062 L2-SN:  181.411057 light-cost:  18.265536 pose-cost:  0.067508 expression-cost:  0.008319 (16.031 sec)
+1.471... logprob:  0.397027, 0.065672 L2-SN:  182.289789 light-cost:  18.628127 pose-cost:  0.066825 expression-cost:  0.008269 (16.113 sec)
+1.472... logprob:  0.401750, 0.068453 L2-SN:  181.193380 light-cost:  18.326245 pose-cost:  0.067608 expression-cost:  0.008237 (16.052 sec)
+1.473... logprob:  0.391822, 0.066281 L2-SN:  181.262559 light-cost:  18.351180 pose-cost:  0.067420 expression-cost:  0.008299 (16.167 sec)
+1.474... logprob:  0.391127, 0.065000 L2-SN:  181.004984 light-cost:  18.526138 pose-cost:  0.067210 expression-cost:  0.008255 (16.017 sec)
+1.475... logprob:  0.395330, 0.066219 L2-SN:  181.546155 light-cost:  18.204009 pose-cost:  0.066911 expression-cost:  0.008241 (16.615 sec)
+1.476... logprob:  0.389390, 0.064094 L2-SN:  181.396254 light-cost:  18.409946 pose-cost:  0.066890 expression-cost:  0.008253 (16.128 sec)
+1.477... logprob:  0.388403, 0.063500 L2-SN:  181.168971 light-cost:  18.401019 pose-cost:  0.066723 expression-cost:  0.008299 (16.739 sec)
+1.478... logprob:  0.388412, 0.065969 L2-SN:  181.040593 light-cost:  18.490432 pose-cost:  0.067794 expression-cost:  0.008248 (16.364 sec)
+1.479... logprob:  0.390407, 0.065766 L2-SN:  179.512433 light-cost:  18.387259 pose-cost:  0.066625 expression-cost:  0.008254 (16.600 sec)
+1.480... logprob:  0.389938, 0.066469 L2-SN:  179.647959 light-cost:  18.464955 pose-cost:  0.066649 expression-cost:  0.008227 (16.255 sec)
+1.481... logprob:  0.389745, 0.064609 L2-SN:  180.160137 light-cost:  18.260914 pose-cost:  0.067081 expression-cost:  0.008242 (15.882 sec)
+1.482... logprob:  0.384947, 0.065203 L2-SN:  180.281576 light-cost:  18.417130 pose-cost:  0.067780 expression-cost:  0.008294 (16.133 sec)
+1.483... logprob:  0.385278, 0.063203 L2-SN:  180.502493 light-cost:  18.270427 pose-cost:  0.067798 expression-cost:  0.008239 (16.918 sec)
+1.484... logprob:  0.387310, 0.064500 L2-SN:  179.913535 light-cost:  18.391034 pose-cost:  0.066810 expression-cost:  0.008242 (16.683 sec)
+1.485... logprob:  0.386958, 0.064328 L2-SN:  179.509193 light-cost:  18.193800 pose-cost:  0.067012 expression-cost:  0.008354 (16.653 sec)
+1.486... logprob:  0.381179, 0.063828 L2-SN:  179.649251 light-cost:  18.185572 pose-cost:  0.067117 expression-cost:  0.008230 (16.660 sec)
+1.487... logprob:  0.382955, 0.062344 L2-SN:  180.013367 light-cost:  18.580056 pose-cost:  0.067830 expression-cost:  0.008229 (16.747 sec)
+1.488... logprob:  0.380969, 0.063953 L2-SN:  179.780420 light-cost:  18.235332 pose-cost:  0.066107 expression-cost:  0.008316 (16.359 sec)
+1.489... logprob:  0.385014, 0.064547 L2-SN:  178.941097 light-cost:  18.272541 pose-cost:  0.067180 expression-cost:  0.008183 (16.850 sec)
+1.490... logprob:  0.380916, 0.065000 L2-SN:  179.210157 light-cost:  18.176647 pose-cost:  0.066676 expression-cost:  0.008238 (16.567 sec)
+1.491... logprob:  0.383700, 0.065484 L2-SN:  178.781170 light-cost:  18.274838 pose-cost:  0.066853 expression-cost:  0.008254 (15.336 sec)
+1.492... logprob:  0.381418, 0.064828 L2-SN:  178.880597 light-cost:  18.415603 pose-cost:  0.066934 expression-cost:  0.008315 (14.664 sec)
+1.493... logprob:  0.379109, 0.065031 L2-SN:  178.489786 light-cost:  18.241282 pose-cost:  0.066517 expression-cost:  0.008127 (14.503 sec)
+1.494... logprob:  0.376877, 0.063281 L2-SN:  178.926484 light-cost:  18.137915 pose-cost:  0.066465 expression-cost:  0.008203 (14.533 sec)
+1.495... logprob:  0.378281, 0.062516 L2-SN:  178.460229 light-cost:  18.071444 pose-cost:  0.066538 expression-cost:  0.008235 (15.583 sec)
+1.496... logprob:  0.380436, 0.063984 L2-SN:  179.035781 light-cost:  18.283614 pose-cost:  0.066901 expression-cost:  0.008195 (17.098 sec)
+1.497... logprob:  0.379697, 0.064766 L2-SN:  178.271823 light-cost:  18.243977 pose-cost:  0.066431 expression-cost:  0.008163 (17.677 sec)
+1.498... logprob:  0.377575, 0.062469 L2-SN:  178.851020 light-cost:  18.270205 pose-cost:  0.067886 expression-cost:  0.008260 (17.306 sec)
+1.499... logprob:  0.375087, 0.063328 L2-SN:  178.200745 light-cost:  18.174354 pose-cost:  0.066265 expression-cost:  0.008166 (17.085 sec)
+1.500... logprob:  0.378133, 0.063078 L2-SN:  178.162890 light-cost:  18.022289 pose-cost:  0.066693 expression-cost:  0.008165 
+======================Test output======================
+logprob:  0.397777, 0.065297 L2-SN:  174.458256 light-cost:  18.379602 pose-cost:  0.066731 expression-cost:  0.008384 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 9.692270e-02 [5.913581e-05] 
+Layer 'conv1' biases: 3.639562e-01 [1.334136e-06] 
+Layer 'conv2' weights[0]: 4.930125e-02 [2.232724e-05] 
+Layer 'conv2' biases: 2.329875e-01 [7.030301e-07] 
+Layer 'local3' weights[0]: 1.835156e-02 [3.247086e-06] 
+Layer 'local3' biases: 4.074140e-03 [1.276435e-07] 
+Layer 'local4' weights[0]: 2.245326e-02 [2.706991e-06] 
+Layer 'local4' biases: 7.525030e-03 [3.383840e-07] 
+Layer 'fc5' weights[0]: 1.614304e-02 [2.276121e-06]
+Layer 'fc5' weights[1]: 9.701880e-03 [9.813086e-06] 
+Layer 'fc5' biases: 3.970253e-02 [1.365117e-06] 
+Layer 'fc-softmax' weights[0]: 3.842511e-02 [1.041589e-06] 
+Layer 'fc-softmax' biases: 4.259431e-03 [3.816811e-07] 
+Layer 'fc-pose' weights[0]: 5.166882e-03 [1.809583e-07] 
+Layer 'fc-pose' biases: 3.317904e-03 [9.230827e-08] 
+Layer 'fc-light' weights[0]: 1.816442e-02 [8.351822e-07] 
+Layer 'fc-light' biases: 4.323130e-02 [5.315522e-07] 
+Layer 'fc-expression' weights[0]: 5.178602e-04 [3.617213e-08] 
+Layer 'fc-expression' biases: 1.095586e-03 [3.331361e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (43.439 sec)
+1.501... logprob:  0.371408, 0.062062 L2-SN:  177.182609 light-cost:  18.219405 pose-cost:  0.065968 expression-cost:  0.008210 (17.152 sec)
+1.502... logprob:  0.377800, 0.064187 L2-SN:  178.337035 light-cost:  18.403400 pose-cost:  0.066890 expression-cost:  0.008154 (16.468 sec)
+1.503... logprob:  0.375445, 0.063125 L2-SN:  178.066772 light-cost:  18.327705 pose-cost:  0.066755 expression-cost:  0.008129 (16.038 sec)
+1.504... logprob:  0.375485, 0.064703 L2-SN:  176.693978 light-cost:  17.938138 pose-cost:  0.065818 expression-cost:  0.008183 (15.857 sec)
+1.505... logprob:  0.371654, 0.062828 L2-SN:  177.891207 light-cost:  18.292992 pose-cost:  0.066465 expression-cost:  0.008177 (15.954 sec)
+1.506... logprob:  0.373188, 0.062984 L2-SN:  177.649725 light-cost:  18.288221 pose-cost:  0.067274 expression-cost:  0.008208 (16.027 sec)
+1.507... logprob:  0.367741, 0.060656 L2-SN:  176.775689 light-cost:  18.189011 pose-cost:  0.067194 expression-cost:  0.008206 (15.217 sec)
+1.508... logprob:  0.368534, 0.061859 L2-SN:  177.882552 light-cost:  18.219720 pose-cost:  0.066749 expression-cost:  0.008181 (15.195 sec)
+1.509... logprob:  0.371601, 0.061078 L2-SN:  176.750394 light-cost:  18.348754 pose-cost:  0.065513 expression-cost:  0.008150 (15.098 sec)
+1.510... logprob:  0.371653, 0.061625 L2-SN:  177.396437 light-cost:  18.197723 pose-cost:  0.066593 expression-cost:  0.008187 (15.100 sec)
+1.511... logprob:  0.368325, 0.061937 L2-SN:  176.315406 light-cost:  18.344602 pose-cost:  0.065157 expression-cost:  0.008119 (15.126 sec)
+1.512... logprob:  0.364575, 0.059969 L2-SN:  176.729437 light-cost:  18.494131 pose-cost:  0.065207 expression-cost:  0.008198 (15.121 sec)
+1.513... logprob:  0.363886, 0.060656 L2-SN:  176.791941 light-cost:  18.172350 pose-cost:  0.065351 expression-cost:  0.008138 (15.187 sec)
+1.514... logprob:  0.367704, 0.062594 L2-SN:  175.682190 light-cost:  18.148462 pose-cost:  0.065927 expression-cost:  0.008167 (15.103 sec)
+1.515... logprob:  0.365474, 0.063203 L2-SN:  175.238160 light-cost:  18.279134 pose-cost:  0.066459 expression-cost:  0.008205 (15.206 sec)
+1.516... logprob:  0.364966, 0.061297 L2-SN:  176.286854 light-cost:  18.129513 pose-cost:  0.066049 expression-cost:  0.008196 (15.289 sec)
+1.517... logprob:  0.355992, 0.059047 L2-SN:  175.391345 light-cost:  18.154987 pose-cost:  0.066558 expression-cost:  0.008192 (16.019 sec)
+1.518... logprob:  0.367642, 0.060469 L2-SN:  175.944145 light-cost:  17.908508 pose-cost:  0.065973 expression-cost:  0.008184 (15.993 sec)
+1.519... logprob:  0.359724, 0.059937 L2-SN:  175.546315 light-cost:  18.125253 pose-cost:  0.066650 expression-cost:  0.008252 (15.988 sec)
+1.520... logprob:  0.361364, 0.059609 L2-SN:  175.602410 light-cost:  18.222043 pose-cost:  0.066469 expression-cost:  0.008083 (16.024 sec)
+1.521... logprob:  0.364237, 0.062750 L2-SN:  175.189569 light-cost:  18.206033 pose-cost:  0.064964 expression-cost:  0.008138 (15.901 sec)
+1.522... logprob:  0.363020, 0.060203 L2-SN:  175.742910 light-cost:  17.916572 pose-cost:  0.066315 expression-cost:  0.008110 (15.990 sec)
+1.523... logprob:  0.357920, 0.059781 L2-SN:  175.159637 light-cost:  17.942881 pose-cost:  0.066219 expression-cost:  0.008182 (15.207 sec)
+1.524... logprob:  0.362682, 0.062156 L2-SN:  174.588713 light-cost:  17.913320 pose-cost:  0.065616 expression-cost:  0.008183 (15.925 sec)
+1.525... logprob:  0.359194, 0.060312 L2-SN:  174.603026 light-cost:  18.013139 pose-cost:  0.065736 expression-cost:  0.008156 (16.224 sec)
+1.526... logprob:  0.363668, 0.062125 L2-SN:  175.181310 light-cost:  18.325508 pose-cost:  0.065648 expression-cost:  0.008118 (15.419 sec)
+1.527... logprob:  0.363791, 0.061422 L2-SN:  174.495673 light-cost:  17.991564 pose-cost:  0.065189 expression-cost:  0.008150 (15.215 sec)
+1.528... logprob:  0.356243, 0.059281 L2-SN:  175.194366 light-cost:  17.942448 pose-cost:  0.066129 expression-cost:  0.008146 (15.226 sec)
+1.529... logprob:  0.353494, 0.059437 L2-SN:  174.983794 light-cost:  17.978070 pose-cost:  0.065674 expression-cost:  0.008177 (15.588 sec)
+1.530... logprob:  0.359982, 0.059484 L2-SN:  174.151631 light-cost:  18.137892 pose-cost:  0.065585 expression-cost:  0.008156 (16.188 sec)
+1.531... logprob:  0.352658, 0.059453 L2-SN:  174.178646 light-cost:  18.268852 pose-cost:  0.065673 expression-cost:  0.008123 (16.311 sec)
+1.532... logprob:  0.355255, 0.060516 L2-SN:  174.448479 light-cost:  17.943381 pose-cost:  0.065416 expression-cost:  0.008158 (15.834 sec)
+1.533... logprob:  0.354317, 0.058875 L2-SN:  174.670125 light-cost:  18.221139 pose-cost:  0.065636 expression-cost:  0.008191 (15.455 sec)
+1.534... logprob:  0.352828, 0.059547 L2-SN:  173.860258 light-cost:  18.273219 pose-cost:  0.065942 expression-cost:  0.008136 (15.296 sec)
+1.535... logprob:  0.352450, 0.056906 L2-SN:  174.334599 light-cost:  17.855904 pose-cost:  0.065578 expression-cost:  0.008119 (16.513 sec)
+1.536... logprob:  0.357897, 0.061281 L2-SN:  173.591458 light-cost:  18.038860 pose-cost:  0.066060 expression-cost:  0.008162 (15.618 sec)
+1.537... logprob:  0.356284, 0.060937 L2-SN:  173.785325 light-cost:  18.021064 pose-cost:  0.066650 expression-cost:  0.008124 (15.323 sec)
+1.538... logprob:  0.354762, 0.060984 L2-SN:  173.385274 light-cost:  18.180645 pose-cost:  0.065506 expression-cost:  0.008228 (15.265 sec)
+1.539... logprob:  0.351950, 0.059672 L2-SN:  173.234519 light-cost:  17.980869 pose-cost:  0.065979 expression-cost:  0.008220 (15.369 sec)
+1.540... logprob:  0.356674, 0.060328 L2-SN:  173.761662 light-cost:  17.948400 pose-cost:  0.065980 expression-cost:  0.008111 (15.422 sec)
+1.541... logprob:  0.353829, 0.059937 L2-SN:  173.274705 light-cost:  18.074163 pose-cost:  0.065515 expression-cost:  0.008150 (15.428 sec)
+1.542... logprob:  0.349764, 0.059125 L2-SN:  173.260350 light-cost:  18.046641 pose-cost:  0.065661 expression-cost:  0.008190 (15.379 sec)
+1.543... logprob:  0.351894, 0.061141 L2-SN:  173.362958 light-cost:  18.029262 pose-cost:  0.065814 expression-cost:  0.008148 (15.385 sec)
+1.544... logprob:  0.345833, 0.057297 L2-SN:  172.962353 light-cost:  17.956382 pose-cost:  0.066501 expression-cost:  0.008152 (15.259 sec)
+1.545... logprob:  0.348533, 0.058547 L2-SN:  172.930960 light-cost:  18.078584 pose-cost:  0.066276 expression-cost:  0.008084 (15.304 sec)
+1.546... logprob:  0.344785, 0.057516 L2-SN:  171.299135 light-cost:  18.049129 pose-cost:  0.066261 expression-cost:  0.008165 (15.357 sec)
+1.547... logprob:  0.348700, 0.059516 L2-SN:  172.787013 light-cost:  18.013212 pose-cost:  0.065825 expression-cost:  0.008116 (15.201 sec)
+1.548... logprob:  0.345884, 0.057359 L2-SN:  172.356428 light-cost:  18.157360 pose-cost:  0.064626 expression-cost:  0.008134 (15.323 sec)
+1.549... logprob:  0.346510, 0.058703 L2-SN:  172.193493 light-cost:  18.123852 pose-cost:  0.065488 expression-cost:  0.008181 (15.494 sec)
+1.550... logprob:  0.350973, 0.059562 L2-SN:  173.127967 light-cost:  17.590193 pose-cost:  0.065278 expression-cost:  0.008085 
+======================Test output======================
+logprob:  0.347271, 0.058453 L2-SN:  173.412576 light-cost:  18.041361 pose-cost:  0.066757 expression-cost:  0.008082 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.016110e-01 [5.097156e-05] 
+Layer 'conv1' biases: 3.839932e-01 [9.345061e-07] 
+Layer 'conv2' weights[0]: 5.098356e-02 [2.146458e-05] 
+Layer 'conv2' biases: 2.444937e-01 [6.751802e-07] 
+Layer 'local3' weights[0]: 1.749314e-02 [3.279516e-06] 
+Layer 'local3' biases: 4.280934e-03 [1.194134e-07] 
+Layer 'local4' weights[0]: 2.201486e-02 [2.662881e-06] 
+Layer 'local4' biases: 8.202774e-03 [3.126837e-07] 
+Layer 'fc5' weights[0]: 1.659599e-02 [2.081579e-06]
+Layer 'fc5' weights[1]: 9.384946e-03 [8.705466e-06] 
+Layer 'fc5' biases: 4.254204e-02 [1.113837e-06] 
+Layer 'fc-softmax' weights[0]: 3.871419e-02 [9.708147e-07] 
+Layer 'fc-softmax' biases: 4.399049e-03 [3.469424e-07] 
+Layer 'fc-pose' weights[0]: 5.459839e-03 [2.144023e-07] 
+Layer 'fc-pose' biases: 3.619470e-03 [1.452941e-07] 
+Layer 'fc-light' weights[0]: 1.884095e-02 [7.114680e-07] 
+Layer 'fc-light' biases: 4.586909e-02 [4.359109e-07] 
+Layer 'fc-expression' weights[0]: 4.756609e-04 [3.466959e-08] 
+Layer 'fc-expression' biases: 1.136626e-03 [3.156728e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (38.185 sec)
+1.551... logprob:  0.343410, 0.059406 L2-SN:  172.225994 light-cost:  18.089508 pose-cost:  0.066021 expression-cost:  0.008154 (15.195 sec)
+1.552... logprob:  0.346467, 0.057359 L2-SN:  172.556924 light-cost:  17.984980 pose-cost:  0.066066 expression-cost:  0.008132 (15.240 sec)
+1.553... logprob:  0.345166, 0.057469 L2-SN:  172.656291 light-cost:  17.726392 pose-cost:  0.065254 expression-cost:  0.008084 (15.246 sec)
+1.554... logprob:  0.345049, 0.059344 L2-SN:  171.920445 light-cost:  17.767698 pose-cost:  0.065615 expression-cost:  0.008092 (15.305 sec)
+1.555... logprob:  0.342418, 0.056813 L2-SN:  172.674032 light-cost:  18.150031 pose-cost:  0.065456 expression-cost:  0.008099 (15.357 sec)
+1.556... logprob:  0.344823, 0.058891 L2-SN:  171.859602 light-cost:  17.936021 pose-cost:  0.063835 expression-cost:  0.008086 (15.405 sec)
+1.557... logprob:  0.344421, 0.059344 L2-SN:  171.507465 light-cost:  18.189569 pose-cost:  0.065555 expression-cost:  0.008093 (15.317 sec)
+1.558... logprob:  0.338936, 0.055781 L2-SN:  171.998855 light-cost:  18.034394 pose-cost:  0.065052 expression-cost:  0.008084 (16.244 sec)
+1.559... logprob:  0.339521, 0.058484 L2-SN:  170.959386 light-cost:  17.984104 pose-cost:  0.066027 expression-cost:  0.008125 (16.044 sec)
+1.560... logprob:  0.340875, 0.057367 L2-SN:  171.556918 light-cost:  17.976458 pose-cost:  0.066180 expression-cost:  0.008166 (16.125 sec)
+1.561... logprob:  0.339295, 0.056609 L2-SN:  171.449674 light-cost:  17.965605 pose-cost:  0.065858 expression-cost:  0.008078 (16.224 sec)
+1.562... logprob:  0.336739, 0.057266 L2-SN:  170.036507 light-cost:  17.832734 pose-cost:  0.065900 expression-cost:  0.008138 (16.125 sec)
+1.563... logprob:  0.340950, 0.058672 L2-SN:  170.968318 light-cost:  17.856792 pose-cost:  0.065759 expression-cost:  0.008148 (16.113 sec)
+1.564... logprob:  0.340190, 0.058594 L2-SN:  170.517424 light-cost:  17.962781 pose-cost:  0.065314 expression-cost:  0.008089 (16.438 sec)
+1.565... logprob:  0.338974, 0.057172 L2-SN:  170.734529 light-cost:  17.824421 pose-cost:  0.064866 expression-cost:  0.008117 (15.322 sec)
+1.566... logprob:  0.336147, 0.056953 L2-SN:  170.704876 light-cost:  17.834811 pose-cost:  0.065209 expression-cost:  0.008137 (15.352 sec)
+1.567... logprob:  0.338956, 0.058000 L2-SN:  169.952938 light-cost:  17.947722 pose-cost:  0.065683 expression-cost:  0.008162 (15.299 sec)
+1.568... logprob:  0.338072, 0.058203 L2-SN:  169.556506 light-cost:  17.855039 pose-cost:  0.065671 expression-cost:  0.008100 (15.268 sec)
+1.569... logprob:  0.338383, 0.058750 L2-SN:  170.350657 light-cost:  17.757321 pose-cost:  0.065833 expression-cost:  0.008102 (15.285 sec)
+1.570... logprob:  0.341850, 0.057375 L2-SN:  170.962591 light-cost:  17.663756 pose-cost:  0.065525 expression-cost:  0.008088 (15.487 sec)
+1.571... logprob:  0.333582, 0.056500 L2-SN:  169.926353 light-cost:  17.873644 pose-cost:  0.064995 expression-cost:  0.008074 (15.276 sec)
+1.572... logprob:  0.333205, 0.055734 L2-SN:  169.933756 light-cost:  17.892811 pose-cost:  0.065601 expression-cost:  0.008146 (15.442 sec)
+1.573... logprob:  0.331709, 0.055938 L2-SN:  169.411639 light-cost:  17.980322 pose-cost:  0.065754 expression-cost:  0.008168 (15.244 sec)
+1.574... logprob:  0.336145, 0.056453 L2-SN:  170.441650 light-cost:  17.969832 pose-cost:  0.065228 expression-cost:  0.008160 (15.273 sec)
+1.575... logprob:  0.335720, 0.057672 L2-SN:  169.900431 light-cost:  17.890039 pose-cost:  0.065016 expression-cost:  0.008070 (15.260 sec)
+1.576... logprob:  0.331990, 0.055563 L2-SN:  169.963249 light-cost:  17.704471 pose-cost:  0.065667 expression-cost:  0.008169 (15.244 sec)
+1.577... logprob:  0.333174, 0.058047 L2-SN:  168.905168 light-cost:  17.864941 pose-cost:  0.065295 expression-cost:  0.008193 (15.271 sec)
+1.578... logprob:  0.335239, 0.056594 L2-SN:  170.044105 light-cost:  17.706813 pose-cost:  0.065756 expression-cost:  0.008097 (15.233 sec)
+1.579... logprob:  0.330373, 0.055172 L2-SN:  169.205221 light-cost:  17.799156 pose-cost:  0.065016 expression-cost:  0.008097 (15.382 sec)
+1.580... logprob:  0.329163, 0.055953 L2-SN:  168.798697 light-cost:  17.820035 pose-cost:  0.065088 expression-cost:  0.008097 (15.444 sec)
+1.581... logprob:  0.330768, 0.056000 L2-SN:  168.970028 light-cost:  17.813248 pose-cost:  0.065537 expression-cost:  0.008038 (16.305 sec)
+1.582... logprob:  0.330066, 0.055797 L2-SN:  168.844511 light-cost:  17.882119 pose-cost:  0.064548 expression-cost:  0.008034 (16.330 sec)
+1.583... logprob:  0.328919, 0.055625 L2-SN:  169.244624 light-cost:  18.023915 pose-cost:  0.064945 expression-cost:  0.008126 (15.671 sec)
+1.584... logprob:  0.330502, 0.055609 L2-SN:  168.729991 light-cost:  17.981850 pose-cost:  0.065414 expression-cost:  0.008200 (15.477 sec)
+1.585... logprob:  0.327784, 0.055578 L2-SN:  168.474682 light-cost:  17.787782 pose-cost:  0.065131 expression-cost:  0.008088 (15.396 sec)
+1.586... logprob:  0.331864, 0.056453 L2-SN:  169.094358 light-cost:  17.644643 pose-cost:  0.064186 expression-cost:  0.008093 (15.445 sec)
+1.587... logprob:  0.330021, 0.057516 L2-SN:  168.283442 light-cost:  17.719502 pose-cost:  0.065130 expression-cost:  0.008100 (15.377 sec)
+1.588... logprob:  0.326141, 0.054359 L2-SN:  168.215636 light-cost:  17.713854 pose-cost:  0.065402 expression-cost:  0.008105 (15.397 sec)
+1.589... logprob:  0.329614, 0.056266 L2-SN:  168.631142 light-cost:  17.909363 pose-cost:  0.065356 expression-cost:  0.008087 (15.453 sec)
+1.590... logprob:  0.330638, 0.056828 L2-SN:  168.896805 light-cost:  17.850550 pose-cost:  0.065338 expression-cost:  0.008040 (15.489 sec)
+1.591... logprob:  0.325677, 0.055750 L2-SN:  167.791169 light-cost:  17.823765 pose-cost:  0.064666 expression-cost:  0.008143 (15.684 sec)
+1.592... logprob:  0.327543, 0.056578 L2-SN:  167.741307 light-cost:  17.727819 pose-cost:  0.063879 expression-cost:  0.008071 (15.424 sec)
+1.593... logprob:  0.324804, 0.054953 L2-SN:  167.904991 light-cost:  17.985033 pose-cost:  0.064561 expression-cost:  0.008120 (15.334 sec)
+1.594... logprob:  0.328252, 0.055484 L2-SN:  169.018422 light-cost:  17.650062 pose-cost:  0.065279 expression-cost:  0.008119 (15.623 sec)
+1.595... logprob:  0.331677, 0.055859 L2-SN:  169.570974 light-cost:  17.710604 pose-cost:  0.065058 expression-cost:  0.008086 (15.393 sec)
+1.596... logprob:  0.326643, 0.056344 L2-SN:  168.582791 light-cost:  17.640594 pose-cost:  0.064153 expression-cost:  0.007995 (15.278 sec)
+1.597... logprob:  0.323647, 0.054672 L2-SN:  167.774944 light-cost:  17.831304 pose-cost:  0.065231 expression-cost:  0.008012 (15.357 sec)
+1.598... logprob:  0.321697, 0.055203 L2-SN:  167.494995 light-cost:  17.927580 pose-cost:  0.065985 expression-cost:  0.008143 (15.374 sec)
+1.599... logprob:  0.327702, 0.055063 L2-SN:  168.679996 light-cost:  17.877588 pose-cost:  0.064872 expression-cost:  0.008076 (15.395 sec)
+1.600... logprob:  0.321762, 0.054469 L2-SN:  167.279180 light-cost:  17.943981 pose-cost:  0.064789 expression-cost:  0.008068 
+======================Test output======================
+logprob:  0.333658, 0.058078 L2-SN:  168.439483 light-cost:  17.902134 pose-cost:  0.064458 expression-cost:  0.008025 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.061798e-01 [4.677543e-05] 
+Layer 'conv1' biases: 4.021965e-01 [1.541104e-06] 
+Layer 'conv2' weights[0]: 5.263200e-02 [2.060844e-05] 
+Layer 'conv2' biases: 2.548787e-01 [8.635685e-07] 
+Layer 'local3' weights[0]: 1.670732e-02 [3.231083e-06] 
+Layer 'local3' biases: 4.474974e-03 [1.104586e-07] 
+Layer 'local4' weights[0]: 2.161404e-02 [2.710826e-06] 
+Layer 'local4' biases: 8.871621e-03 [3.381624e-07] 
+Layer 'fc5' weights[0]: 1.697294e-02 [2.034179e-06]
+Layer 'fc5' weights[1]: 9.104507e-03 [9.075080e-06] 
+Layer 'fc5' biases: 4.534214e-02 [1.260858e-06] 
+Layer 'fc-softmax' weights[0]: 3.889688e-02 [9.316732e-07] 
+Layer 'fc-softmax' biases: 4.532090e-03 [3.386001e-07] 
+Layer 'fc-pose' weights[0]: 5.707886e-03 [1.667837e-07] 
+Layer 'fc-pose' biases: 3.936830e-03 [1.030638e-07] 
+Layer 'fc-light' weights[0]: 1.944442e-02 [5.673210e-07] 
+Layer 'fc-light' biases: 4.844460e-02 [2.466148e-07] 
+Layer 'fc-expression' weights[0]: 4.420512e-04 [2.401409e-08] 
+Layer 'fc-expression' biases: 1.174071e-03 [1.811350e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (37.934 sec)
+1.601... logprob:  0.321719, 0.055469 L2-SN:  167.297565 light-cost:  17.753069 pose-cost:  0.064955 expression-cost:  0.008111 (15.335 sec)
+1.602... logprob:  0.324285, 0.055188 L2-SN:  166.815022 light-cost:  17.775956 pose-cost:  0.065151 expression-cost:  0.008071 (15.310 sec)
+1.603... logprob:  0.322272, 0.055609 L2-SN:  167.020278 light-cost:  17.551792 pose-cost:  0.064802 expression-cost:  0.008063 (15.406 sec)
+1.604... logprob:  0.322006, 0.054031 L2-SN:  167.023387 light-cost:  17.915317 pose-cost:  0.064447 expression-cost:  0.008048 (15.282 sec)
+1.605... logprob:  0.322596, 0.055672 L2-SN:  166.925507 light-cost:  17.884144 pose-cost:  0.065118 expression-cost:  0.008134 (15.390 sec)
+1.606... logprob:  0.326528, 0.057234 L2-SN:  167.747534 light-cost:  17.848492 pose-cost:  0.065354 expression-cost:  0.008107 (15.288 sec)
+1.607... logprob:  0.318110, 0.052844 L2-SN:  166.676839 light-cost:  17.804888 pose-cost:  0.064825 expression-cost:  0.008093 (15.385 sec)
+1.608... logprob:  0.319682, 0.054031 L2-SN:  166.779978 light-cost:  17.621563 pose-cost:  0.065445 expression-cost:  0.008098 (15.410 sec)
+1.609... logprob:  0.321495, 0.052953 L2-SN:  167.000153 light-cost:  18.036102 pose-cost:  0.064770 expression-cost:  0.008086 (15.438 sec)
+1.610... logprob:  0.321784, 0.057516 L2-SN:  167.058748 light-cost:  17.509158 pose-cost:  0.065440 expression-cost:  0.008149 (15.356 sec)
+1.611... logprob:  0.322390, 0.054859 L2-SN:  166.477982 light-cost:  17.599538 pose-cost:  0.065468 expression-cost:  0.008073 (15.486 sec)
+1.612... logprob:  0.317560, 0.054672 L2-SN:  166.608993 light-cost:  17.890658 pose-cost:  0.064749 expression-cost:  0.008113 (15.369 sec)
+1.613... logprob:  0.324496, 0.055063 L2-SN:  167.627366 light-cost:  17.637194 pose-cost:  0.064815 expression-cost:  0.008122 (15.664 sec)
+1.614... logprob:  0.318968, 0.054656 L2-SN:  166.207648 light-cost:  17.791059 pose-cost:  0.064569 expression-cost:  0.008114 (15.406 sec)
+1.615... logprob:  0.313911, 0.051141 L2-SN:  166.454932 light-cost:  17.662013 pose-cost:  0.065118 expression-cost:  0.008090 (15.429 sec)
+1.616... logprob:  0.315388, 0.053047 L2-SN:  166.707938 light-cost:  17.766804 pose-cost:  0.065212 expression-cost:  0.008053 (15.406 sec)
+1.617... logprob:  0.319504, 0.055234 L2-SN:  166.464520 light-cost:  17.537821 pose-cost:  0.065166 expression-cost:  0.008098 (15.446 sec)
+1.618... logprob:  0.319198, 0.054859 L2-SN:  166.282278 light-cost:  17.883975 pose-cost:  0.065181 expression-cost:  0.008065 (15.475 sec)
+1.619... logprob:  0.319022, 0.054391 L2-SN:  166.684800 light-cost:  17.767643 pose-cost:  0.065150 expression-cost:  0.008072 (15.411 sec)
+1.620... logprob:  0.318060, 0.054922 L2-SN:  165.965819 light-cost:  17.506345 pose-cost:  0.065027 expression-cost:  0.007949 (15.381 sec)
+1.621... logprob:  0.310969, 0.053203 L2-SN:  165.264365 light-cost:  17.712480 pose-cost:  0.064179 expression-cost:  0.008078 (16.189 sec)
+1.622... logprob:  0.315602, 0.053375 L2-SN:  166.027853 light-cost:  17.510235 pose-cost:  0.064623 expression-cost:  0.008087 (16.151 sec)
+1.623... logprob:  0.318069, 0.054906 L2-SN:  165.805471 light-cost:  17.465107 pose-cost:  0.064886 expression-cost:  0.008015 (16.160 sec)
+1.624... logprob:  0.315769, 0.054344 L2-SN:  165.231298 light-cost:  17.727925 pose-cost:  0.064318 expression-cost:  0.008051 (16.174 sec)
+1.625... logprob:  0.313590, 0.053859 L2-SN:  165.266387 light-cost:  17.593074 pose-cost:  0.064325 expression-cost:  0.008115 (16.246 sec)
+1.626... logprob:  0.313970, 0.052484 L2-SN:  165.569556 light-cost:  17.785624 pose-cost:  0.064886 expression-cost:  0.008043 (16.317 sec)
+1.627... logprob:  0.312805, 0.053328 L2-SN:  165.692777 light-cost:  17.769712 pose-cost:  0.064524 expression-cost:  0.007993 (16.067 sec)
+1.628... logprob:  0.312980, 0.054688 L2-SN:  164.096410 light-cost:  17.906468 pose-cost:  0.064158 expression-cost:  0.008080 (16.310 sec)
+1.629... logprob:  0.317369, 0.053297 L2-SN:  166.391394 light-cost:  17.754170 pose-cost:  0.064761 expression-cost:  0.008051 (16.052 sec)
+1.630... logprob:  0.311854, 0.053687 L2-SN:  164.635412 light-cost:  17.757568 pose-cost:  0.065458 expression-cost:  0.008039 (16.203 sec)
+1.631... logprob:  0.311411, 0.054828 L2-SN:  165.502063 light-cost:  17.592188 pose-cost:  0.065947 expression-cost:  0.008144 (16.197 sec)
+1.632... logprob:  0.312779, 0.052484 L2-SN:  164.523341 light-cost:  17.811649 pose-cost:  0.065598 expression-cost:  0.008046 (16.103 sec)
+1.633... logprob:  0.313117, 0.054531 L2-SN:  165.444776 light-cost:  17.808387 pose-cost:  0.064359 expression-cost:  0.008071 (16.083 sec)
+1.634... logprob:  0.310271, 0.052578 L2-SN:  164.959327 light-cost:  17.729250 pose-cost:  0.065107 expression-cost:  0.008103 (16.027 sec)
+1.635... logprob:  0.311051, 0.052719 L2-SN:  164.353078 light-cost:  17.694468 pose-cost:  0.063948 expression-cost:  0.008092 (16.135 sec)
+1.636... logprob:  0.314046, 0.053328 L2-SN:  165.376179 light-cost:  17.703396 pose-cost:  0.064997 expression-cost:  0.008103 (16.139 sec)
+1.637... logprob:  0.312095, 0.053281 L2-SN:  164.750157 light-cost:  17.770849 pose-cost:  0.065110 expression-cost:  0.008105 (16.159 sec)
+1.638... logprob:  0.312319, 0.053391 L2-SN:  164.080588 light-cost:  17.371378 pose-cost:  0.065183 expression-cost:  0.008074 (16.226 sec)
+1.639... logprob:  0.309014, 0.052562 L2-SN:  164.460083 light-cost:  17.960879 pose-cost:  0.064393 expression-cost:  0.008078 (16.119 sec)
+1.640... logprob:  0.309513, 0.053094 L2-SN:  164.338137 light-cost:  17.422680 pose-cost:  0.064541 expression-cost:  0.008005 (16.069 sec)
+1.641... logprob:  0.311150, 0.053969 L2-SN:  164.498446 light-cost:  17.684459 pose-cost:  0.064881 expression-cost:  0.008084 (16.193 sec)
+1.642... logprob:  0.308151, 0.053609 L2-SN:  163.916017 light-cost:  17.714662 pose-cost:  0.064597 expression-cost:  0.008102 (16.123 sec)
+1.643... logprob:  0.310365, 0.053734 L2-SN:  163.883643 light-cost:  17.664435 pose-cost:  0.064875 expression-cost:  0.008031 (16.252 sec)
+1.644... logprob:  0.309466, 0.053062 L2-SN:  164.371000 light-cost:  17.610809 pose-cost:  0.064840 expression-cost:  0.008054 (16.159 sec)
+1.645... logprob:  0.305601, 0.051891 L2-SN:  163.481999 light-cost:  17.622915 pose-cost:  0.064512 expression-cost:  0.008100 (16.315 sec)
+1.646... logprob:  0.306174, 0.053187 L2-SN:  163.484662 light-cost:  17.643321 pose-cost:  0.064375 expression-cost:  0.008038 (16.081 sec)
+1.647... logprob:  0.309303, 0.054891 L2-SN:  163.185869 light-cost:  17.622567 pose-cost:  0.064062 expression-cost:  0.008056 (15.445 sec)
+1.648... logprob:  0.309100, 0.052828 L2-SN:  164.136634 light-cost:  17.468038 pose-cost:  0.063672 expression-cost:  0.008102 (15.247 sec)
+1.649... logprob:  0.306628, 0.052453 L2-SN:  163.521155 light-cost:  17.632429 pose-cost:  0.063825 expression-cost:  0.008074 (16.016 sec)
+1.650... logprob:  0.303474, 0.051437 L2-SN:  163.430482 light-cost:  17.701844 pose-cost:  0.064550 expression-cost:  0.008084 
+======================Test output======================
+logprob:  0.296442, 0.053000 L2-SN:  164.504227 light-cost:  18.308603 pose-cost:  0.064090 expression-cost:  0.008050 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.106310e-01 [3.651057e-05] 
+Layer 'conv1' biases: 4.187148e-01 [1.281629e-06] 
+Layer 'conv2' weights[0]: 5.426176e-02 [1.853763e-05] 
+Layer 'conv2' biases: 2.642676e-01 [6.715878e-07] 
+Layer 'local3' weights[0]: 1.599096e-02 [3.079116e-06] 
+Layer 'local3' biases: 4.658157e-03 [9.755314e-08] 
+Layer 'local4' weights[0]: 2.125403e-02 [2.545587e-06] 
+Layer 'local4' biases: 9.529856e-03 [2.973667e-07] 
+Layer 'fc5' weights[0]: 1.730186e-02 [1.808707e-06]
+Layer 'fc5' weights[1]: 8.848480e-03 [7.680928e-06] 
+Layer 'fc5' biases: 4.807054e-02 [9.459880e-07] 
+Layer 'fc-softmax' weights[0]: 3.900197e-02 [8.558350e-07] 
+Layer 'fc-softmax' biases: 4.658545e-03 [3.110210e-07] 
+Layer 'fc-pose' weights[0]: 5.904251e-03 [1.854263e-07] 
+Layer 'fc-pose' biases: 4.195557e-03 [1.273229e-07] 
+Layer 'fc-light' weights[0]: 1.996368e-02 [6.913895e-07] 
+Layer 'fc-light' biases: 5.092602e-02 [3.919513e-07] 
+Layer 'fc-expression' weights[0]: 4.172867e-04 [2.526765e-08] 
+Layer 'fc-expression' biases: 1.212761e-03 [1.820629e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (43.355 sec)
+1.651... logprob:  0.303655, 0.051859 L2-SN:  163.015265 light-cost:  17.681386 pose-cost:  0.064505 expression-cost:  0.008075 (16.313 sec)
+1.652... logprob:  0.303228, 0.050328 L2-SN:  163.282012 light-cost:  17.658510 pose-cost:  0.065824 expression-cost:  0.008122 (16.089 sec)
+1.653... logprob:  0.307263, 0.053219 L2-SN:  163.141569 light-cost:  17.367780 pose-cost:  0.064965 expression-cost:  0.008081 (17.333 sec)
+1.654... logprob:  0.304994, 0.052203 L2-SN:  162.957798 light-cost:  17.483634 pose-cost:  0.064982 expression-cost:  0.008048 (17.864 sec)
+1.655... logprob:  0.308670, 0.054031 L2-SN:  162.890262 light-cost:  17.428309 pose-cost:  0.065232 expression-cost:  0.008113 (17.967 sec)
+1.656... logprob:  0.306645, 0.052109 L2-SN:  163.240319 light-cost:  17.380142 pose-cost:  0.064805 expression-cost:  0.008053 (18.030 sec)
+1.657... logprob:  0.305827, 0.053078 L2-SN:  163.397620 light-cost:  17.489321 pose-cost:  0.064724 expression-cost:  0.008058 (18.455 sec)
+1.658... logprob:  0.305386, 0.052828 L2-SN:  162.596621 light-cost:  17.398409 pose-cost:  0.064163 expression-cost:  0.008006 (17.835 sec)
+1.659... logprob:  0.299231, 0.050469 L2-SN:  162.945753 light-cost:  17.510817 pose-cost:  0.063399 expression-cost:  0.008094 (18.175 sec)
+1.660... logprob:  0.301324, 0.051172 L2-SN:  162.435765 light-cost:  17.653768 pose-cost:  0.063669 expression-cost:  0.008103 (18.396 sec)
+1.661... logprob:  0.299607, 0.050859 L2-SN:  162.727482 light-cost:  17.455189 pose-cost:  0.063450 expression-cost:  0.008021 (18.012 sec)
+1.662... logprob:  0.302472, 0.051297 L2-SN:  163.016179 light-cost:  17.794435 pose-cost:  0.063925 expression-cost:  0.007977 (17.164 sec)
+1.663... logprob:  0.301000, 0.052109 L2-SN:  162.496491 light-cost:  17.406322 pose-cost:  0.064067 expression-cost:  0.008013 (16.020 sec)
+1.664... logprob:  0.301195, 0.051875 L2-SN:  162.018541 light-cost:  17.716910 pose-cost:  0.065107 expression-cost:  0.008150 (15.781 sec)
+1.665... logprob:  0.300304, 0.051531 L2-SN:  162.413051 light-cost:  17.462801 pose-cost:  0.064358 expression-cost:  0.008061 (15.690 sec)
+1.666... logprob:  0.301315, 0.053391 L2-SN:  161.300648 light-cost:  17.181053 pose-cost:  0.064460 expression-cost:  0.008053 (15.591 sec)
+1.667... logprob:  0.299999, 0.051812 L2-SN:  161.919509 light-cost:  17.490530 pose-cost:  0.064677 expression-cost:  0.008035 (15.635 sec)
+1.668... logprob:  0.300717, 0.051937 L2-SN:  161.874065 light-cost:  17.356856 pose-cost:  0.063975 expression-cost:  0.008019 (15.684 sec)
+1.669... logprob:  0.298935, 0.051875 L2-SN:  161.773745 light-cost:  17.581849 pose-cost:  0.064035 expression-cost:  0.007980 (15.719 sec)
+1.670... logprob:  0.300060, 0.051359 L2-SN:  161.983829 light-cost:  17.040952 pose-cost:  0.064413 expression-cost:  0.008031 (15.669 sec)
+1.671... logprob:  0.298739, 0.051734 L2-SN:  161.590538 light-cost:  17.603408 pose-cost:  0.063945 expression-cost:  0.008031 (15.600 sec)
+1.672... logprob:  0.301292, 0.051547 L2-SN:  161.435855 light-cost:  17.474653 pose-cost:  0.064548 expression-cost:  0.008020 (15.705 sec)
+1.673... logprob:  0.298223, 0.049859 L2-SN:  161.717936 light-cost:  17.356060 pose-cost:  0.064293 expression-cost:  0.008054 (15.726 sec)
+1.674... logprob:  0.298640, 0.050016 L2-SN:  162.401316 light-cost:  17.358546 pose-cost:  0.064184 expression-cost:  0.008065 (15.665 sec)
+1.675... logprob:  0.297199, 0.051625 L2-SN:  161.674881 light-cost:  17.681112 pose-cost:  0.065087 expression-cost:  0.008047 (15.676 sec)
+1.676... logprob:  0.302530, 0.052219 L2-SN:  161.708450 light-cost:  17.517010 pose-cost:  0.063829 expression-cost:  0.008086 (15.638 sec)
+1.677... logprob:  0.299166, 0.052703 L2-SN:  162.030130 light-cost:  17.763994 pose-cost:  0.064229 expression-cost:  0.008017 (15.648 sec)
+1.678... logprob:  0.300984, 0.051922 L2-SN:  162.037494 light-cost:  17.333131 pose-cost:  0.063102 expression-cost:  0.008021 (15.739 sec)
+1.679... logprob:  0.294545, 0.050250 L2-SN:  161.019009 light-cost:  17.473560 pose-cost:  0.064575 expression-cost:  0.008046 (15.615 sec)
+1.680... logprob:  0.297618, 0.050859 L2-SN:  161.305192 light-cost:  17.227213 pose-cost:  0.064759 expression-cost:  0.008057 (15.657 sec)
+1.681... logprob:  0.294788, 0.050969 L2-SN:  160.450444 light-cost:  17.291244 pose-cost:  0.064053 expression-cost:  0.007979 (15.711 sec)
+1.682... logprob:  0.298124, 0.054047 L2-SN:  160.909237 light-cost:  17.463633 pose-cost:  0.064341 expression-cost:  0.008099 (15.715 sec)
+1.683... logprob:  0.299812, 0.052266 L2-SN:  161.094055 light-cost:  17.426924 pose-cost:  0.065218 expression-cost:  0.007988 (15.705 sec)
+1.684... logprob:  0.297935, 0.052109 L2-SN:  161.145920 light-cost:  17.526081 pose-cost:  0.064024 expression-cost:  0.007986 (15.691 sec)
+1.685... logprob:  0.293108, 0.050719 L2-SN:  160.774305 light-cost:  17.381701 pose-cost:  0.064472 expression-cost:  0.008035 (15.724 sec)
+1.686... logprob:  0.292756, 0.050547 L2-SN:  160.186024 light-cost:  17.368280 pose-cost:  0.064399 expression-cost:  0.008025 (15.611 sec)
+1.687... logprob:  0.295511, 0.051297 L2-SN:  159.917042 light-cost:  17.292597 pose-cost:  0.065102 expression-cost:  0.008005 (15.671 sec)
+1.688... logprob:  0.295155, 0.050375 L2-SN:  160.896395 light-cost:  17.532066 pose-cost:  0.064648 expression-cost:  0.008044 (15.743 sec)
+1.689... logprob:  0.292576, 0.050078 L2-SN:  160.154785 light-cost:  17.570630 pose-cost:  0.064645 expression-cost:  0.008065 (15.639 sec)
+1.690... logprob:  0.294012, 0.050250 L2-SN:  161.401485 light-cost:  17.348932 pose-cost:  0.064283 expression-cost:  0.008071 (15.648 sec)
+1.691... logprob:  0.293657, 0.051375 L2-SN:  160.632234 light-cost:  17.357491 pose-cost:  0.063762 expression-cost:  0.007983 (15.625 sec)
+1.692... logprob:  0.296804, 0.052187 L2-SN:  160.179339 light-cost:  17.359995 pose-cost:  0.063558 expression-cost:  0.008052 (15.698 sec)
+1.693... logprob:  0.293427, 0.051281 L2-SN:  159.826963 light-cost:  17.217637 pose-cost:  0.064349 expression-cost:  0.008042 (15.602 sec)
+1.694... logprob:  0.296704, 0.051906 L2-SN:  160.617971 light-cost:  17.249603 pose-cost:  0.064924 expression-cost:  0.008043 (15.692 sec)
+1.695... logprob:  0.290427, 0.048719 L2-SN:  160.326407 light-cost:  17.594662 pose-cost:  0.064091 expression-cost:  0.008062 (15.687 sec)
+1.696... logprob:  0.294522, 0.053094 L2-SN:  159.786358 light-cost:  17.473636 pose-cost:  0.064429 expression-cost:  0.007996 (15.615 sec)
+1.697... logprob:  0.293179, 0.052109 L2-SN:  159.928801 light-cost:  17.229707 pose-cost:  0.064947 expression-cost:  0.008034 (15.629 sec)
+1.698... logprob:  0.292097, 0.051422 L2-SN:  159.682297 light-cost:  17.317910 pose-cost:  0.064057 expression-cost:  0.008027 (15.595 sec)
+1.699... logprob:  0.289848, 0.050000 L2-SN:  159.449719 light-cost:  17.289033 pose-cost:  0.064166 expression-cost:  0.008076 (15.659 sec)
+1.700... logprob:  0.289989, 0.050859 L2-SN:  159.768713 light-cost:  17.125225 pose-cost:  0.063458 expression-cost:  0.008003 
+======================Test output======================
+logprob:  0.292272, 0.051094 L2-SN:  160.905370 light-cost:  17.442403 pose-cost:  0.065004 expression-cost:  0.008100 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.149501e-01 [3.860602e-05] 
+Layer 'conv1' biases: 4.339045e-01 [9.029739e-07] 
+Layer 'conv2' weights[0]: 5.580976e-02 [1.815969e-05] 
+Layer 'conv2' biases: 2.728070e-01 [5.946295e-07] 
+Layer 'local3' weights[0]: 1.534155e-02 [3.314365e-06] 
+Layer 'local3' biases: 4.831770e-03 [9.498687e-08] 
+Layer 'local4' weights[0]: 2.093299e-02 [2.637966e-06] 
+Layer 'local4' biases: 1.017662e-02 [2.986531e-07] 
+Layer 'fc5' weights[0]: 1.758305e-02 [1.876788e-06]
+Layer 'fc5' weights[1]: 8.623480e-03 [7.965336e-06] 
+Layer 'fc5' biases: 5.079038e-02 [9.887874e-07] 
+Layer 'fc-softmax' weights[0]: 3.904026e-02 [8.520289e-07] 
+Layer 'fc-softmax' biases: 4.778432e-03 [3.107237e-07] 
+Layer 'fc-pose' weights[0]: 6.074618e-03 [1.595393e-07] 
+Layer 'fc-pose' biases: 4.477192e-03 [6.854987e-08] 
+Layer 'fc-light' weights[0]: 2.041715e-02 [5.543687e-07] 
+Layer 'fc-light' biases: 5.337698e-02 [3.067625e-07] 
+Layer 'fc-expression' weights[0]: 3.972425e-04 [2.205569e-08] 
+Layer 'fc-expression' biases: 1.250222e-03 [1.723852e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (38.046 sec)
+1.701... logprob:  0.291809, 0.050563 L2-SN:  159.922636 light-cost:  17.416354 pose-cost:  0.063301 expression-cost:  0.008018 (15.473 sec)
+1.702... logprob:  0.291982, 0.051937 L2-SN:  159.814970 light-cost:  17.357750 pose-cost:  0.064254 expression-cost:  0.008044 (15.492 sec)
+1.703... logprob:  0.290380, 0.050016 L2-SN:  159.703371 light-cost:  17.576452 pose-cost:  0.064130 expression-cost:  0.008097 (15.488 sec)
+1.704... logprob:  0.293849, 0.052141 L2-SN:  159.336444 light-cost:  17.390890 pose-cost:  0.064038 expression-cost:  0.008038 (15.548 sec)
+1.705... logprob:  0.288901, 0.048188 L2-SN:  159.668910 light-cost:  17.151521 pose-cost:  0.064259 expression-cost:  0.008068 (15.481 sec)
+1.706... logprob:  0.289261, 0.051062 L2-SN:  158.824462 light-cost:  17.263071 pose-cost:  0.063474 expression-cost:  0.007964 (14.727 sec)
+1.707... logprob:  0.291412, 0.052687 L2-SN:  159.388188 light-cost:  17.298846 pose-cost:  0.064561 expression-cost:  0.008011 (14.739 sec)
+1.708... logprob:  0.288359, 0.050172 L2-SN:  158.676443 light-cost:  17.253676 pose-cost:  0.064421 expression-cost:  0.008025 (14.594 sec)
+1.709... logprob:  0.290722, 0.050937 L2-SN:  158.938617 light-cost:  17.277962 pose-cost:  0.063198 expression-cost:  0.007972 (14.610 sec)
+1.710... logprob:  0.287447, 0.049656 L2-SN:  159.401254 light-cost:  17.345693 pose-cost:  0.064532 expression-cost:  0.008060 (14.635 sec)
+1.711... logprob:  0.286486, 0.049609 L2-SN:  158.812048 light-cost:  17.566217 pose-cost:  0.064439 expression-cost:  0.008047 (14.661 sec)
+1.712... logprob:  0.286697, 0.048953 L2-SN:  158.573552 light-cost:  17.524697 pose-cost:  0.064181 expression-cost:  0.008043 (14.622 sec)
+1.713... logprob:  0.287877, 0.051906 L2-SN:  158.344015 light-cost:  17.352710 pose-cost:  0.063470 expression-cost:  0.008019 (14.619 sec)
+1.714... logprob:  0.286200, 0.049188 L2-SN:  158.494848 light-cost:  17.312039 pose-cost:  0.063981 expression-cost:  0.008052 (14.637 sec)
+1.715... logprob:  0.284973, 0.048922 L2-SN:  158.574000 light-cost:  17.226826 pose-cost:  0.064251 expression-cost:  0.008047 (14.708 sec)
+1.716... logprob:  0.286089, 0.050547 L2-SN:  157.478193 light-cost:  17.336604 pose-cost:  0.064286 expression-cost:  0.007978 (14.630 sec)
+1.717... logprob:  0.287232, 0.050234 L2-SN:  158.202754 light-cost:  17.192830 pose-cost:  0.063717 expression-cost:  0.007984 (14.700 sec)
+1.718... logprob:  0.287294, 0.051156 L2-SN:  158.482369 light-cost:  17.404417 pose-cost:  0.063702 expression-cost:  0.008024 (14.658 sec)
+1.719... logprob:  0.288112, 0.051469 L2-SN:  157.915732 light-cost:  17.547904 pose-cost:  0.064368 expression-cost:  0.008065 (14.637 sec)
+1.720... logprob:  0.283928, 0.049547 L2-SN:  157.977778 light-cost:  17.137482 pose-cost:  0.063466 expression-cost:  0.008012 (14.641 sec)
+1.721... logprob:  0.285005, 0.050656 L2-SN:  157.906553 light-cost:  17.054399 pose-cost:  0.063393 expression-cost:  0.007996 (14.584 sec)
+1.722... logprob:  0.287323, 0.049734 L2-SN:  158.532615 light-cost:  17.198280 pose-cost:  0.063672 expression-cost:  0.007953 (14.718 sec)
+1.723... logprob:  0.288206, 0.051625 L2-SN:  157.478389 light-cost:  17.227031 pose-cost:  0.064168 expression-cost:  0.008049 (14.660 sec)
+1.724... logprob:  0.286294, 0.049078 L2-SN:  158.216411 light-cost:  17.072575 pose-cost:  0.064005 expression-cost:  0.008016 (14.817 sec)
+1.725... logprob:  0.287361, 0.051750 L2-SN:  158.231015 light-cost:  17.353678 pose-cost:  0.064091 expression-cost:  0.008026 (14.674 sec)
+1.726... logprob:  0.284389, 0.048672 L2-SN:  158.453970 light-cost:  17.190586 pose-cost:  0.064267 expression-cost:  0.008022 (14.625 sec)
+1.727... logprob:  0.286631, 0.049734 L2-SN:  158.736475 light-cost:  17.422344 pose-cost:  0.064753 expression-cost:  0.008122 (14.665 sec)
+1.728... logprob:  0.280657, 0.049359 L2-SN:  157.745383 light-cost:  17.266089 pose-cost:  0.063876 expression-cost:  0.008043 (14.749 sec)
+1.729... logprob:  0.287850, 0.051781 L2-SN:  158.108048 light-cost:  17.463616 pose-cost:  0.063641 expression-cost:  0.008040 (14.712 sec)
+1.730... logprob:  0.282712, 0.049563 L2-SN:  157.565624 light-cost:  17.328754 pose-cost:  0.064603 expression-cost:  0.008037 (14.698 sec)
+1.731... logprob:  0.283154, 0.050688 L2-SN:  157.561690 light-cost:  17.246925 pose-cost:  0.063841 expression-cost:  0.008093 (14.727 sec)
+1.732... logprob:  0.282778, 0.049328 L2-SN:  157.658300 light-cost:  17.141109 pose-cost:  0.064123 expression-cost:  0.008110 (14.665 sec)
+1.733... logprob:  0.282914, 0.049203 L2-SN:  157.674420 light-cost:  17.212391 pose-cost:  0.064034 expression-cost:  0.008062 (14.717 sec)
+1.734... logprob:  0.285941, 0.050406 L2-SN:  158.103459 light-cost:  17.443555 pose-cost:  0.063932 expression-cost:  0.008082 (14.685 sec)
+1.735... logprob:  0.281083, 0.049641 L2-SN:  157.264954 light-cost:  17.337652 pose-cost:  0.063419 expression-cost:  0.008011 (14.719 sec)
+1.736... logprob:  0.282243, 0.048297 L2-SN:  157.361898 light-cost:  17.266609 pose-cost:  0.064218 expression-cost:  0.008016 (14.695 sec)
+1.737... logprob:  0.284064, 0.051141 L2-SN:  157.928504 light-cost:  17.362047 pose-cost:  0.064687 expression-cost:  0.008082 (15.272 sec)
+1.738... logprob:  0.283927, 0.051125 L2-SN:  156.620883 light-cost:  17.222937 pose-cost:  0.063495 expression-cost:  0.007987 (15.261 sec)
+1.739... logprob:  0.284521, 0.049453 L2-SN:  157.678678 light-cost:  17.193258 pose-cost:  0.063505 expression-cost:  0.008067 (15.256 sec)
+1.740... logprob:  0.281865, 0.048547 L2-SN:  157.592520 light-cost:  17.197568 pose-cost:  0.063869 expression-cost:  0.007991 (15.229 sec)
+1.741... logprob:  0.283613, 0.048875 L2-SN:  157.276993 light-cost:  17.566178 pose-cost:  0.064703 expression-cost:  0.008120 (15.292 sec)
+1.742... logprob:  0.281125, 0.049383 L2-SN:  157.544259 light-cost:  17.279324 pose-cost:  0.063977 expression-cost:  0.008048 (15.306 sec)
+1.743... logprob:  0.283160, 0.049406 L2-SN:  156.988591 light-cost:  17.398228 pose-cost:  0.063354 expression-cost:  0.007975 (15.272 sec)
+1.744... logprob:  0.279583, 0.049734 L2-SN:  157.293072 light-cost:  17.140699 pose-cost:  0.063397 expression-cost:  0.008047 (14.847 sec)
+1.745... logprob:  0.278457, 0.048719 L2-SN:  157.030401 light-cost:  17.271039 pose-cost:  0.063518 expression-cost:  0.008033 (14.420 sec)
+1.746... logprob:  0.279072, 0.048453 L2-SN:  156.992411 light-cost:  17.256521 pose-cost:  0.063566 expression-cost:  0.007967 (14.518 sec)
+1.747... logprob:  0.280939, 0.047938 L2-SN:  157.057329 light-cost:  17.246503 pose-cost:  0.064659 expression-cost:  0.008035 (15.597 sec)
+1.748... logprob:  0.280518, 0.048688 L2-SN:  157.413308 light-cost:  17.296013 pose-cost:  0.064841 expression-cost:  0.008056 (16.060 sec)
+1.749... logprob:  0.280976, 0.048484 L2-SN:  156.980565 light-cost:  17.337908 pose-cost:  0.063380 expression-cost:  0.007984 (15.645 sec)
+1.750... logprob:  0.277407, 0.048719 L2-SN:  156.025706 light-cost:  17.123324 pose-cost:  0.064873 expression-cost:  0.008084 
+======================Test output======================
+logprob:  0.283327, 0.051219 L2-SN:  156.459657 light-cost:  17.493600 pose-cost:  0.064550 expression-cost:  0.008364 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.192994e-01 [2.706093e-05] 
+Layer 'conv1' biases: 4.480719e-01 [6.989758e-07] 
+Layer 'conv2' weights[0]: 5.727924e-02 [1.574576e-05] 
+Layer 'conv2' biases: 2.807142e-01 [4.119679e-07] 
+Layer 'local3' weights[0]: 1.475540e-02 [3.474467e-06] 
+Layer 'local3' biases: 4.998674e-03 [9.490306e-08] 
+Layer 'local4' weights[0]: 2.064423e-02 [2.681697e-06] 
+Layer 'local4' biases: 1.081619e-02 [2.894253e-07] 
+Layer 'fc5' weights[0]: 1.782589e-02 [1.881630e-06]
+Layer 'fc5' weights[1]: 8.419731e-03 [8.199980e-06] 
+Layer 'fc5' biases: 5.348885e-02 [9.843013e-07] 
+Layer 'fc-softmax' weights[0]: 3.902981e-02 [8.625229e-07] 
+Layer 'fc-softmax' biases: 4.899597e-03 [3.137034e-07] 
+Layer 'fc-pose' weights[0]: 6.220767e-03 [2.166482e-07] 
+Layer 'fc-pose' biases: 4.766072e-03 [1.180701e-07] 
+Layer 'fc-light' weights[0]: 2.083222e-02 [7.997637e-07] 
+Layer 'fc-light' biases: 5.572952e-02 [4.942747e-07] 
+Layer 'fc-expression' weights[0]: 3.823370e-04 [3.339929e-08] 
+Layer 'fc-expression' biases: 1.289551e-03 [2.865192e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (38.659 sec)
+1.751... logprob:  0.280386, 0.050594 L2-SN:  156.744968 light-cost:  17.050555 pose-cost:  0.063724 expression-cost:  0.008029 (15.681 sec)
+1.752... logprob:  0.279202, 0.048547 L2-SN:  157.360621 light-cost:  16.972570 pose-cost:  0.063622 expression-cost:  0.007969 (15.697 sec)
+1.753... logprob:  0.282119, 0.048563 L2-SN:  156.848006 light-cost:  17.245000 pose-cost:  0.064071 expression-cost:  0.008023 (15.750 sec)
+1.754... logprob:  0.278513, 0.049844 L2-SN:  156.141205 light-cost:  17.165023 pose-cost:  0.063245 expression-cost:  0.007996 (15.749 sec)
+1.755... logprob:  0.281059, 0.050422 L2-SN:  156.760983 light-cost:  17.181103 pose-cost:  0.063621 expression-cost:  0.008030 (15.771 sec)
+1.756... logprob:  0.279398, 0.049453 L2-SN:  155.831094 light-cost:  17.303895 pose-cost:  0.063925 expression-cost:  0.008004 (14.442 sec)
+1.757... logprob:  0.277389, 0.048906 L2-SN:  156.623087 light-cost:  17.043287 pose-cost:  0.063936 expression-cost:  0.008040 (14.598 sec)
+1.758... logprob:  0.277061, 0.048469 L2-SN:  155.165317 light-cost:  17.075474 pose-cost:  0.063211 expression-cost:  0.008021 (14.469 sec)
+1.759... logprob:  0.278623, 0.049047 L2-SN:  156.404952 light-cost:  17.178417 pose-cost:  0.064015 expression-cost:  0.008052 (14.538 sec)
+1.760... logprob:  0.280528, 0.050875 L2-SN:  156.344224 light-cost:  17.190946 pose-cost:  0.064555 expression-cost:  0.008037 (14.484 sec)
+1.761... logprob:  0.277356, 0.049094 L2-SN:  156.620308 light-cost:  17.238002 pose-cost:  0.063343 expression-cost:  0.008034 (14.465 sec)
+1.762... logprob:  0.279087, 0.048547 L2-SN:  156.001182 light-cost:  17.304391 pose-cost:  0.063971 expression-cost:  0.008049 (14.475 sec)
+1.763... logprob:  0.277274, 0.048328 L2-SN:  156.357571 light-cost:  17.352503 pose-cost:  0.063271 expression-cost:  0.008038 (14.465 sec)
+1.764... logprob:  0.275537, 0.048344 L2-SN:  155.990744 light-cost:  17.172560 pose-cost:  0.064344 expression-cost:  0.008016 (14.474 sec)
+1.765... logprob:  0.275215, 0.048766 L2-SN:  155.198630 light-cost:  17.232363 pose-cost:  0.063851 expression-cost:  0.008018 (14.411 sec)
+1.766... logprob:  0.277347, 0.047984 L2-SN:  155.598079 light-cost:  17.186176 pose-cost:  0.063395 expression-cost:  0.008090 (14.542 sec)
+1.767... logprob:  0.275508, 0.049313 L2-SN:  155.898047 light-cost:  16.949092 pose-cost:  0.064246 expression-cost:  0.008134 (14.444 sec)
+1.768... logprob:  0.272987, 0.047766 L2-SN:  155.231151 light-cost:  17.040971 pose-cost:  0.063608 expression-cost:  0.008071 (14.483 sec)
+1.769... logprob:  0.273798, 0.048016 L2-SN:  155.713518 light-cost:  17.142766 pose-cost:  0.063506 expression-cost:  0.008074 (14.434 sec)
+1.770... logprob:  0.276168, 0.047594 L2-SN:  155.388384 light-cost:  17.310271 pose-cost:  0.064307 expression-cost:  0.008045 (14.478 sec)
+1.771... logprob:  0.277580, 0.050594 L2-SN:  155.536053 light-cost:  17.181970 pose-cost:  0.063586 expression-cost:  0.008061 (14.437 sec)
+1.772... logprob:  0.275000, 0.050812 L2-SN:  155.125865 light-cost:  16.975026 pose-cost:  0.063611 expression-cost:  0.008000 (14.467 sec)
+1.773... logprob:  0.276467, 0.048969 L2-SN:  155.962316 light-cost:  17.285045 pose-cost:  0.062917 expression-cost:  0.007968 (14.472 sec)
+1.774... logprob:  0.275349, 0.048406 L2-SN:  155.148587 light-cost:  17.309278 pose-cost:  0.064035 expression-cost:  0.008021 (14.532 sec)
+1.775... logprob:  0.273197, 0.047844 L2-SN:  155.637950 light-cost:  17.272711 pose-cost:  0.063642 expression-cost:  0.008074 (14.485 sec)
+1.776... logprob:  0.275912, 0.048563 L2-SN:  155.353493 light-cost:  17.028262 pose-cost:  0.064971 expression-cost:  0.008051 (14.491 sec)
+1.777... logprob:  0.273222, 0.048563 L2-SN:  155.151530 light-cost:  17.214084 pose-cost:  0.063758 expression-cost:  0.008066 (14.427 sec)
+1.778... logprob:  0.272994, 0.048031 L2-SN:  155.156323 light-cost:  17.076896 pose-cost:  0.063287 expression-cost:  0.007990 (14.472 sec)
+1.779... logprob:  0.275386, 0.049406 L2-SN:  154.881533 light-cost:  17.171130 pose-cost:  0.063401 expression-cost:  0.008064 (14.404 sec)
+1.780... logprob:  0.273104, 0.048750 L2-SN:  155.289996 light-cost:  17.181746 pose-cost:  0.063494 expression-cost:  0.008056 (14.422 sec)
+1.781... logprob:  0.270238, 0.046578 L2-SN:  154.958837 light-cost:  17.031307 pose-cost:  0.064477 expression-cost:  0.008065 (14.412 sec)
+1.782... logprob:  0.272111, 0.047906 L2-SN:  154.805525 light-cost:  17.119567 pose-cost:  0.064141 expression-cost:  0.008026 (14.417 sec)
+1.783... logprob:  0.275034, 0.048531 L2-SN:  154.724000 light-cost:  17.180661 pose-cost:  0.064659 expression-cost:  0.008028 (14.418 sec)
+1.784... logprob:  0.275141, 0.048531 L2-SN:  155.725851 light-cost:  17.094913 pose-cost:  0.062321 expression-cost:  0.007994 (14.503 sec)
+1.785... logprob:  0.277782, 0.050797 L2-SN:  154.533832 light-cost:  16.908177 pose-cost:  0.063252 expression-cost:  0.008025 (14.523 sec)
+1.786... logprob:  0.272647, 0.048469 L2-SN:  154.018105 light-cost:  16.872584 pose-cost:  0.063512 expression-cost:  0.008027 (14.531 sec)
+1.787... logprob:  0.272629, 0.048578 L2-SN:  154.815267 light-cost:  17.136076 pose-cost:  0.065152 expression-cost:  0.008060 (14.550 sec)
+1.788... logprob:  0.272179, 0.048461 L2-SN:  154.311098 light-cost:  17.126914 pose-cost:  0.063410 expression-cost:  0.008009 (14.523 sec)
+1.789... logprob:  0.275777, 0.049313 L2-SN:  154.428807 light-cost:  16.905720 pose-cost:  0.063234 expression-cost:  0.008027 (14.534 sec)
+1.790... logprob:  0.270145, 0.049500 L2-SN:  154.970211 light-cost:  17.063570 pose-cost:  0.063478 expression-cost:  0.008075 (14.546 sec)
+1.791... logprob:  0.269769, 0.047484 L2-SN:  154.686259 light-cost:  17.047911 pose-cost:  0.064021 expression-cost:  0.008084 (14.533 sec)
+1.792... logprob:  0.273878, 0.048297 L2-SN:  154.619035 light-cost:  17.243210 pose-cost:  0.062042 expression-cost:  0.007971 (14.545 sec)
+1.793... logprob:  0.272808, 0.049125 L2-SN:  154.796320 light-cost:  17.030970 pose-cost:  0.063918 expression-cost:  0.008027 (14.549 sec)
+1.794... logprob:  0.268108, 0.046344 L2-SN:  154.007089 light-cost:  16.929070 pose-cost:  0.063383 expression-cost:  0.008044 (14.536 sec)
+1.795... logprob:  0.271315, 0.046953 L2-SN:  154.797108 light-cost:  17.184165 pose-cost:  0.064803 expression-cost:  0.008062 (14.524 sec)
+1.796... logprob:  0.272600, 0.048578 L2-SN:  154.179704 light-cost:  17.004225 pose-cost:  0.064367 expression-cost:  0.008040 (14.523 sec)
+1.797... logprob:  0.271511, 0.049109 L2-SN:  154.181162 light-cost:  17.108918 pose-cost:  0.063484 expression-cost:  0.007979 (14.528 sec)
+1.798... logprob:  0.269171, 0.047453 L2-SN:  154.199456 light-cost:  16.800817 pose-cost:  0.063907 expression-cost:  0.008054 (14.442 sec)
+1.799... logprob:  0.268998, 0.047234 L2-SN:  153.955959 light-cost:  17.170221 pose-cost:  0.064245 expression-cost:  0.008087 (14.511 sec)
+1.800... logprob:  0.268622, 0.047813 L2-SN:  153.315007 light-cost:  16.867908 pose-cost:  0.062666 expression-cost:  0.007931 
+======================Test output======================
+logprob:  0.283668, 0.048188 L2-SN:  151.515846 light-cost:  17.375836 pose-cost:  0.063212 expression-cost:  0.008152 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.233084e-01 [2.429915e-05] 
+Layer 'conv1' biases: 4.612878e-01 [8.825987e-07] 
+Layer 'conv2' weights[0]: 5.867706e-02 [1.556358e-05] 
+Layer 'conv2' biases: 2.880327e-01 [4.227532e-07] 
+Layer 'local3' weights[0]: 1.423029e-02 [3.493997e-06] 
+Layer 'local3' biases: 5.160034e-03 [8.883158e-08] 
+Layer 'local4' weights[0]: 2.039068e-02 [2.614068e-06] 
+Layer 'local4' biases: 1.145334e-02 [2.655331e-07] 
+Layer 'fc5' weights[0]: 1.804245e-02 [1.710466e-06]
+Layer 'fc5' weights[1]: 8.239689e-03 [7.498690e-06] 
+Layer 'fc5' biases: 5.614995e-02 [7.994379e-07] 
+Layer 'fc-softmax' weights[0]: 3.898398e-02 [8.317674e-07] 
+Layer 'fc-softmax' biases: 5.016894e-03 [3.051840e-07] 
+Layer 'fc-pose' weights[0]: 6.345738e-03 [1.890386e-07] 
+Layer 'fc-pose' biases: 5.012134e-03 [1.043444e-07] 
+Layer 'fc-light' weights[0]: 2.119168e-02 [5.933288e-07] 
+Layer 'fc-light' biases: 5.804984e-02 [3.456539e-07] 
+Layer 'fc-expression' weights[0]: 3.704067e-04 [1.991322e-08] 
+Layer 'fc-expression' biases: 1.332302e-03 [1.485152e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (37.318 sec)
+1.801... logprob:  0.270291, 0.047906 L2-SN:  153.515923 light-cost:  17.107635 pose-cost:  0.063662 expression-cost:  0.008018 (14.488 sec)
+1.802... logprob:  0.268791, 0.046969 L2-SN:  152.829988 light-cost:  17.065300 pose-cost:  0.063785 expression-cost:  0.008061 (14.426 sec)
+1.803... logprob:  0.268800, 0.048516 L2-SN:  154.253855 light-cost:  17.057046 pose-cost:  0.063708 expression-cost:  0.007978 (14.504 sec)
+1.804... logprob:  0.271963, 0.048000 L2-SN:  154.781280 light-cost:  17.029155 pose-cost:  0.063532 expression-cost:  0.008035 (14.538 sec)
+1.805... logprob:  0.270779, 0.048594 L2-SN:  153.330366 light-cost:  17.071416 pose-cost:  0.063715 expression-cost:  0.008034 (14.481 sec)
+1.806... logprob:  0.266576, 0.046375 L2-SN:  153.877920 light-cost:  16.948840 pose-cost:  0.063486 expression-cost:  0.007999 (14.473 sec)
+1.807... logprob:  0.271056, 0.049281 L2-SN:  153.244176 light-cost:  16.969665 pose-cost:  0.063831 expression-cost:  0.008064 (14.473 sec)
+1.808... logprob:  0.268000, 0.047781 L2-SN:  153.815102 light-cost:  16.859010 pose-cost:  0.063876 expression-cost:  0.008004 (14.551 sec)
+1.809... logprob:  0.268341, 0.048094 L2-SN:  154.117111 light-cost:  16.961368 pose-cost:  0.063587 expression-cost:  0.008062 (14.485 sec)
+1.810... logprob:  0.268350, 0.048281 L2-SN:  152.866064 light-cost:  16.887117 pose-cost:  0.063755 expression-cost:  0.007968 (14.553 sec)
+1.811... logprob:  0.267018, 0.047672 L2-SN:  152.482282 light-cost:  17.133752 pose-cost:  0.063860 expression-cost:  0.008025 (14.550 sec)
+1.812... logprob:  0.267723, 0.048109 L2-SN:  153.413261 light-cost:  17.116383 pose-cost:  0.063780 expression-cost:  0.008077 (14.553 sec)
+1.813... logprob:  0.265496, 0.046297 L2-SN:  153.081086 light-cost:  16.911620 pose-cost:  0.063889 expression-cost:  0.008061 (14.608 sec)
+1.814... logprob:  0.267923, 0.048016 L2-SN:  152.585711 light-cost:  17.183462 pose-cost:  0.063093 expression-cost:  0.007959 (14.640 sec)
+1.815... logprob:  0.265029, 0.047000 L2-SN:  152.530879 light-cost:  17.103249 pose-cost:  0.063864 expression-cost:  0.008075 (14.641 sec)
+1.816... logprob:  0.268199, 0.048484 L2-SN:  152.837899 light-cost:  16.914429 pose-cost:  0.063345 expression-cost:  0.008021 (14.549 sec)
+1.817... logprob:  0.267651, 0.047547 L2-SN:  153.028451 light-cost:  16.948724 pose-cost:  0.063526 expression-cost:  0.008043 (14.545 sec)
+1.818... logprob:  0.266259, 0.047438 L2-SN:  152.464159 light-cost:  17.069952 pose-cost:  0.064404 expression-cost:  0.008063 (14.540 sec)
+1.819... logprob:  0.270220, 0.048328 L2-SN:  153.062132 light-cost:  16.986655 pose-cost:  0.064399 expression-cost:  0.008036 (14.458 sec)
+1.820... logprob:  0.265538, 0.047828 L2-SN:  152.524508 light-cost:  17.226191 pose-cost:  0.064612 expression-cost:  0.008020 (14.457 sec)
+1.821... logprob:  0.266577, 0.045859 L2-SN:  153.154606 light-cost:  17.014751 pose-cost:  0.063479 expression-cost:  0.008032 (14.529 sec)
+1.822... logprob:  0.264069, 0.046422 L2-SN:  153.156358 light-cost:  16.671506 pose-cost:  0.063575 expression-cost:  0.008053 (14.622 sec)
+1.823... logprob:  0.264962, 0.046047 L2-SN:  152.149699 light-cost:  16.855039 pose-cost:  0.064605 expression-cost:  0.008104 (14.625 sec)
+1.824... logprob:  0.264302, 0.045969 L2-SN:  152.180237 light-cost:  17.042278 pose-cost:  0.063616 expression-cost:  0.008046 (14.546 sec)
+1.825... logprob:  0.264936, 0.046250 L2-SN:  152.737867 light-cost:  16.961939 pose-cost:  0.063986 expression-cost:  0.008053 (14.520 sec)
+1.826... logprob:  0.264453, 0.046938 L2-SN:  152.528586 light-cost:  16.971342 pose-cost:  0.063234 expression-cost:  0.008042 (14.513 sec)
+1.827... logprob:  0.267680, 0.047891 L2-SN:  152.569100 light-cost:  17.012883 pose-cost:  0.063250 expression-cost:  0.007997 (14.506 sec)
+1.828... logprob:  0.263485, 0.045937 L2-SN:  152.800702 light-cost:  16.879088 pose-cost:  0.063542 expression-cost:  0.008028 (14.586 sec)
+1.829... logprob:  0.264901, 0.048484 L2-SN:  152.127189 light-cost:  17.098919 pose-cost:  0.064596 expression-cost:  0.008078 (14.565 sec)
+1.830... logprob:  0.264075, 0.046328 L2-SN:  151.963267 light-cost:  16.923366 pose-cost:  0.063785 expression-cost:  0.008022 (14.516 sec)
+1.831... logprob:  0.266126, 0.047313 L2-SN:  152.485674 light-cost:  16.907834 pose-cost:  0.062323 expression-cost:  0.008011 (14.563 sec)
+1.832... logprob:  0.265630, 0.049703 L2-SN:  152.280027 light-cost:  16.862098 pose-cost:  0.063466 expression-cost:  0.008003 (14.553 sec)
+1.833... logprob:  0.263938, 0.046422 L2-SN:  151.897815 light-cost:  16.901414 pose-cost:  0.063290 expression-cost:  0.008080 (14.617 sec)
+1.834... logprob:  0.267113, 0.048078 L2-SN:  152.526803 light-cost:  17.029042 pose-cost:  0.063826 expression-cost:  0.008044 (14.545 sec)
+1.835... logprob:  0.265631, 0.048672 L2-SN:  152.665705 light-cost:  17.057453 pose-cost:  0.063403 expression-cost:  0.007999 (14.607 sec)
+1.836... logprob:  0.261195, 0.045953 L2-SN:  151.814764 light-cost:  17.009758 pose-cost:  0.063828 expression-cost:  0.008014 (14.571 sec)
+1.837... logprob:  0.266299, 0.047891 L2-SN:  152.574459 light-cost:  16.938924 pose-cost:  0.063070 expression-cost:  0.008024 (14.581 sec)
+1.838... logprob:  0.266859, 0.049109 L2-SN:  152.201006 light-cost:  16.836592 pose-cost:  0.063720 expression-cost:  0.008045 (14.539 sec)
+1.839... logprob:  0.263325, 0.047641 L2-SN:  152.315303 light-cost:  16.941524 pose-cost:  0.063587 expression-cost:  0.008032 (14.618 sec)
+1.840... logprob:  0.262824, 0.047172 L2-SN:  152.333049 light-cost:  16.932546 pose-cost:  0.062210 expression-cost:  0.007962 (14.505 sec)
+1.841... logprob:  0.267380, 0.048734 L2-SN:  152.428624 light-cost:  16.899592 pose-cost:  0.063449 expression-cost:  0.008005 (14.466 sec)
+1.842... logprob:  0.259723, 0.046437 L2-SN:  151.852614 light-cost:  17.154434 pose-cost:  0.063630 expression-cost:  0.007995 (14.510 sec)
+1.843... logprob:  0.263791, 0.046687 L2-SN:  152.207729 light-cost:  17.033472 pose-cost:  0.064055 expression-cost:  0.008026 (14.478 sec)
+1.844... logprob:  0.262890, 0.046406 L2-SN:  152.104009 light-cost:  16.958572 pose-cost:  0.063110 expression-cost:  0.007999 (14.494 sec)
+1.845... logprob:  0.262710, 0.046734 L2-SN:  151.624739 light-cost:  16.988478 pose-cost:  0.063693 expression-cost:  0.008053 (14.455 sec)
+1.846... logprob:  0.260035, 0.047328 L2-SN:  151.262799 light-cost:  17.036502 pose-cost:  0.062964 expression-cost:  0.007994 (14.517 sec)
+1.847... logprob:  0.264041, 0.047859 L2-SN:  151.724529 light-cost:  17.039953 pose-cost:  0.064292 expression-cost:  0.008118 (14.544 sec)
+1.848... logprob:  0.262221, 0.045969 L2-SN:  151.886650 light-cost:  17.120199 pose-cost:  0.064182 expression-cost:  0.007986 (14.485 sec)
+1.849... logprob:  0.263757, 0.047719 L2-SN:  151.509404 light-cost:  16.820884 pose-cost:  0.062467 expression-cost:  0.008047 (14.601 sec)
+1.850... logprob:  0.263191, 0.047281 L2-SN:  151.576916 light-cost:  16.890248 pose-cost:  0.063874 expression-cost:  0.008048 
+======================Test output======================
+logprob:  0.257957, 0.047391 L2-SN:  152.231669 light-cost:  16.974187 pose-cost:  0.063798 expression-cost:  0.008062 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.272717e-01 [3.412896e-05] 
+Layer 'conv1' biases: 4.737774e-01 [8.878098e-07] 
+Layer 'conv2' weights[0]: 6.000880e-02 [1.683238e-05] 
+Layer 'conv2' biases: 2.948350e-01 [4.591063e-07] 
+Layer 'local3' weights[0]: 1.376262e-02 [3.410421e-06] 
+Layer 'local3' biases: 5.316023e-03 [8.350793e-08] 
+Layer 'local4' weights[0]: 2.016884e-02 [2.588934e-06] 
+Layer 'local4' biases: 1.208136e-02 [2.666291e-07] 
+Layer 'fc5' weights[0]: 1.823398e-02 [1.692872e-06]
+Layer 'fc5' weights[1]: 8.079080e-03 [7.470302e-06] 
+Layer 'fc5' biases: 5.879086e-02 [8.032493e-07] 
+Layer 'fc-softmax' weights[0]: 3.890846e-02 [7.305064e-07] 
+Layer 'fc-softmax' biases: 5.128164e-03 [2.658510e-07] 
+Layer 'fc-pose' weights[0]: 6.456262e-03 [1.675310e-07] 
+Layer 'fc-pose' biases: 5.280290e-03 [4.950801e-08] 
+Layer 'fc-light' weights[0]: 2.152357e-02 [4.835570e-07] 
+Layer 'fc-light' biases: 6.031647e-02 [2.149004e-07] 
+Layer 'fc-expression' weights[0]: 3.614267e-04 [2.511274e-08] 
+Layer 'fc-expression' biases: 1.380439e-03 [1.782319e-08] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (37.505 sec)
+1.851... logprob:  0.260191, 0.047625 L2-SN:  150.857710 light-cost:  17.023452 pose-cost:  0.063937 expression-cost:  0.008015 (14.632 sec)
+1.852... logprob:  0.259559, 0.044734 L2-SN:  152.097163 light-cost:  16.863701 pose-cost:  0.063445 expression-cost:  0.007982 (14.499 sec)
+1.853... logprob:  0.260581, 0.046297 L2-SN:  151.345501 light-cost:  16.871899 pose-cost:  0.063587 expression-cost:  0.008016 (14.583 sec)
+1.854... logprob:  0.260319, 0.046187 L2-SN:  151.462910 light-cost:  17.025224 pose-cost:  0.063903 expression-cost:  0.008078 (14.479 sec)
+1.855... logprob:  0.261633, 0.046484 L2-SN:  150.543265 light-cost:  17.035285 pose-cost:  0.063249 expression-cost:  0.007999 (15.816 sec)
+1.856... logprob:  0.261927, 0.047469 L2-SN:  150.745099 light-cost:  16.862662 pose-cost:  0.063030 expression-cost:  0.008091 (16.128 sec)
+1.857... logprob:  0.261764, 0.046578 L2-SN:  151.617581 light-cost:  17.040068 pose-cost:  0.063878 expression-cost:  0.008048 (15.623 sec)
+1.858... logprob:  0.260911, 0.048297 L2-SN:  150.719159 light-cost:  16.836494 pose-cost:  0.063784 expression-cost:  0.007958 (15.661 sec)
+1.859... logprob:  0.259047, 0.045891 L2-SN:  150.763281 light-cost:  16.749361 pose-cost:  0.063988 expression-cost:  0.008016 (15.655 sec)
+1.860... logprob:  0.262298, 0.048094 L2-SN:  150.844365 light-cost:  16.958833 pose-cost:  0.063340 expression-cost:  0.008040 (15.666 sec)
+1.861... logprob:  0.260477, 0.047344 L2-SN:  150.978766 light-cost:  16.917416 pose-cost:  0.063241 expression-cost:  0.008026 (15.693 sec)
+1.862... logprob:  0.261468, 0.047672 L2-SN:  150.995274 light-cost:  17.135461 pose-cost:  0.062508 expression-cost:  0.007925 (15.816 sec)
+1.863... logprob:  0.261140, 0.048578 L2-SN:  150.713897 light-cost:  17.043980 pose-cost:  0.063231 expression-cost:  0.008007 (15.588 sec)
+1.864... logprob:  0.259406, 0.047547 L2-SN:  151.039908 light-cost:  17.132115 pose-cost:  0.063789 expression-cost:  0.007993 (15.657 sec)
+1.865... logprob:  0.261775, 0.047359 L2-SN:  151.403725 light-cost:  16.898061 pose-cost:  0.063864 expression-cost:  0.008051 (15.584 sec)
+1.866... logprob:  0.259918, 0.045734 L2-SN:  150.655797 light-cost:  17.029092 pose-cost:  0.063204 expression-cost:  0.008047 (15.708 sec)
+1.867... logprob:  0.258709, 0.046094 L2-SN:  151.313056 light-cost:  16.789577 pose-cost:  0.063299 expression-cost:  0.008005 (15.679 sec)
+1.868... logprob:  0.255818, 0.044859 L2-SN:  150.573170 light-cost:  17.131472 pose-cost:  0.064254 expression-cost:  0.008082 (15.675 sec)
+1.869... logprob:  0.261334, 0.048406 L2-SN:  150.316193 light-cost:  17.010979 pose-cost:  0.063773 expression-cost:  0.008051 (15.623 sec)
+1.870... logprob:  0.259216, 0.045172 L2-SN:  150.302364 light-cost:  16.921136 pose-cost:  0.062772 expression-cost:  0.008007 (15.668 sec)
+1.871... logprob:  0.260086, 0.047453 L2-SN:  149.982097 light-cost:  16.726473 pose-cost:  0.063476 expression-cost:  0.008019 (15.711 sec)
+1.872... logprob:  0.259495, 0.046797 L2-SN:  150.624942 light-cost:  16.814448 pose-cost:  0.063960 expression-cost:  0.008034 (15.691 sec)
+1.873... logprob:  0.259607, 0.047156 L2-SN:  150.642052 light-cost:  17.056252 pose-cost:  0.064015 expression-cost:  0.008061 (15.028 sec)
+1.874... logprob:  0.257250, 0.045625 L2-SN:  150.319185 light-cost:  16.930292 pose-cost:  0.063032 expression-cost:  0.008019 (14.388 sec)
+1.875... logprob:  0.257890, 0.046437 L2-SN:  149.904176 light-cost:  16.894991 pose-cost:  0.063517 expression-cost:  0.007999 (14.462 sec)
+1.876... logprob:  0.256456, 0.045562 L2-SN:  150.338908 light-cost:  16.720742 pose-cost:  0.063002 expression-cost:  0.008007 (14.567 sec)
+1.877... logprob:  0.259231, 0.046281 L2-SN:  150.119840 light-cost:  16.971048 pose-cost:  0.064229 expression-cost:  0.008050 (14.531 sec)
+1.878... logprob:  0.254391, 0.045266 L2-SN:  149.330817 light-cost:  16.694371 pose-cost:  0.062970 expression-cost:  0.008024 (14.559 sec)
+1.879... logprob:  0.256541, 0.046453 L2-SN:  149.425750 light-cost:  16.733052 pose-cost:  0.063666 expression-cost:  0.008044 (14.556 sec)
+1.880... logprob:  0.258335, 0.046938 L2-SN:  150.314865 light-cost:  16.909125 pose-cost:  0.063315 expression-cost:  0.008114 (14.523 sec)
+1.881... logprob:  0.256142, 0.045859 L2-SN:  150.069310 light-cost:  17.072431 pose-cost:  0.063657 expression-cost:  0.007974 (14.522 sec)
+1.882... logprob:  0.255590, 0.045703 L2-SN:  149.831779 light-cost:  16.815741 pose-cost:  0.063692 expression-cost:  0.008027 (14.655 sec)
+1.883... logprob:  0.256704, 0.044797 L2-SN:  150.092081 light-cost:  16.606030 pose-cost:  0.064098 expression-cost:  0.008024 (14.558 sec)
+1.884... logprob:  0.257254, 0.045625 L2-SN:  150.755469 light-cost:  16.947835 pose-cost:  0.063781 expression-cost:  0.007971 (14.608 sec)
+1.885... logprob:  0.254804, 0.046719 L2-SN:  149.709354 light-cost:  16.891698 pose-cost:  0.063594 expression-cost:  0.007979 (14.582 sec)
+1.886... logprob:  0.256403, 0.046406 L2-SN:  150.029529 light-cost:  16.906381 pose-cost:  0.063868 expression-cost:  0.008028 (14.572 sec)
+1.887... logprob:  0.255986, 0.046484 L2-SN:  150.086472 light-cost:  16.995396 pose-cost:  0.063443 expression-cost:  0.008006 (14.557 sec)
+1.888... logprob:  0.257800, 0.046859 L2-SN:  148.509350 light-cost:  16.826202 pose-cost:  0.063355 expression-cost:  0.008035 (14.609 sec)
+1.889... logprob:  0.253541, 0.046187 L2-SN:  148.912865 light-cost:  16.889236 pose-cost:  0.063632 expression-cost:  0.007994 (14.514 sec)
+1.890... logprob:  0.252695, 0.046047 L2-SN:  149.636762 light-cost:  16.911656 pose-cost:  0.063846 expression-cost:  0.008086 (14.653 sec)
+1.891... logprob:  0.257147, 0.047219 L2-SN:  149.615657 light-cost:  16.788321 pose-cost:  0.062795 expression-cost:  0.008024 (14.644 sec)
+1.892... logprob:  0.254941, 0.045141 L2-SN:  149.593457 light-cost:  16.681983 pose-cost:  0.064475 expression-cost:  0.008031 (14.572 sec)
+1.893... logprob:  0.255633, 0.047828 L2-SN:  149.387071 light-cost:  16.872186 pose-cost:  0.063065 expression-cost:  0.008020 (14.542 sec)
+1.894... logprob:  0.255462, 0.045922 L2-SN:  149.331249 light-cost:  16.685503 pose-cost:  0.063087 expression-cost:  0.007969 (14.559 sec)
+1.895... logprob:  0.256533, 0.045594 L2-SN:  149.433356 light-cost:  16.771584 pose-cost:  0.063095 expression-cost:  0.008070 (14.564 sec)
+1.896... logprob:  0.256383, 0.048156 L2-SN:  149.140710 light-cost:  16.872270 pose-cost:  0.063771 expression-cost:  0.008010 (14.526 sec)
+1.897... logprob:  0.257744, 0.046875 L2-SN:  149.298758 light-cost:  17.009566 pose-cost:  0.063805 expression-cost:  0.007992 (14.495 sec)
+1.898... logprob:  0.254719, 0.045422 L2-SN:  149.354839 light-cost:  16.904625 pose-cost:  0.063070 expression-cost:  0.008023 (14.518 sec)
+1.899... logprob:  0.255742, 0.046328 L2-SN:  149.205858 light-cost:  17.068201 pose-cost:  0.063365 expression-cost:  0.008018 (14.577 sec)
+1.900... logprob:  0.257574, 0.046687 L2-SN:  148.954094 light-cost:  16.432983 pose-cost:  0.063119 expression-cost:  0.008071 
+======================Test output======================
+logprob:  0.251683, 0.046828 L2-SN:  150.362335 light-cost:  16.776441 pose-cost:  0.063292 expression-cost:  0.007943 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.311385e-01 [2.152139e-05] 
+Layer 'conv1' biases: 4.855375e-01 [6.944782e-07] 
+Layer 'conv2' weights[0]: 6.133641e-02 [1.638370e-05] 
+Layer 'conv2' biases: 3.012416e-01 [3.056161e-07] 
+Layer 'local3' weights[0]: 1.334799e-02 [3.740918e-06] 
+Layer 'local3' biases: 5.467569e-03 [8.548556e-08] 
+Layer 'local4' weights[0]: 1.996836e-02 [2.834850e-06] 
+Layer 'local4' biases: 1.270446e-02 [2.799947e-07] 
+Layer 'fc5' weights[0]: 1.840158e-02 [1.749098e-06]
+Layer 'fc5' weights[1]: 7.933764e-03 [7.891035e-06] 
+Layer 'fc5' biases: 6.143005e-02 [8.454642e-07] 
+Layer 'fc-softmax' weights[0]: 3.881007e-02 [8.045501e-07] 
+Layer 'fc-softmax' biases: 5.243329e-03 [2.912849e-07] 
+Layer 'fc-pose' weights[0]: 6.546311e-03 [1.502331e-07] 
+Layer 'fc-pose' biases: 5.542899e-03 [8.549662e-08] 
+Layer 'fc-light' weights[0]: 2.182187e-02 [5.524646e-07] 
+Layer 'fc-light' biases: 6.250407e-02 [2.844364e-07] 
+Layer 'fc-expression' weights[0]: 3.542587e-04 [1.677772e-08] 
+Layer 'fc-expression' biases: 1.425314e-03 [8.687866e-09] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepid_attr/ConvNet__2015-02-05_21.45.54
+======================================================= (37.441 sec)
+2.1... logprob:  0.254178, 0.046203 L2-SN:  149.446701 light-cost:  16.648772 pose-cost:  0.063574 expression-cost:  0.008019 (14.535 sec)

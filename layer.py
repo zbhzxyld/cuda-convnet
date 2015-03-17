@@ -151,10 +151,7 @@ class LayerParser:
     
     # Add parameters from layer parameter file
     def add_params(self, mcp):
-        dic, name = self.dic, self.dic['name']
-        dic['dropout'] = 0.0
-        if name in mcp.sections():
-            dic['dropout'] = mcp.safe_get_float(name, 'dropout', default=0.0)
+        pass
     
     def init(self, dic):
         self.dic = dic
@@ -395,34 +392,7 @@ class NailbedLayerParser(LayerWithInputParser):
         
         print "Initialized bed-of-nails layer '%s', producing %dx%d %d-channel output" % (name, dic['outputsX'], dic['outputsX'], dic['channels'])
         return dic
-
-class LandmarkLayerParser(LayerWithInputParser):
-    def __init__(self):
-        LayerWithInputParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model=None):
-        dic = LayerWithInputParser.parse(self, name, mcp, prev_layers, model)
-        dic['forceOwnActs'] = False
-        dic['usesActs'] = False
-        dic['usesInputs'] = False
-        
-        dic['channels'] = mcp.safe_get_int(name, 'channels')
-        dic['outputsX'] = mcp.safe_get_int(name, 'outputsX')
-
-        self.verify_num_range(dic['channels'], 'channels', 1, None)
-        
-        # Computed values
-        dic['imgPixels'] = dic['numInputs'][0] / dic['channels']
-        dic['imgSize'] = int(n.sqrt(dic['imgPixels']))
-        dic['outputs'] = dic['channels'] * dic['outputsX']**2
-        
-        self.verify_num_range(dic['outputsX'], 'outputsX', 0, None)
-        
-        self.verify_img_size()
-        
-        print "Initialized landmark layer '%s', producing %dx%d %d-channel output" % (name, dic['outputsX'], dic['outputsX'], dic['channels'])
-        return dic
-        
+    
 class GaussianBlurLayerParser(LayerWithInputParser):
     def __init__(self):
         LayerWithInputParser.__init__(self, num_inputs=1)
@@ -655,41 +625,6 @@ class EltwiseMaxLayerParser(LayerWithInputParser):
         print "Initialized elementwise max layer '%s', producing %d outputs" % (name, dic['outputs'])
         return dic
 
-class EltwiseMulLayerParser(LayerWithInputParser):
-    def __init__(self):
-        LayerWithInputParser.__init__(self)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = LayerWithInputParser.parse(self, name, mcp, prev_layers, model)
-        if len(dic['inputs']) < 2:
-            raise LayerParsingError("Layer '%s': elementwise mul layer must have at least 2 inputs, got %d." % (name, len(dic['inputs'])))
-        if len(set(dic['numInputs'])) != 1:
-            raise LayerParsingError("Layer '%s': all inputs must have the same dimensionality. Got dimensionalities: %s" % (name, ", ".join(str(s) for s in dic['numInputs'])))
-        dic['outputs'] = dic['numInputs'][0]
-        dic['usesInputs'] = False
-        dic['usesActs'] = False
-        dic['forceOwnActs'] = False
-        
-        print "Initialized elementwise mul layer '%s', producing %d outputs" % (name, dic['outputs'])
-        return dic
-
-class ConcatLayerParser(LayerWithInputParser):
-    def __init__(self):
-        LayerWithInputParser.__init__(self)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = LayerWithInputParser.parse(self, name, mcp, prev_layers, model)
-        
-        dic['outputs'] = sum(dic['numInputs'])
-        dic['usesInputs'] = False
-        dic['usesActs'] = False
-        dic['forceOwnActs'] = False
-        
-        dic['dims'] = mcp.safe_get_int_list(name, 'dims')
-        
-        print "Initialized concat layer '%s', producing %d outputs" % (name, dic['outputs'])
-        return dic
-        
 class WeightLayerParser(LayerWithInputParser):
     LAYER_PAT = re.compile(r'^\s*([^\s\[]+)(?:\[(\d+)\])?\s*$') # matches things like layername[5], etc
     
@@ -704,8 +639,6 @@ class WeightLayerParser(LayerWithInputParser):
         return m.group(1), m.group(2)
     
     def add_params(self, mcp):
-        LayerWithInputParser.add_params(self, mcp)
-        
         dic, name = self.dic, self.dic['name']
         dic['epsW'] = mcp.safe_get_float_list(name, 'epsW')
         dic['epsB'] = mcp.safe_get_float(name, 'epsB')
@@ -778,13 +711,6 @@ class WeightLayerParser(LayerWithInputParser):
                         raise LayerParsingError("Layer '%s': weight sharing source matrix '%s' has shape %dx%d; should be %dx%d." 
                                                 % (dic['name'], dic['weightSource'][i], dic['weights'][i].shape[0], dic['weights'][i].shape[1], rows[i], cols[i]))
                     print "Layer '%s' initialized weight matrix %d from %s" % (dic['name'], i, dic['weightSource'][i])
-                    
-                    if dic['onlyInit']:
-                        dic['weightSourceLayerIndices'] = []
-                        dic['weightSourceMatrixIndices'] = []
-                        for k in range(len(dic['inputs'])):
-                            dic['weightSourceLayerIndices'] += [-1]
-                            dic['weightSourceMatrixIndices'] += [-1]
                 else:
                     dic['weights'] += [n.array(initW[i] * nr.randn(rows[i], cols[i]), dtype=n.single, order=order)]
                     dic['weightsInc'] += [n.zeros_like(dic['weights'][i])]
@@ -814,11 +740,10 @@ class WeightLayerParser(LayerWithInputParser):
         dic['initB'] = mcp.safe_get_float(name, 'initB', default=0)
         dic['initWFunc'] = mcp.safe_get(name, 'initWFunc', default="")
         dic['initBFunc'] = mcp.safe_get(name, 'initBFunc', default="")
-        
         # Find shared weight matrices
+        
         dic['weightSource'] = mcp.safe_get_list(name, 'weightSource', default=[''] * len(dic['inputs']))
         self.verify_num_params(['initW', 'weightSource'])
-        dic['onlyInit'] = mcp.safe_get_int(name, 'onlyInit', default=0)
         
         prev_names = map(lambda x: x['name'], prev_layers)
         dic['weightSourceLayerIndices'] = []
@@ -846,7 +771,7 @@ class WeightLayerParser(LayerWithInputParser):
 
             dic['weightSourceLayerIndices'] += [src_layer_idx]
             dic['weightSourceMatrixIndices'] += [src_layer_matrix_idx]
-            
+                
         return dic
         
 class FCLayerParser(WeightLayerParser):
@@ -1015,7 +940,6 @@ class ConvLayerParser(LocalLayerParser):
         num_biases = dic['filters'] if dic['sharedBiases'] else dic['modules']*dic['filters']
 
         eltmult = lambda list1, list2: [l1 * l2 for l1,l2 in zip(list1, list2)]
-        # Init conv layer weights
         self.make_weights(dic['initW'], eltmult(dic['filterPixels'], dic['filterChannels']), [dic['filters']] * len(dic['inputs']), order='C')
         self.make_biases(num_biases, 1, order='C')
 
@@ -1101,15 +1025,12 @@ class NormLayerParser(LayerWithInputParser):
     RESPONSE_NORM = 'response'
     CONTRAST_NORM = 'contrast'
     CROSSMAP_RESPONSE_NORM = 'cross-map response'
-    CROSSMAP_RESPONSE_L2NORM = 'cross-map response L2'
     
     def __init__(self, norm_type):
         LayerWithInputParser.__init__(self, num_inputs=1)
         self.norm_type = norm_type
         
     def add_params(self, mcp):
-        LayerWithInputParser.add_params(self, mcp)
-        
         dic, name = self.dic, self.dic['name']
         dic['scale'] = mcp.safe_get_float(name, 'scale')
         dic['scale'] /= dic['size'] if self.norm_type == self.CROSSMAP_RESPONSE_NORM else dic['size']**2
@@ -1156,8 +1077,6 @@ class CostParser(LayerWithInputParser):
         return dic
 
     def add_params(self, mcp):
-        LayerWithInputParser.add_params(self, mcp)
-        
         dic, name = self.dic, self.dic['name']
         dic['coeff'] = mcp.safe_get_float(name, 'coeff')
             
@@ -1187,103 +1106,6 @@ class SumOfSquaresCostParser(CostParser):
         print "Initialized sum-of-squares cost '%s'" % name
         return dic
 
-class CosineCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=3)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        if dic['numInputs'][1] != dic['numInputs'][2]:
-            raise LayerParsingError("Layer '%s': dimensionality of the 2nd input must equal to the 3rd input" % name)
-                                    
-        print "Initialized cosine cost '%s'" % name
-        return dic
-
-class Cosine2CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=3)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        if dic['numInputs'][1] != dic['numInputs'][2]:
-            raise LayerParsingError("Layer '%s': dimensionality of the 2nd input must equal to the 3rd input" % name)
-                                    
-        print "Initialized cosine2 cost '%s'" % name
-        return dic
-        
-class Cosine3CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-                           
-        print "Initialized cosine3 cost '%s'" % name
-        return dic
-
-class Cosine4CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        
-        dic['alpha'] = mcp.safe_get_float(name, 'alpha')
-                           
-        print "Initialized cosine4 cost '%s'" % name
-        return dic
-
-class Cosine5CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=4)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        
-        dic['alpha'] = mcp.safe_get_float(name, 'alpha')
-        dic['beta'] = mcp.safe_get_float(name, 'beta')
-        dic['gamma'] = mcp.safe_get_float(name, 'gamma')        
-                           
-        print "Initialized cosine5 cost '%s'" % name
-        return dic
-              
-class CCACostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != dic['numInputs'][1]:
-            raise LayerParsingError("Layer '%s': dimensionality of the 2nd input must equal to the 3rd input" % name)
-        
-        dic['lambda'] = mcp.safe_get_float(name, 'lambda')
-                            
-        print "Initialized cca cost '%s'" % name
-        return dic
-        
-class FisherCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=3)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        if dic['numInputs'][1] != dic['numInputs'][2]:
-            raise LayerParsingError("Layer '%s': dimensionality of the 2nd input must equal to the 3rd input" % name)
-                           
-        print "Initialized fisher cost '%s'" % name
-        return dic
 
 class Fisher2CostParser(CostParser):
     def __init__(self):
@@ -1298,95 +1120,7 @@ class Fisher2CostParser(CostParser):
         
         print "Initialized fisher2 cost '%s'" % name
         return dic
-
-class KnifeCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
         
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        
-        print "Initialized knife cost '%s'" % name
-        return dic
-
-class Knife2CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        
-        print "Initialized knife2 cost '%s'" % name
-        return dic
-        
-class DPCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=3)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        if dic['numInputs'][1] != dic['numInputs'][2]:
-            raise LayerParsingError("Layer '%s': dimensionality of the 2nd input must equal to the 3rd input" % name)
-                            
-        print "Initialized dot product cost '%s'" % name
-        return dic
-        
-class DP2CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-                          
-        print "Initialized dot product2 cost '%s'" % name
-        return dic
-        
-class AGRCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=4)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-                                   
-        print "Initialized agr (age, gender and race) cost '%s'" % name
-        return dic
-
-class AttrCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-        
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-                                   
-        print "Initialized attr (21 attributes) cost '%s'" % name
-        return dic
-
-class L2CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=3)
-
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-        if dic['numInputs'][1] != dic['numInputs'][2]:
-            raise LayerParsingError("Layer '%s': dimensionality of the 2nd input must equal to the 3rd input" % name)
-
-        dic['m'] = mcp.safe_get_float(name, 'm')
-
-        print "Initialized cosine cost '%s'" % name
-        return dic
-
 class L2SNCostParser(CostParser):
     def __init__(self):
         CostParser.__init__(self, num_inputs=2)
@@ -1413,74 +1147,44 @@ class CosineSNCostParser(CostParser):
         print "Initialized Cosine-sn cost '%s'" % name
         return dic
 
-class L3SNCostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-
-        dic['m'] = mcp.safe_get_float(name, 'm')
-
-        print "Initialized L3-sn cost '%s'" % name
-        return dic
-
-class Joint1CostParser(CostParser):
-    def __init__(self):
-        CostParser.__init__(self, num_inputs=2)
-
-    def parse(self, name, mcp, prev_layers, model):
-        dic = CostParser.parse(self, name, mcp, prev_layers, model)
-        if dic['numInputs'][0] != 1: # first input must be labels
-            raise LayerParsingError("Layer '%s': dimensionality of first input must be 1" % name)
-
-        dic['m'] = mcp.safe_get_float(name, 'm')
-        dic['lambda'] = mcp.safe_get_float(name, 'lambda')
-
-        print "Initialized Joint1 cost '%s'" % name
-        return dic
-
 
 class L2regCostParser(CostParser):
     def __init__(self):
         CostParser.__init__(self, num_inputs=2)
-        
+
     def parse(self, name, mcp, prev_layers, model):
         dic = CostParser.parse(self, name, mcp, prev_layers, model)
-                                   
+
         print "Initialized attr (21 attributes) cost '%s'" % name
         return dic
-
 
 class ShiftLayerParser(LayerWithInputParser):
     def __init__(self):
         LayerWithInputParser.__init__(self, num_inputs=1)
-        
+
     def parse(self, name, mcp, prev_layers, model=None):
         dic = LayerWithInputParser.parse(self, name, mcp, prev_layers, model)
         dic['forceOwnActs'] = False
         dic['usesActs'] = False
         dic['usesInputs'] = False
-        
+
         dic['channels'] = mcp.safe_get_int(name, 'channels')
         dic['filterSize'] = mcp.safe_get_int(name, 'filterSize')
         filterSize = dic['filterSize']
 
         self.verify_num_range(dic['channels'], 'channels', 1, None)
-        
-        
+
+
         # Computed values
         dic['imgPixels'] = dic['numInputs'][0] / dic['channels']
         dic['imgSize'] = int(n.sqrt(dic['imgPixels']))
-        
+
         dic['outputsX'] = int(ceil((dic['imgSize'] - dic['filterSize']))) + 1;
         outputsX = dic['outputsX']
-        dic['outputs'] = dic['outputsX']**2 * dic['channels'] * (dic['filterSize']-1) * (dic['filterSize']-1)      
-        
+        dic['outputs'] = dic['outputsX']**2 * dic['channels'] * (dic['filterSize']-1) * (dic['filterSize']-1)
+
         dic['filter'] = n.zeros([dic['outputsX'] * dic['outputsX'], (dic['filterSize']-1)*(dic['filterSize']-1)], n.float32)
-        
+
         for deltax in range(filterSize-1):
             for deltay in range(filterSize-1):
                 for x in range(outputsX):
@@ -1488,85 +1192,32 @@ class ShiftLayerParser(LayerWithInputParser):
                         origin_x = x + deltax
                         origin_y = y + deltay
                         dic['filter'][x*outputsX+y][deltax*(filterSize-1)+deltay] = origin_x*dic['imgSize']+origin_y
-                        
-                  
-        
+
+
+
         self.verify_img_size()
-        
+
         if dic['filterSize'] > dic['imgSize']:
             raise LayerParsingError("Later '%s': filter size (%d) must be smaller than image size (%d)." % (dic['name'], dic['filterSize'], dic['imgSize']))
-        
+
         print "Initialized shift layer '%s', producing %dx%d %d-channel output" % (name, dic['outputsX'], dic['outputsX'], (dic['filterSize']-1) * (dic['filterSize']-1))
-        
-        return dic
 
-
-
-class ShiftRandLayerParser(LayerWithInputParser):
-    def __init__(self):
-        LayerWithInputParser.__init__(self, num_inputs=1)
-        
-    def parse(self, name, mcp, prev_layers, model=None):
-        dic = LayerWithInputParser.parse(self, name, mcp, prev_layers, model)
-        dic['forceOwnActs'] = False
-        dic['usesActs'] = False
-        dic['usesInputs'] = False
-        
-        dic['channels'] = mcp.safe_get_int(name, 'channels')
-        dic['filterSize'] = mcp.safe_get_int(name, 'filterSize')
-        filterSize = dic['filterSize']
-
-        self.verify_num_range(dic['channels'], 'channels', 1, None)
-        
-        
-        # Computed values
-        dic['imgPixels'] = dic['numInputs'][0] / dic['channels']
-        dic['imgSize'] = int(n.sqrt(dic['imgPixels']))
-        
-        dic['outputsX'] = int(ceil((dic['imgSize'] - dic['filterSize']))) + 1;
-        outputsX = dic['outputsX']
-        dic['outputs'] = dic['outputsX']**2 * dic['channels']   
-        
-        dic['filter'] = n.zeros([dic['outputsX'] * dic['outputsX'], (dic['filterSize'] * dic['filterSize'])], n.float32)
-        
-        for deltax in range(filterSize):
-            for deltay in range(filterSize):
-                for x in range(outputsX):
-                    for y in range(outputsX):
-                        origin_x = x + deltax
-                        origin_y = y + deltay
-                        dic['filter'][x*outputsX+y][deltax*(filterSize)+deltay] = origin_x*dic['imgSize']+origin_y
-                        
-                  
-        
-        self.verify_img_size()
-        
-        if dic['filterSize'] > dic['imgSize']:
-            raise LayerParsingError("Later '%s': filter size (%d) must be smaller than image size (%d)." % (dic['name'], dic['filterSize'], dic['imgSize']))
-        
-        print "Initialized shift layer '%s', producing %dx%d %d-channel output" % (name, dic['outputsX'], dic['outputsX'], dic['channels'])
-        
         return dic
 
 # All the layer parsers
 layer_parsers = {'data': lambda : DataLayerParser(),
                  'shift': lambda : ShiftLayerParser(),
-                 'shift_rand': lambda : ShiftRandLayerParser(),
                  'fc': lambda : FCLayerParser(),
                  'conv': lambda : ConvLayerParser(),
                  'local': lambda : LocalUnsharedLayerParser(),
                  'softmax': lambda : SoftmaxLayerParser(),
                  'eltsum': lambda : EltwiseSumLayerParser(),
                  'eltmax': lambda : EltwiseMaxLayerParser(),
-                 'eltmul': lambda : EltwiseMulLayerParser(),
-                 'concat': lambda : ConcatLayerParser(),
                  'neuron': lambda : NeuronLayerParser(),
                  'pool': lambda : PoolLayerParser(),
                  'rnorm': lambda : NormLayerParser(NormLayerParser.RESPONSE_NORM),
                  'cnorm': lambda : NormLayerParser(NormLayerParser.CONTRAST_NORM),
                  'cmrnorm': lambda : NormLayerParser(NormLayerParser.CROSSMAP_RESPONSE_NORM),
-                 'cmrl2norm': lambda: NormLayerParser(NormLayerParser.CROSSMAP_RESPONSE_L2NORM),
-                 'landmark': lambda : LandmarkLayerParser(),
                  'nailbed': lambda : NailbedLayerParser(),
                  'blur': lambda : GaussianBlurLayerParser(),
                  'resize': lambda : ResizeLayerParser(),
@@ -1575,25 +1226,8 @@ layer_parsers = {'data': lambda : DataLayerParser(),
                  'rscale': lambda : RandomScaleLayerParser(),
                  'cost.logreg': lambda : LogregCostParser(),
                  'cost.sum2': lambda : SumOfSquaresCostParser(),
-                 'cost.cosine': lambda : CosineCostParser(),
-                 'cost.cosine2': lambda : Cosine2CostParser(),
-                 'cost.cosine3': lambda : Cosine3CostParser(),
-                 'cost.cosine4': lambda : Cosine4CostParser(),
-                 'cost.cosine5': lambda : Cosine5CostParser(),
-                 'cost.cca': lambda : CCACostParser(),
-                 'cost.fisher': lambda : FisherCostParser(),
-                 'cost.fisher2': lambda : Fisher2CostParser(),
-                 'cost.knife': lambda : KnifeCostParser(),
-                 'cost.knife2': lambda : Knife2CostParser(),
-                 'cost.dp': lambda : DPCostParser(),
-                 'cost.dp2': lambda : DP2CostParser(),
-                 'cost.agr': lambda : AGRCostParser(),
-                 'cost.attr': lambda : AttrCostParser(),
-                 'cost.l2': lambda : L2CostParser(),
                  'cost.l2-sn': lambda : L2SNCostParser(),
-                 'cost.cosine-sn': lambda : CosineSNCostParser(),
-                 'cost.l3-sn': lambda : L3SNCostParser(),
-                 'cost.joint1': lambda : Joint1CostParser(),
+                 'cost.fisher2': lambda : Fisher2CostParser(),
                  'cost.l2-reg': lambda : L2regCostParser()}
  
 # All the neuron parsers

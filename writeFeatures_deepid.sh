@@ -1,0 +1,1 @@
+python shownet.py -f /home/xiangyuzhu/projects/cuda-convnet/models/deepid/used --data-path=/data2/xiangyuzhu/deepid2/p2/batches --data-path-test=/data2/xiangyuzhu/deepid2/p2/batches --write-features=fc5 --feature-path=/data1/xiangyuzhu/lfw/features/deepid/part2/ --test-range=9999 --data-provider=xgw-1-sn-4213 --gpu=1

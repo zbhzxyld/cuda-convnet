@@ -1,0 +1,1 @@
+/usr/bin/python2.7 /home/xiangyuzhu/projects/cuda-convnet2/convnet.py --gpu=2 --data-path=/home/byang/data/DeepID2/p2/batches --data-provider=xgw-1-2x-4213 --layer-def=./net-define-Joint-m0-4213-deepid2+.cfg --layer-params=./net-params-Joint-0.0025-deepid2+.cfg --save-path=/home/byang/data/DeepID2/p2/nets/ --test-range=3 --train-range=1-2 --test-freq=5 --epochs=5

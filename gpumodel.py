@@ -269,7 +269,8 @@ class IGPUModel:
         
         for f in sorted(os.listdir(checkpoint_dir), key=alphanum_key):
             if sum(os.path.getsize(os.path.join(checkpoint_dir, f2)) for f2 in os.listdir(checkpoint_dir)) > self.max_filesize_mb*1024*1024 and f != checkpoint_file:
-                os.remove(os.path.join(checkpoint_dir, f))
+                #os.remove(os.path.join(checkpoint_dir, f))
+                aaa = 1
             else:
                 break
             

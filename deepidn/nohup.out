@@ -1,0 +1,1341 @@
+Initialized data layer 'data', producing 9075 outputs
+Initialized data layer 'labels', producing 1 outputs
+Initialized convolutional layer 'conv1', producing 52x52 16-channel output
+Initialized max-pooling layer 'pool1', producing 26x26 16-channel output
+Initialized convolutional layer 'conv2', producing 24x24 32-channel output
+Initialized max-pooling layer 'pool2', producing 12x12 32-channel output
+Initialized locally-connected layer 'local3', producing 10x10 48-channel output
+Initialized max-pooling layer 'pool3', producing 5x5 48-channel output
+Initialized locally-connected layer 'local4', producing 4x4 64-channel output
+Initialized fully-connected layer 'fc5', producing 160 outputs
+Initialized fully-connected layer 'fc6', producing 4213 outputs
+Initialized softmax layer 'probs', producing 4213 outputs
+Layer 'logprob': softmax input 'probs' must produce 4131 outputs, because that is the number of classes in the dataset
+Initialized data layer 'data', producing 9075 outputs
+Initialized data layer 'labels', producing 1 outputs
+Initialized convolutional layer 'conv1', producing 52x52 16-channel output
+Initialized max-pooling layer 'pool1', producing 26x26 16-channel output
+Initialized convolutional layer 'conv2', producing 24x24 32-channel output
+Initialized max-pooling layer 'pool2', producing 12x12 32-channel output
+Initialized locally-connected layer 'local3', producing 10x10 48-channel output
+Initialized max-pooling layer 'pool3', producing 5x5 48-channel output
+Initialized locally-connected layer 'local4', producing 4x4 64-channel output
+Initialized fully-connected layer 'fc5', producing 160 outputs
+Initialized fully-connected layer 'fc6', producing 4131 outputs
+Initialized softmax layer 'probs', producing 4131 outputs
+Initialized logistic regression cost 'logprob'
+Initialized L2-sn cost 'L2-SN'
+Initialized fisher2 cost 'fisher'
+Initialized neuron layer 'conv1_neuron', producing 43264 outputs
+Initialized neuron layer 'conv2_neuron', producing 18432 outputs
+Initialized neuron layer 'local3_neuron', producing 4800 outputs
+Initialized neuron layer 'local4_neuron', producing 1024 outputs
+Initialized neuron layer 'fc5_neuron', producing 160 outputs
+Initialized neuron layer 'fc6_neuron', producing 4131 outputs
+=========================
+Importing _ConvNet C++ module
+=========================
+Training ConvNet
+Check gradients and quit?                           : 0   [DEFAULT]
+Compress checkpoints?                               : 0   [DEFAULT]
+Conserve GPU memory (slower)?                       : 0   [DEFAULT]
+Convert given conv layers to unshared local         :     
+Cropped DP: crop border size                        : 4   [DEFAULT]
+Cropped DP: logreg layer name (for --multiview-test):     [DEFAULT]
+Cropped DP: test on multiple patches?               : 0   [DEFAULT]
+Data batch range: testing                           : 931-938 
+Data batch range: training                          : 1-930 
+Data path                                           : /data1/xiangyuzhu/webface/deepid2/part2/ 
+Data path for test                                  : /data1/xiangyuzhu/webface/deepid2/part2 
+Data provider                                       : xgw-deepid-online 
+GPU override                                        : 1   
+Layer definition file                               : net-define-Joint-m0-4213.cfg 
+Layer parameter file                                : net-params-Joint-0.0025-1.cfg 
+Load file                                           :     [DEFAULT]
+Maximum save file size (MB)                         : 0   [DEFAULT]
+Minibatch size                                      : 128 [DEFAULT]
+Number of GPUs                                      : 1   [DEFAULT]
+Number of epochs                                    : 1   
+Save path                                           : ../models/deepidn 
+Test and quit?                                      : 0   [DEFAULT]
+Test on one batch at a time?                        : 1   [DEFAULT]
+Testing frequency                                   : 50  
+Unshare weight matrices in given layers             :     
+=========================
+Running on CUDA device(s) 1
+Current time: Sun Feb  1 16:06:02 2015
+Saving checkpoints to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+=========================
+1.1... L2-SN:  5.642966 logprob:  8.303181, 0.999234 fisher:  -0.071290 (23.436 sec)
+1.2... L2-SN:  11.051576 logprob:  8.181607, 0.998891 fisher:  -0.040371 (19.347 sec)
+1.3... L2-SN:  11.138585 logprob:  8.116336, 0.998141 fisher:  -0.051762 (17.564 sec)
+1.4... L2-SN:  11.190717 logprob:  8.085126, 0.998094 fisher:  -0.084111 (16.529 sec)
+1.5... L2-SN:  13.312294 logprob:  8.047698, 0.997125 fisher:  -0.146003 (19.223 sec)
+1.6... L2-SN:  20.398453 logprob:  8.000996, 0.996547 fisher:  -0.271996 (18.751 sec)
+1.7... L2-SN:  34.577173 logprob:  7.911070, 0.994812 fisher:  -0.393549 (17.625 sec)
+1.8... L2-SN:  51.169366 logprob:  7.775774, 0.993188 fisher:  -0.486613 (19.395 sec)
+1.9... L2-SN:  68.160991 logprob:  7.612452, 0.991812 fisher:  -0.560828 (20.144 sec)
+1.10... L2-SN:  84.113464 logprob:  7.425600, 0.988016 fisher:  -0.661370 (20.245 sec)
+1.11... L2-SN:  96.347123 logprob:  7.249890, 0.984547 fisher:  -0.763623 (20.135 sec)
+1.12... L2-SN:  107.428126 logprob:  7.098475, 0.979859 fisher:  -0.838923 (21.513 sec)
+1.13... L2-SN:  118.333876 logprob:  6.945585, 0.974422 fisher:  -0.902975 (20.984 sec)
+1.14... L2-SN:  126.259788 logprob:  6.795876, 0.969344 fisher:  -0.964093 (20.176 sec)
+1.15... L2-SN:  136.841578 logprob:  6.655549, 0.962344 fisher:  -1.019351 (18.892 sec)
+1.16... L2-SN:  145.124160 logprob:  6.522103, 0.954906 fisher:  -1.065292 (20.409 sec)
+1.17... L2-SN:  152.819800 logprob:  6.390197, 0.947297 fisher:  -1.115339 (20.969 sec)
+1.18... L2-SN:  160.476026 logprob:  6.275648, 0.941625 fisher:  -1.168140 (20.698 sec)
+1.19... L2-SN:  166.592543 logprob:  6.156216, 0.930203 fisher:  -1.196425 (20.740 sec)
+1.20... L2-SN:  174.809441 logprob:  6.056042, 0.922344 fisher:  -1.215197 (20.706 sec)
+1.21... L2-SN:  182.041074 logprob:  5.922260, 0.910516 fisher:  -1.274284 (20.555 sec)
+1.22... L2-SN:  189.704463 logprob:  5.799745, 0.900891 fisher:  -1.304927 (22.087 sec)
+1.23... L2-SN:  197.493043 logprob:  5.688438, 0.888234 fisher:  -1.329703 (22.004 sec)
+1.24... L2-SN:  203.541989 logprob:  5.590391, 0.877453 fisher:  -1.366203 (21.009 sec)
+1.25... L2-SN:  209.372479 logprob:  5.480874, 0.868219 fisher:  -1.392773 (21.176 sec)
+1.26... L2-SN:  218.391779 logprob:  5.370996, 0.854500 fisher:  -1.408525 (20.704 sec)
+1.27... L2-SN:  222.336875 logprob:  5.277659, 0.845156 fisher:  -1.436531 (16.283 sec)
+1.28... L2-SN:  232.480174 logprob:  5.143315, 0.829609 fisher:  -1.476013 (16.220 sec)
+1.29... L2-SN:  238.346020 logprob:  5.045179, 0.816172 fisher:  -1.480629 (16.273 sec)
+1.30... L2-SN:  245.590649 logprob:  4.942660, 0.804891 fisher:  -1.510557 (16.215 sec)
+1.31... L2-SN:  250.728308 logprob:  4.835171, 0.789234 fisher:  -1.541994 (16.295 sec)
+1.32... L2-SN:  256.160838 logprob:  4.744995, 0.779750 fisher:  -1.551958 (16.235 sec)
+1.33... L2-SN:  260.700869 logprob:  4.644803, 0.764312 fisher:  -1.577990 (16.296 sec)
+1.34... L2-SN:  266.152274 logprob:  4.567179, 0.753281 fisher:  -1.575845 (20.043 sec)
+1.35... L2-SN:  272.170326 logprob:  4.461112, 0.740828 fisher:  -1.610475 (16.312 sec)
+1.36... L2-SN:  276.327989 logprob:  4.376027, 0.728547 fisher:  -1.621490 (16.210 sec)
+1.37... L2-SN:  279.174238 logprob:  4.268281, 0.711984 fisher:  -1.676140 (16.267 sec)
+1.38... L2-SN:  285.944169 logprob:  4.177363, 0.697187 fisher:  -1.683335 (18.040 sec)
+1.39... L2-SN:  290.235273 logprob:  4.114203, 0.690312 fisher:  -1.680906 (18.442 sec)
+1.40... L2-SN:  291.875915 logprob:  4.011106, 0.674766 fisher:  -1.733235 (16.245 sec)
+1.41... L2-SN:  296.512147 logprob:  3.925191, 0.661594 fisher:  -1.759413 (16.238 sec)
+1.42... L2-SN:  300.798292 logprob:  3.840005, 0.651984 fisher:  -1.754456 (16.173 sec)
+1.43... L2-SN:  301.464510 logprob:  3.779273, 0.639453 fisher:  -1.777691 (16.794 sec)
+1.44... L2-SN:  306.013553 logprob:  3.709688, 0.631328 fisher:  -1.776015 (16.830 sec)
+1.45... L2-SN:  307.131820 logprob:  3.615624, 0.615703 fisher:  -1.812353 (16.823 sec)
+1.46... L2-SN:  309.284356 logprob:  3.552448, 0.604375 fisher:  -1.835899 (19.101 sec)
+1.47... L2-SN:  312.076599 logprob:  3.491170, 0.596141 fisher:  -1.833650 (17.331 sec)
+1.48... L2-SN:  312.947276 logprob:  3.427174, 0.586859 fisher:  -1.862825 (17.694 sec)
+1.49... L2-SN:  313.811959 logprob:  3.364850, 0.577984 fisher:  -1.875918 (16.781 sec)
+1.50... L2-SN:  315.824705 logprob:  3.293351, 0.568875 fisher:  -1.883244 
+======================Test output======================
+L2-SN:  323.264016 logprob:  3.248053, 0.562375 fisher:  -1.878795 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 5.690701e-02 [1.052896e-04] 
+Layer 'conv1' biases: 3.767879e-02 [3.954498e-06] 
+Layer 'conv2' weights[0]: 3.490021e-02 [3.496247e-05] 
+Layer 'conv2' biases: 2.244327e-02 [2.551050e-06] 
+Layer 'local3' weights[0]: 3.003733e-02 [2.263044e-06] 
+Layer 'local3' biases: 6.192501e-04 [1.695814e-07] 
+Layer 'local4' weights[0]: 2.993448e-02 [1.415063e-06] 
+Layer 'local4' biases: 6.257755e-04 [1.718794e-07] 
+Layer 'fc5' weights[0]: 8.171925e-03 [2.860539e-06]
+Layer 'fc5' weights[1]: 9.822933e-03 [1.140099e-05] 
+Layer 'fc5' biases: 4.958179e-03 [1.412288e-06] 
+Layer 'fc6' weights[0]: 1.645814e-02 [3.954684e-06] 
+Layer 'fc6' biases: 1.812693e-03 [1.104489e-06] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (41.873 sec)
+1.51... L2-SN:  316.458292 logprob:  3.243299, 0.558187 fisher:  -1.917491 (16.797 sec)
+1.52... L2-SN:  319.920021 logprob:  3.168892, 0.547453 fisher:  -1.906366 (16.802 sec)
+1.53... L2-SN:  321.332761 logprob:  3.126376, 0.540328 fisher:  -1.931743 (16.800 sec)
+1.54... L2-SN:  321.092317 logprob:  3.057391, 0.530984 fisher:  -1.934741 (16.728 sec)
+1.55... L2-SN:  321.980860 logprob:  3.010151, 0.519609 fisher:  -1.963872 (17.775 sec)
+1.56... L2-SN:  323.489569 logprob:  2.966218, 0.514000 fisher:  -1.960578 (21.934 sec)
+1.57... L2-SN:  321.272072 logprob:  2.932252, 0.508422 fisher:  -1.977684 (22.843 sec)
+1.58... L2-SN:  324.397874 logprob:  2.867276, 0.496500 fisher:  -1.983691 (20.565 sec)
+1.59... L2-SN:  321.661387 logprob:  2.834537, 0.491812 fisher:  -2.011624 (20.705 sec)
+1.60... L2-SN:  322.521394 logprob:  2.792018, 0.487344 fisher:  -2.012312 (21.865 sec)
+1.61... L2-SN:  324.876234 logprob:  2.734936, 0.476578 fisher:  -2.014760 (21.522 sec)
+1.62... L2-SN:  322.917795 logprob:  2.687185, 0.469484 fisher:  -2.046242 (20.452 sec)
+1.63... L2-SN:  324.837781 logprob:  2.658402, 0.463281 fisher:  -2.046163 (19.997 sec)
+1.64... L2-SN:  321.792053 logprob:  2.625245, 0.459109 fisher:  -2.066253 (20.177 sec)
+1.65... L2-SN:  322.687117 logprob:  2.564072, 0.448484 fisher:  -2.085937 (20.116 sec)
+1.66... L2-SN:  321.567887 logprob:  2.551527, 0.448391 fisher:  -2.068676 (20.233 sec)
+1.67... L2-SN:  322.649014 logprob:  2.518531, 0.440281 fisher:  -2.092450 (22.693 sec)
+1.68... L2-SN:  321.877933 logprob:  2.466104, 0.430750 fisher:  -2.101931 (17.555 sec)
+1.69... L2-SN:  321.785083 logprob:  2.441762, 0.426922 fisher:  -2.113257 (18.116 sec)
+1.70... L2-SN:  322.795982 logprob:  2.387220, 0.418359 fisher:  -2.115688 (18.885 sec)
+1.71... L2-SN:  321.121897 logprob:  2.338084, 0.410078 fisher:  -2.147514 (22.836 sec)
+1.72... L2-SN:  320.510549 logprob:  2.334570, 0.409000 fisher:  -2.157113 (20.034 sec)
+1.73... L2-SN:  319.982121 logprob:  2.295488, 0.403125 fisher:  -2.149086 (20.421 sec)
+1.74... L2-SN:  319.577766 logprob:  2.274820, 0.400359 fisher:  -2.168641 (20.003 sec)
+1.75... L2-SN:  318.436734 logprob:  2.233177, 0.391156 fisher:  -2.171716 (20.054 sec)
+1.76... L2-SN:  318.195781 logprob:  2.204006, 0.387000 fisher:  -2.195047 (20.125 sec)
+1.77... L2-SN:  317.029201 logprob:  2.189593, 0.383844 fisher:  -2.188120 (21.513 sec)
+1.78... L2-SN:  316.291101 logprob:  2.158928, 0.378344 fisher:  -2.215546 (21.787 sec)
+1.79... L2-SN:  317.740414 logprob:  2.138923, 0.375781 fisher:  -2.192732 (20.658 sec)
+1.80... L2-SN:  315.037630 logprob:  2.123656, 0.373844 fisher:  -2.202452 (20.768 sec)
+1.81... L2-SN:  314.183290 logprob:  2.083916, 0.364406 fisher:  -2.235259 (22.404 sec)
+1.82... L2-SN:  315.902215 logprob:  2.059596, 0.359938 fisher:  -2.218667 (20.087 sec)
+1.83... L2-SN:  313.287073 logprob:  2.042909, 0.358641 fisher:  -2.233826 (17.802 sec)
+1.84... L2-SN:  312.559471 logprob:  2.015532, 0.352391 fisher:  -2.263484 (16.713 sec)
+1.85... L2-SN:  312.657425 logprob:  1.985658, 0.347891 fisher:  -2.249033 (16.546 sec)
+1.86... L2-SN:  311.955477 logprob:  1.959966, 0.343281 fisher:  -2.276805 (19.478 sec)
+1.87... L2-SN:  311.614820 logprob:  1.944139, 0.339438 fisher:  -2.279624 (18.493 sec)
+1.88... L2-SN:  310.606003 logprob:  1.923529, 0.334984 fisher:  -2.269607 (16.757 sec)
+1.89... L2-SN:  308.054946 logprob:  1.904216, 0.335094 fisher:  -2.307306 (16.972 sec)
+1.90... L2-SN:  308.902457 logprob:  1.883665, 0.332609 fisher:  -2.290981 (20.770 sec)
+1.91... L2-SN:  306.810192 logprob:  1.862905, 0.327016 fisher:  -2.319224 (21.135 sec)
+1.92... L2-SN:  305.743329 logprob:  1.843027, 0.324828 fisher:  -2.328849 (22.674 sec)
+1.93... L2-SN:  306.661050 logprob:  1.836952, 0.321984 fisher:  -2.298749 (21.193 sec)
+1.94... L2-SN:  305.034915 logprob:  1.810313, 0.315766 fisher:  -2.345849 (20.933 sec)
+1.95... L2-SN:  303.571748 logprob:  1.793649, 0.315500 fisher:  -2.348958 (22.222 sec)
+1.96... L2-SN:  304.356642 logprob:  1.772238, 0.312859 fisher:  -2.326183 (25.640 sec)
+1.97... L2-SN:  302.795793 logprob:  1.768906, 0.310078 fisher:  -2.321548 (24.246 sec)
+1.98... L2-SN:  302.186883 logprob:  1.747590, 0.306609 fisher:  -2.364759 (19.524 sec)
+1.99... L2-SN:  301.478408 logprob:  1.731547, 0.304719 fisher:  -2.356472 (21.582 sec)
+1.100... L2-SN:  301.066944 logprob:  1.704014, 0.299797 fisher:  -2.383253 
+======================Test output======================
+L2-SN:  302.339554 logprob:  1.719098, 0.308063 fisher:  -2.385670 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 6.602640e-02 [1.545493e-04] 
+Layer 'conv1' biases: 9.602457e-02 [2.920702e-06] 
+Layer 'conv2' weights[0]: 3.575367e-02 [4.102070e-05] 
+Layer 'conv2' biases: 5.638430e-02 [1.913425e-06] 
+Layer 'local3' weights[0]: 2.832078e-02 [2.947674e-06] 
+Layer 'local3' biases: 1.251478e-03 [1.902785e-07] 
+Layer 'local4' weights[0]: 2.844808e-02 [1.775754e-06] 
+Layer 'local4' biases: 1.399667e-03 [2.215780e-07] 
+Layer 'fc5' weights[0]: 9.048944e-03 [2.970265e-06]
+Layer 'fc5' weights[1]: 1.122138e-02 [1.265202e-05] 
+Layer 'fc5' biases: 9.549736e-03 [1.681066e-06] 
+Layer 'fc6' weights[0]: 2.429997e-02 [2.833410e-06] 
+Layer 'fc6' biases: 2.458345e-03 [8.504439e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (57.226 sec)
+1.101... L2-SN:  299.851137 logprob:  1.699884, 0.297672 fisher:  -2.374425 (26.019 sec)
+1.102... L2-SN:  298.823370 logprob:  1.685460, 0.296438 fisher:  -2.369454 (22.846 sec)
+1.103... L2-SN:  296.243001 logprob:  1.653537, 0.292563 fisher:  -2.414371 (23.407 sec)
+1.104... L2-SN:  296.445814 logprob:  1.646174, 0.291906 fisher:  -2.404833 (22.168 sec)
+1.105... L2-SN:  296.892928 logprob:  1.628744, 0.285156 fisher:  -2.408733 (20.707 sec)
+1.106... L2-SN:  295.255617 logprob:  1.606253, 0.282813 fisher:  -2.426187 (24.269 sec)
+1.107... L2-SN:  294.745331 logprob:  1.598427, 0.281430 fisher:  -2.428263 (24.269 sec)
+1.108... L2-SN:  294.218357 logprob:  1.591039, 0.277297 fisher:  -2.404994 (23.883 sec)
+1.109... L2-SN:  292.286403 logprob:  1.572674, 0.276641 fisher:  -2.424156 (24.369 sec)
+1.110... L2-SN:  292.282581 logprob:  1.557654, 0.271953 fisher:  -2.430235 (24.020 sec)
+1.111... L2-SN:  291.219246 logprob:  1.552104, 0.271906 fisher:  -2.437344 (24.388 sec)
+1.112... L2-SN:  290.683292 logprob:  1.537597, 0.269875 fisher:  -2.456269 (27.530 sec)
+1.113... L2-SN:  290.833087 logprob:  1.525577, 0.265109 fisher:  -2.448344 (24.306 sec)
+1.114... L2-SN:  289.022799 logprob:  1.512353, 0.266797 fisher:  -2.469147 (24.445 sec)
+1.115... L2-SN:  287.813210 logprob:  1.500618, 0.264828 fisher:  -2.485546 (23.017 sec)
+1.116... L2-SN:  287.580640 logprob:  1.483120, 0.259937 fisher:  -2.492974 (25.333 sec)
+1.117... L2-SN:  286.417671 logprob:  1.464828, 0.255875 fisher:  -2.468469 (22.665 sec)
+1.118... L2-SN:  286.444415 logprob:  1.458924, 0.255125 fisher:  -2.509502 (24.564 sec)
+1.119... L2-SN:  284.557039 logprob:  1.449359, 0.253000 fisher:  -2.509849 (24.325 sec)
+1.120... L2-SN:  285.416779 logprob:  1.446749, 0.253688 fisher:  -2.502549 (23.820 sec)
+1.121... L2-SN:  283.551396 logprob:  1.438440, 0.253063 fisher:  -2.501043 (23.619 sec)
+1.122... L2-SN:  281.752474 logprob:  1.422839, 0.249531 fisher:  -2.514478 (22.567 sec)
+1.123... L2-SN:  281.593020 logprob:  1.417912, 0.247812 fisher:  -2.511815 (25.289 sec)
+1.124... L2-SN:  281.214419 logprob:  1.399094, 0.246219 fisher:  -2.526058 (24.409 sec)
+1.125... L2-SN:  281.543025 logprob:  1.384720, 0.241219 fisher:  -2.543436 (23.999 sec)
+1.126... L2-SN:  280.310024 logprob:  1.376789, 0.240328 fisher:  -2.542779 (25.455 sec)
+1.127... L2-SN:  279.200536 logprob:  1.352611, 0.236328 fisher:  -2.549986 (20.438 sec)
+1.128... L2-SN:  279.094375 logprob:  1.347653, 0.235234 fisher:  -2.548459 (21.345 sec)
+1.129... L2-SN:  278.809843 logprob:  1.346292, 0.233047 fisher:  -2.537940 (22.371 sec)
+1.130... L2-SN:  278.114952 logprob:  1.331198, 0.233125 fisher:  -2.552230 (23.383 sec)
+1.131... L2-SN:  276.877507 logprob:  1.324231, 0.230250 fisher:  -2.571242 (20.931 sec)
+1.132... L2-SN:  277.034533 logprob:  1.334328, 0.232828 fisher:  -2.558849 (23.702 sec)
+1.133... L2-SN:  275.755107 logprob:  1.307144, 0.229531 fisher:  -2.584103 (24.534 sec)
+1.134... L2-SN:  275.155149 logprob:  1.295593, 0.226391 fisher:  -2.601088 (22.702 sec)
+1.135... L2-SN:  274.805328 logprob:  1.293202, 0.225062 fisher:  -2.581201 (23.926 sec)
+1.136... L2-SN:  272.419952 logprob:  1.279231, 0.221062 fisher:  -2.597787 (23.847 sec)
+1.137... L2-SN:  273.690291 logprob:  1.252222, 0.217391 fisher:  -2.614908 (24.683 sec)
+1.138... L2-SN:  274.094372 logprob:  1.258148, 0.217906 fisher:  -2.604104 (24.458 sec)
+1.139... L2-SN:  271.125236 logprob:  1.257076, 0.218578 fisher:  -2.596781 (24.186 sec)
+1.140... L2-SN:  271.697091 logprob:  1.255947, 0.220469 fisher:  -2.574119 (24.216 sec)
+1.141... L2-SN:  270.469107 logprob:  1.237417, 0.216703 fisher:  -2.618147 (26.514 sec)
+1.142... L2-SN:  269.699782 logprob:  1.222195, 0.212828 fisher:  -2.651672 (25.229 sec)
+1.143... L2-SN:  269.388871 logprob:  1.224276, 0.216281 fisher:  -2.606592 (23.808 sec)
+1.144... L2-SN:  268.615466 logprob:  1.204354, 0.210516 fisher:  -2.627940 (26.473 sec)
+1.145... L2-SN:  268.291965 logprob:  1.203611, 0.208078 fisher:  -2.639051 (24.430 sec)
+1.146... L2-SN:  268.109541 logprob:  1.194338, 0.206078 fisher:  -2.639094 (23.801 sec)
+1.147... L2-SN:  268.192960 logprob:  1.185481, 0.206141 fisher:  -2.614229 (23.825 sec)
+1.148... L2-SN:  266.933479 logprob:  1.176576, 0.204266 fisher:  -2.647097 (23.817 sec)
+1.149... L2-SN:  264.227482 logprob:  1.189591, 0.206187 fisher:  -2.659728 (23.406 sec)
+1.150... L2-SN:  263.999923 logprob:  1.176049, 0.205414 fisher:  -2.661925 
+======================Test output======================
+L2-SN:  253.162424 logprob:  1.203256, 0.206703 fisher:  -2.664426 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 7.047517e-02 [8.399238e-05] 
+Layer 'conv1' biases: 1.578429e-01 [3.304119e-06] 
+Layer 'conv2' weights[0]: 3.667580e-02 [3.590075e-05] 
+Layer 'conv2' biases: 8.897261e-02 [1.999361e-06] 
+Layer 'local3' weights[0]: 2.672559e-02 [2.742021e-06] 
+Layer 'local3' biases: 1.756379e-03 [1.787792e-07] 
+Layer 'local4' weights[0]: 2.725574e-02 [1.833053e-06] 
+Layer 'local4' biases: 2.188400e-03 [2.520275e-07] 
+Layer 'fc5' weights[0]: 1.023932e-02 [2.526799e-06]
+Layer 'fc5' weights[1]: 1.161808e-02 [1.026198e-05] 
+Layer 'fc5' biases: 1.316312e-02 [1.447675e-06] 
+Layer 'fc6' weights[0]: 2.886466e-02 [2.165544e-06] 
+Layer 'fc6' biases: 2.894352e-03 [7.009464e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (62.480 sec)
+1.151... L2-SN:  264.674387 logprob:  1.159000, 0.200984 fisher:  -2.644949 (24.638 sec)
+1.152... L2-SN:  265.074267 logprob:  1.150485, 0.198984 fisher:  -2.649334 (20.785 sec)
+1.153... L2-SN:  263.394986 logprob:  1.135382, 0.198875 fisher:  -2.668838 (30.317 sec)
+1.154... L2-SN:  262.020201 logprob:  1.142647, 0.198813 fisher:  -2.664372 (23.444 sec)
+1.155... L2-SN:  262.277890 logprob:  1.140835, 0.198547 fisher:  -2.679120 (24.237 sec)
+1.156... L2-SN:  260.736291 logprob:  1.132551, 0.195937 fisher:  -2.683619 (24.113 sec)
+1.157... L2-SN:  261.497609 logprob:  1.124783, 0.195422 fisher:  -2.677668 (21.092 sec)
+1.158... L2-SN:  261.552737 logprob:  1.107028, 0.191000 fisher:  -2.710574 (24.976 sec)
+1.159... L2-SN:  260.533863 logprob:  1.104814, 0.190188 fisher:  -2.690201 (24.561 sec)
+1.160... L2-SN:  259.761723 logprob:  1.101630, 0.190688 fisher:  -2.702485 (24.547 sec)
+1.161... L2-SN:  259.894466 logprob:  1.100465, 0.190031 fisher:  -2.660855 (22.640 sec)
+1.162... L2-SN:  259.928307 logprob:  1.090966, 0.191891 fisher:  -2.700644 (23.817 sec)
+1.163... L2-SN:  259.272569 logprob:  1.086182, 0.189922 fisher:  -2.694108 (24.014 sec)
+1.164... L2-SN:  257.260837 logprob:  1.078082, 0.186297 fisher:  -2.739764 (24.508 sec)
+1.165... L2-SN:  257.692383 logprob:  1.075730, 0.185438 fisher:  -2.707780 (21.487 sec)
+1.166... L2-SN:  255.034867 logprob:  1.063814, 0.185734 fisher:  -2.750263 (24.144 sec)
+1.167... L2-SN:  256.502615 logprob:  1.054418, 0.183406 fisher:  -2.728551 (23.556 sec)
+1.168... L2-SN:  255.770876 logprob:  1.062221, 0.184812 fisher:  -2.734769 (23.225 sec)
+1.169... L2-SN:  255.933447 logprob:  1.057045, 0.183641 fisher:  -2.713271 (24.741 sec)
+1.170... L2-SN:  254.948996 logprob:  1.034659, 0.178969 fisher:  -2.720453 (24.320 sec)
+1.171... L2-SN:  253.648555 logprob:  1.035413, 0.178750 fisher:  -2.773477 (24.189 sec)
+1.172... L2-SN:  253.618329 logprob:  1.030611, 0.181016 fisher:  -2.745588 (24.253 sec)
+1.173... L2-SN:  253.101653 logprob:  1.017709, 0.176578 fisher:  -2.738479 (23.893 sec)
+1.174... L2-SN:  253.082869 logprob:  1.013063, 0.174422 fisher:  -2.757027 (24.919 sec)
+1.175... L2-SN:  251.039335 logprob:  1.019884, 0.178313 fisher:  -2.773523 (24.591 sec)
+1.176... L2-SN:  251.915625 logprob:  1.006245, 0.176781 fisher:  -2.764691 (23.121 sec)
+1.177... L2-SN:  250.463445 logprob:  1.002784, 0.173437 fisher:  -2.767132 (22.728 sec)
+1.178... L2-SN:  250.882376 logprob:  0.992510, 0.171547 fisher:  -2.774264 (25.258 sec)
+1.179... L2-SN:  251.922800 logprob:  0.991553, 0.172234 fisher:  -2.768435 (28.581 sec)
+1.180... L2-SN:  250.448682 logprob:  0.987063, 0.170844 fisher:  -2.753242 (22.451 sec)
+1.181... L2-SN:  249.287782 logprob:  0.976755, 0.168625 fisher:  -2.788343 (24.623 sec)
+1.182... L2-SN:  248.269911 logprob:  0.981249, 0.172344 fisher:  -2.759688 (23.792 sec)
+1.183... L2-SN:  247.982708 logprob:  0.965296, 0.170141 fisher:  -2.784554 (24.680 sec)
+1.184... L2-SN:  247.410900 logprob:  0.963220, 0.167437 fisher:  -2.792542 (25.719 sec)
+1.185... L2-SN:  247.635687 logprob:  0.957646, 0.165094 fisher:  -2.778722 (29.225 sec)
+1.186... L2-SN:  247.628903 logprob:  0.961313, 0.164828 fisher:  -2.796562 (25.448 sec)
+1.187... L2-SN:  246.133759 logprob:  0.951650, 0.163672 fisher:  -2.813008 (22.244 sec)
+1.188... L2-SN:  245.138765 logprob:  0.947501, 0.165531 fisher:  -2.819814 (21.965 sec)
+1.189... L2-SN:  245.920136 logprob:  0.944509, 0.164375 fisher:  -2.796446 (25.422 sec)
+1.190... L2-SN:  245.974827 logprob:  0.931633, 0.160047 fisher:  -2.827761 (24.055 sec)
+1.191... L2-SN:  244.798324 logprob:  0.928172, 0.159406 fisher:  -2.816249 (23.062 sec)
+1.192... L2-SN:  244.997069 logprob:  0.938421, 0.161250 fisher:  -2.800160 (23.982 sec)
+1.193... L2-SN:  243.775367 logprob:  0.920830, 0.159609 fisher:  -2.812955 (23.105 sec)
+1.194... L2-SN:  243.595602 logprob:  0.920391, 0.159781 fisher:  -2.811318 (24.849 sec)
+1.195... L2-SN:  243.370617 logprob:  0.921198, 0.159922 fisher:  -2.837241 (30.142 sec)
+1.196... L2-SN:  242.815030 logprob:  0.915963, 0.159156 fisher:  -2.817755 (24.742 sec)
+1.197... L2-SN:  242.907265 logprob:  0.903762, 0.155734 fisher:  -2.839448 (24.181 sec)
+1.198... L2-SN:  242.524982 logprob:  0.902585, 0.152828 fisher:  -2.821318 (24.061 sec)
+1.199... L2-SN:  242.390505 logprob:  0.895324, 0.154625 fisher:  -2.835540 (22.132 sec)
+1.200... L2-SN:  240.940175 logprob:  0.889499, 0.153734 fisher:  -2.863304 
+======================Test output======================
+L2-SN:  247.493808 logprob:  0.893872, 0.158000 fisher:  -2.846494 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 7.440492e-02 [9.182366e-05] 
+Layer 'conv1' biases: 2.113798e-01 [3.326781e-06] 
+Layer 'conv2' weights[0]: 3.806588e-02 [3.212534e-05] 
+Layer 'conv2' biases: 1.185095e-01 [2.031575e-06] 
+Layer 'local3' weights[0]: 2.524328e-02 [2.795269e-06] 
+Layer 'local3' biases: 2.174534e-03 [1.756661e-07] 
+Layer 'local4' weights[0]: 2.627072e-02 [2.073894e-06] 
+Layer 'local4' biases: 2.975520e-03 [2.938131e-07] 
+Layer 'fc5' weights[0]: 1.145430e-02 [2.527342e-06]
+Layer 'fc5' weights[1]: 1.159199e-02 [1.052877e-05] 
+Layer 'fc5' biases: 1.617350e-02 [1.668476e-06] 
+Layer 'fc6' weights[0]: 3.185095e-02 [1.729600e-06] 
+Layer 'fc6' biases: 3.220554e-03 [5.761100e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (60.166 sec)
+1.201... L2-SN:  240.898401 logprob:  0.906352, 0.155062 fisher:  -2.842311 (26.962 sec)
+1.202... L2-SN:  239.670626 logprob:  0.885329, 0.152047 fisher:  -2.884682 (26.215 sec)
+1.203... L2-SN:  240.132360 logprob:  0.880577, 0.154234 fisher:  -2.867191 (23.058 sec)
+1.204... L2-SN:  240.533348 logprob:  0.880304, 0.152828 fisher:  -2.838375 (23.666 sec)
+1.205... L2-SN:  240.102134 logprob:  0.886163, 0.151188 fisher:  -2.848379 (22.389 sec)
+1.206... L2-SN:  239.739201 logprob:  0.873273, 0.150000 fisher:  -2.843939 (23.644 sec)
+1.207... L2-SN:  238.427779 logprob:  0.854236, 0.147937 fisher:  -2.872719 (24.379 sec)
+1.208... L2-SN:  238.063482 logprob:  0.858848, 0.146547 fisher:  -2.876473 (29.914 sec)
+1.209... L2-SN:  237.390479 logprob:  0.858936, 0.148234 fisher:  -2.914115 (24.316 sec)
+1.210... L2-SN:  237.814794 logprob:  0.857134, 0.146203 fisher:  -2.868352 (24.629 sec)
+1.211... L2-SN:  237.959611 logprob:  0.850199, 0.146937 fisher:  -2.858316 (26.698 sec)
+1.212... L2-SN:  235.462197 logprob:  0.850135, 0.146594 fisher:  -2.877709 (28.948 sec)
+1.213... L2-SN:  236.352655 logprob:  0.844828, 0.145687 fisher:  -2.904325 (23.562 sec)
+1.214... L2-SN:  234.871003 logprob:  0.845646, 0.147187 fisher:  -2.902908 (23.525 sec)
+1.215... L2-SN:  236.295029 logprob:  0.831671, 0.143063 fisher:  -2.919019 (24.139 sec)
+1.216... L2-SN:  234.952983 logprob:  0.823286, 0.142531 fisher:  -2.912764 (24.958 sec)
+1.217... L2-SN:  235.799149 logprob:  0.842345, 0.145109 fisher:  -2.865047 (22.629 sec)
+1.218... L2-SN:  233.875999 logprob:  0.826251, 0.143063 fisher:  -2.900612 (20.334 sec)
+1.219... L2-SN:  234.548280 logprob:  0.824195, 0.142297 fisher:  -2.881307 (22.360 sec)
+1.220... L2-SN:  234.213275 logprob:  0.826844, 0.141031 fisher:  -2.871245 (23.297 sec)
+1.221... L2-SN:  233.030983 logprob:  0.811270, 0.139172 fisher:  -2.914760 (25.849 sec)
+1.222... L2-SN:  233.660486 logprob:  0.812572, 0.140266 fisher:  -2.907684 (25.044 sec)
+1.223... L2-SN:  233.045942 logprob:  0.816090, 0.140687 fisher:  -2.913434 (26.982 sec)
+1.224... L2-SN:  232.215456 logprob:  0.802871, 0.138063 fisher:  -2.923681 (21.073 sec)
+1.225... L2-SN:  231.549921 logprob:  0.804270, 0.136203 fisher:  -2.939215 (22.689 sec)
+1.226... L2-SN:  231.540912 logprob:  0.798459, 0.135547 fisher:  -2.911935 (22.542 sec)
+1.227... L2-SN:  231.352068 logprob:  0.792659, 0.136234 fisher:  -2.939008 (22.452 sec)
+1.228... L2-SN:  230.447423 logprob:  0.793297, 0.134578 fisher:  -2.934301 (22.876 sec)
+1.229... L2-SN:  231.536060 logprob:  0.790002, 0.136172 fisher:  -2.924484 (22.973 sec)
+1.230... L2-SN:  230.417044 logprob:  0.785478, 0.133391 fisher:  -2.957587 (24.012 sec)
+1.231... L2-SN:  229.555558 logprob:  0.772283, 0.132078 fisher:  -2.959699 (24.386 sec)
+1.232... L2-SN:  228.695667 logprob:  0.771613, 0.132688 fisher:  -2.953369 (28.209 sec)
+1.233... L2-SN:  229.686929 logprob:  0.771752, 0.134031 fisher:  -2.932502 (24.818 sec)
+1.234... L2-SN:  228.653188 logprob:  0.763821, 0.130453 fisher:  -2.944879 (26.448 sec)
+1.235... L2-SN:  226.947054 logprob:  0.762840, 0.130094 fisher:  -2.974233 (25.169 sec)
+1.236... L2-SN:  228.734676 logprob:  0.762373, 0.131375 fisher:  -2.953769 (24.433 sec)
+1.237... L2-SN:  227.946448 logprob:  0.757558, 0.130031 fisher:  -2.953128 (24.942 sec)
+1.238... L2-SN:  229.544585 logprob:  0.766547, 0.132547 fisher:  -2.918911 (24.516 sec)
+1.239... L2-SN:  227.428537 logprob:  0.765134, 0.129328 fisher:  -2.964517 (24.731 sec)
+1.240... L2-SN:  227.203109 logprob:  0.743315, 0.125547 fisher:  -2.975200 (24.270 sec)
+1.241... L2-SN:  226.887330 logprob:  0.755030, 0.128484 fisher:  -2.981264 (23.913 sec)
+1.242... L2-SN:  226.367847 logprob:  0.743157, 0.126250 fisher:  -2.967934 (25.365 sec)
+1.243... L2-SN:  226.158956 logprob:  0.746365, 0.128344 fisher:  -2.979097 (25.028 sec)
+1.244... L2-SN:  225.520911 logprob:  0.741056, 0.127375 fisher:  -2.978476 (24.370 sec)
+1.245... L2-SN:  224.954243 logprob:  0.737937, 0.127438 fisher:  -2.990429 (25.589 sec)
+1.246... L2-SN:  225.216625 logprob:  0.736872, 0.126344 fisher:  -2.989698 (25.037 sec)
+1.247... L2-SN:  224.819683 logprob:  0.728267, 0.124625 fisher:  -3.001518 (24.221 sec)
+1.248... L2-SN:  224.935045 logprob:  0.721564, 0.121906 fisher:  -2.972452 (24.034 sec)
+1.249... L2-SN:  224.547021 logprob:  0.730616, 0.123891 fisher:  -2.980670 (20.108 sec)
+1.250... L2-SN:  225.163128 logprob:  0.729707, 0.125453 fisher:  -2.993724 
+======================Test output======================
+L2-SN:  217.423098 logprob:  0.736451, 0.124094 fisher:  -3.034072 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 7.847510e-02 [8.301582e-05] 
+Layer 'conv1' biases: 2.569084e-01 [2.460268e-06] 
+Layer 'conv2' weights[0]: 3.957579e-02 [3.197833e-05] 
+Layer 'conv2' biases: 1.434272e-01 [1.443499e-06] 
+Layer 'local3' weights[0]: 2.386667e-02 [3.030085e-06] 
+Layer 'local3' biases: 2.528756e-03 [1.819232e-07] 
+Layer 'local4' weights[0]: 2.543177e-02 [2.405768e-06] 
+Layer 'local4' biases: 3.730310e-03 [3.459087e-07] 
+Layer 'fc5' weights[0]: 1.258902e-02 [2.643299e-06]
+Layer 'fc5' weights[1]: 1.135434e-02 [1.090707e-05] 
+Layer 'fc5' biases: 1.872578e-02 [1.829974e-06] 
+Layer 'fc6' weights[0]: 3.393937e-02 [1.577441e-06] 
+Layer 'fc6' biases: 3.486983e-03 [5.436822e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (60.051 sec)
+1.251... L2-SN:  222.895258 logprob:  0.712672, 0.121172 fisher:  -3.009660 (24.855 sec)
+1.252... L2-SN:  223.432675 logprob:  0.715200, 0.121563 fisher:  -3.016542 (24.067 sec)
+1.253... L2-SN:  222.696991 logprob:  0.710767, 0.120547 fisher:  -3.007233 (23.819 sec)
+1.254... L2-SN:  222.992725 logprob:  0.713894, 0.121656 fisher:  -2.998500 (23.300 sec)
+1.255... L2-SN:  221.810584 logprob:  0.705371, 0.120500 fisher:  -3.021231 (24.351 sec)
+1.256... L2-SN:  221.381626 logprob:  0.709270, 0.121484 fisher:  -3.008376 (24.358 sec)
+1.257... L2-SN:  221.928495 logprob:  0.709886, 0.121016 fisher:  -2.996211 (29.967 sec)
+1.258... L2-SN:  222.196589 logprob:  0.701657, 0.119859 fisher:  -3.021111 (23.987 sec)
+1.259... L2-SN:  221.925129 logprob:  0.690972, 0.115875 fisher:  -3.011408 (24.229 sec)
+1.260... L2-SN:  220.779322 logprob:  0.697231, 0.118641 fisher:  -3.030052 (23.801 sec)
+1.261... L2-SN:  220.435615 logprob:  0.690961, 0.117578 fisher:  -3.024283 (24.533 sec)
+1.262... L2-SN:  221.236997 logprob:  0.688195, 0.116031 fisher:  -3.013378 (24.428 sec)
+1.263... L2-SN:  220.200927 logprob:  0.688097, 0.116234 fisher:  -3.062716 (23.533 sec)
+1.264... L2-SN:  219.587658 logprob:  0.682638, 0.116547 fisher:  -3.021510 (23.775 sec)
+1.265... L2-SN:  219.410604 logprob:  0.676860, 0.114734 fisher:  -3.035335 (23.920 sec)
+1.266... L2-SN:  219.657123 logprob:  0.688268, 0.117672 fisher:  -3.041617 (23.789 sec)
+1.267... L2-SN:  219.134950 logprob:  0.669805, 0.113172 fisher:  -3.051885 (23.917 sec)
+1.268... L2-SN:  218.735956 logprob:  0.678785, 0.114625 fisher:  -3.062103 (24.123 sec)
+1.269... L2-SN:  217.559455 logprob:  0.666894, 0.114297 fisher:  -3.063963 (24.128 sec)
+1.270... L2-SN:  218.970882 logprob:  0.676023, 0.113687 fisher:  -3.044126 (23.932 sec)
+1.271... L2-SN:  216.756604 logprob:  0.666274, 0.114922 fisher:  -3.047616 (25.972 sec)
+1.272... L2-SN:  216.984166 logprob:  0.663119, 0.113016 fisher:  -3.071846 (23.595 sec)
+1.273... L2-SN:  216.562279 logprob:  0.658310, 0.109812 fisher:  -3.066216 (23.512 sec)
+1.274... L2-SN:  216.872946 logprob:  0.661217, 0.112625 fisher:  -3.073912 (23.749 sec)
+1.275... L2-SN:  216.744664 logprob:  0.655782, 0.110609 fisher:  -3.039349 (23.793 sec)
+1.276... L2-SN:  215.864226 logprob:  0.647952, 0.109094 fisher:  -3.095149 (23.631 sec)
+1.277... L2-SN:  215.543053 logprob:  0.648553, 0.110203 fisher:  -3.075640 (23.053 sec)
+1.278... L2-SN:  216.177076 logprob:  0.651577, 0.110016 fisher:  -3.039704 (23.564 sec)
+1.279... L2-SN:  215.869105 logprob:  0.653953, 0.111281 fisher:  -3.043632 (23.776 sec)
+1.280... L2-SN:  215.014598 logprob:  0.651911, 0.111453 fisher:  -3.090136 (23.947 sec)
+1.281... L2-SN:  215.137927 logprob:  0.648561, 0.111766 fisher:  -3.082334 (23.590 sec)
+1.282... L2-SN:  215.525281 logprob:  0.650588, 0.110031 fisher:  -3.052551 (24.176 sec)
+1.283... L2-SN:  215.855666 logprob:  0.644499, 0.108219 fisher:  -3.052725 (23.169 sec)
+1.284... L2-SN:  214.276234 logprob:  0.633193, 0.108484 fisher:  -3.079906 (23.856 sec)
+1.285... L2-SN:  215.491863 logprob:  0.638420, 0.109078 fisher:  -3.080758 (23.026 sec)
+1.286... L2-SN:  214.358864 logprob:  0.632293, 0.108109 fisher:  -3.060729 (23.595 sec)
+1.287... L2-SN:  213.592845 logprob:  0.626837, 0.105047 fisher:  -3.078224 (22.974 sec)
+1.288... L2-SN:  213.218653 logprob:  0.627253, 0.105297 fisher:  -3.085801 (24.057 sec)
+1.289... L2-SN:  212.558492 logprob:  0.631648, 0.106000 fisher:  -3.103533 (24.227 sec)
+1.290... L2-SN:  213.866854 logprob:  0.625179, 0.103719 fisher:  -3.072150 (23.737 sec)
+1.291... L2-SN:  212.056474 logprob:  0.625346, 0.106438 fisher:  -3.107205 (24.138 sec)
+1.292... L2-SN:  212.123596 logprob:  0.618566, 0.104438 fisher:  -3.109940 (23.290 sec)
+1.293... L2-SN:  211.597048 logprob:  0.619985, 0.106547 fisher:  -3.097125 (24.729 sec)
+1.294... L2-SN:  212.072893 logprob:  0.622651, 0.105984 fisher:  -3.106931 (22.283 sec)
+1.295... L2-SN:  212.291293 logprob:  0.609334, 0.102688 fisher:  -3.094871 (28.301 sec)
+1.296... L2-SN:  211.099720 logprob:  0.615403, 0.103516 fisher:  -3.143304 (24.285 sec)
+1.297... L2-SN:  211.948022 logprob:  0.613082, 0.103297 fisher:  -3.084901 (24.335 sec)
+1.298... L2-SN:  210.498794 logprob:  0.603651, 0.101391 fisher:  -3.139143 (27.976 sec)
+1.299... L2-SN:  210.712764 logprob:  0.608829, 0.103500 fisher:  -3.118756 (29.562 sec)
+1.300... L2-SN:  210.605206 logprob:  0.599435, 0.100781 fisher:  -3.128649 
+======================Test output======================
+L2-SN:  211.237678 logprob:  0.637630, 0.108859 fisher:  -3.072740 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 8.268508e-02 [7.181419e-05] 
+Layer 'conv1' biases: 2.963141e-01 [1.818970e-06] 
+Layer 'conv2' weights[0]: 4.131499e-02 [3.042716e-05] 
+Layer 'conv2' biases: 1.643735e-01 [1.491385e-06] 
+Layer 'local3' weights[0]: 2.258755e-02 [3.041878e-06] 
+Layer 'local3' biases: 2.835490e-03 [1.635004e-07] 
+Layer 'local4' weights[0]: 2.470079e-02 [2.429304e-06] 
+Layer 'local4' biases: 4.454802e-03 [3.348242e-07] 
+Layer 'fc5' weights[0]: 1.358709e-02 [2.463110e-06]
+Layer 'fc5' weights[1]: 1.101460e-02 [9.808979e-06] 
+Layer 'fc5' biases: 2.099421e-02 [1.440305e-06] 
+Layer 'fc6' weights[0]: 3.544770e-02 [1.428944e-06] 
+Layer 'fc6' biases: 3.712038e-03 [5.054191e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (58.185 sec)
+1.301... L2-SN:  210.829389 logprob:  0.605217, 0.101891 fisher:  -3.112609 (24.977 sec)
+1.302... L2-SN:  211.109750 logprob:  0.605675, 0.102844 fisher:  -3.092397 (22.961 sec)
+1.303... L2-SN:  210.348497 logprob:  0.597279, 0.101547 fisher:  -3.114786 (23.804 sec)
+1.304... L2-SN:  209.147466 logprob:  0.604314, 0.102281 fisher:  -3.129199 (25.500 sec)
+1.305... L2-SN:  209.740786 logprob:  0.592456, 0.100250 fisher:  -3.116777 (24.547 sec)
+1.306... L2-SN:  209.284248 logprob:  0.594793, 0.101148 fisher:  -3.138363 (29.395 sec)
+1.307... L2-SN:  209.363797 logprob:  0.579337, 0.097016 fisher:  -3.130448 (24.443 sec)
+1.308... L2-SN:  208.837059 logprob:  0.589303, 0.099422 fisher:  -3.145707 (23.988 sec)
+1.309... L2-SN:  209.293118 logprob:  0.591246, 0.097750 fisher:  -3.128865 (24.021 sec)
+1.310... L2-SN:  209.078500 logprob:  0.589866, 0.096859 fisher:  -3.123938 (24.173 sec)
+1.311... L2-SN:  207.183055 logprob:  0.579491, 0.098422 fisher:  -3.171997 (23.883 sec)
+1.312... L2-SN:  207.421529 logprob:  0.578276, 0.098156 fisher:  -3.181097 (24.520 sec)
+1.313... L2-SN:  206.355219 logprob:  0.584010, 0.098297 fisher:  -3.146040 (20.485 sec)
+1.314... L2-SN:  207.705961 logprob:  0.582948, 0.098203 fisher:  -3.176170 (23.120 sec)
+1.315... L2-SN:  207.319113 logprob:  0.574624, 0.097062 fisher:  -3.123916 (22.715 sec)
+1.316... L2-SN:  207.033985 logprob:  0.576031, 0.096750 fisher:  -3.140096 (23.448 sec)
+1.317... L2-SN:  205.608934 logprob:  0.575249, 0.097234 fisher:  -3.147498 (29.112 sec)
+1.318... L2-SN:  205.937754 logprob:  0.575882, 0.097312 fisher:  -3.164964 (26.260 sec)
+1.319... L2-SN:  206.068369 logprob:  0.564859, 0.095750 fisher:  -3.177498 (22.216 sec)
+1.320... L2-SN:  205.412289 logprob:  0.562302, 0.094172 fisher:  -3.164126 (27.753 sec)
+1.321... L2-SN:  205.562965 logprob:  0.569798, 0.097406 fisher:  -3.183641 (24.534 sec)
+1.322... L2-SN:  205.592038 logprob:  0.568020, 0.096375 fisher:  -3.171050 (22.366 sec)
+1.323... L2-SN:  204.269084 logprob:  0.563729, 0.094312 fisher:  -3.182079 (23.818 sec)
+1.324... L2-SN:  204.805273 logprob:  0.559004, 0.094531 fisher:  -3.174852 (22.016 sec)
+1.325... L2-SN:  205.452777 logprob:  0.560067, 0.095016 fisher:  -3.161248 (28.991 sec)
+1.326... L2-SN:  203.987068 logprob:  0.556973, 0.095000 fisher:  -3.177347 (27.508 sec)
+1.327... L2-SN:  204.685909 logprob:  0.551583, 0.092953 fisher:  -3.201534 (27.559 sec)
+1.328... L2-SN:  204.145777 logprob:  0.547698, 0.092438 fisher:  -3.190762 (23.683 sec)
+1.329... L2-SN:  204.249461 logprob:  0.546984, 0.092547 fisher:  -3.192607 (24.218 sec)
+1.330... L2-SN:  203.323155 logprob:  0.545734, 0.089953 fisher:  -3.227948 (23.716 sec)
+1.331... L2-SN:  203.334128 logprob:  0.551946, 0.093906 fisher:  -3.205477 (25.722 sec)
+1.332... L2-SN:  202.195322 logprob:  0.546329, 0.093313 fisher:  -3.209556 (24.338 sec)
+1.333... L2-SN:  203.325721 logprob:  0.549853, 0.091375 fisher:  -3.160977 (23.778 sec)
+1.334... L2-SN:  202.427139 logprob:  0.540394, 0.091953 fisher:  -3.233613 (24.089 sec)
+1.335... L2-SN:  203.431774 logprob:  0.543346, 0.091063 fisher:  -3.205346 (23.862 sec)
+1.336... L2-SN:  202.858633 logprob:  0.544983, 0.093063 fisher:  -3.184949 (23.810 sec)
+1.337... L2-SN:  202.688142 logprob:  0.545194, 0.091156 fisher:  -3.209474 (23.795 sec)
+1.338... L2-SN:  202.396228 logprob:  0.540168, 0.089766 fisher:  -3.199885 (22.999 sec)
+1.339... L2-SN:  202.353606 logprob:  0.540544, 0.090969 fisher:  -3.206369 (22.783 sec)
+1.340... L2-SN:  201.205744 logprob:  0.535144, 0.089594 fisher:  -3.233550 (22.195 sec)
+1.341... L2-SN:  201.691042 logprob:  0.531619, 0.088266 fisher:  -3.227189 (23.553 sec)
+1.342... L2-SN:  201.213999 logprob:  0.536600, 0.088594 fisher:  -3.235814 (24.392 sec)
+1.343... L2-SN:  202.380816 logprob:  0.538033, 0.092031 fisher:  -3.182044 (24.211 sec)
+1.344... L2-SN:  201.359172 logprob:  0.529282, 0.088266 fisher:  -3.226196 (24.184 sec)
+1.345... L2-SN:  200.000326 logprob:  0.522000, 0.087250 fisher:  -3.239408 (26.277 sec)
+1.346... L2-SN:  201.629170 logprob:  0.529904, 0.089375 fisher:  -3.206632 (23.861 sec)
+1.347... L2-SN:  200.349837 logprob:  0.531367, 0.089844 fisher:  -3.218665 (25.973 sec)
+1.348... L2-SN:  200.481732 logprob:  0.522596, 0.086875 fisher:  -3.232389 (23.373 sec)
+1.349... L2-SN:  199.676195 logprob:  0.518660, 0.084375 fisher:  -3.242267 (23.654 sec)
+1.350... L2-SN:  199.915974 logprob:  0.529028, 0.088578 fisher:  -3.216762 
+======================Test output======================
+L2-SN:  197.025166 logprob:  0.524742, 0.086359 fisher:  -3.247713 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 8.686840e-02 [6.270484e-05] 
+Layer 'conv1' biases: 3.306946e-01 [1.369063e-06] 
+Layer 'conv2' weights[0]: 4.312326e-02 [2.718023e-05] 
+Layer 'conv2' biases: 1.823835e-01 [1.085761e-06] 
+Layer 'local3' weights[0]: 2.140348e-02 [2.970704e-06] 
+Layer 'local3' biases: 3.106279e-03 [1.456671e-07] 
+Layer 'local4' weights[0]: 2.405484e-02 [2.510649e-06] 
+Layer 'local4' biases: 5.153564e-03 [3.413148e-07] 
+Layer 'fc5' weights[0]: 1.445495e-02 [2.298832e-06]
+Layer 'fc5' weights[1]: 1.063423e-02 [9.527123e-06] 
+Layer 'fc5' biases: 2.306682e-02 [1.399668e-06] 
+Layer 'fc6' weights[0]: 3.655278e-02 [1.267704e-06] 
+Layer 'fc6' biases: 3.910619e-03 [4.499921e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (57.569 sec)
+1.351... L2-SN:  199.808551 logprob:  0.524946, 0.088438 fisher:  -3.195752 (24.077 sec)
+1.352... L2-SN:  199.794117 logprob:  0.513535, 0.087000 fisher:  -3.225233 (30.537 sec)
+1.353... L2-SN:  199.733225 logprob:  0.522609, 0.087422 fisher:  -3.227317 (22.396 sec)
+1.354... L2-SN:  199.509145 logprob:  0.513590, 0.084844 fisher:  -3.236904 (25.275 sec)
+1.355... L2-SN:  198.553590 logprob:  0.512039, 0.085250 fisher:  -3.261373 (23.789 sec)
+1.356... L2-SN:  199.543873 logprob:  0.516651, 0.086672 fisher:  -3.221239 (24.237 sec)
+1.357... L2-SN:  198.608425 logprob:  0.508396, 0.085531 fisher:  -3.257069 (24.253 sec)
+1.358... L2-SN:  199.138884 logprob:  0.511912, 0.085219 fisher:  -3.225738 (24.153 sec)
+1.359... L2-SN:  197.159438 logprob:  0.503778, 0.084687 fisher:  -3.274374 (24.122 sec)
+1.360... L2-SN:  197.612910 logprob:  0.505567, 0.085687 fisher:  -3.263889 (25.394 sec)
+1.361... L2-SN:  198.693474 logprob:  0.515914, 0.087141 fisher:  -3.231853 (30.957 sec)
+1.362... L2-SN:  198.282396 logprob:  0.507119, 0.087141 fisher:  -3.243085 (23.903 sec)
+1.363... L2-SN:  197.748503 logprob:  0.508436, 0.086094 fisher:  -3.261481 (22.347 sec)
+1.364... L2-SN:  196.522392 logprob:  0.500379, 0.082734 fisher:  -3.282656 (23.788 sec)
+1.365... L2-SN:  197.680332 logprob:  0.507937, 0.085141 fisher:  -3.246852 (21.580 sec)
+1.366... L2-SN:  197.283212 logprob:  0.499894, 0.084062 fisher:  -3.270355 (22.875 sec)
+1.367... L2-SN:  196.885745 logprob:  0.494208, 0.082547 fisher:  -3.266998 (23.058 sec)
+1.368... L2-SN:  196.886689 logprob:  0.495968, 0.082203 fisher:  -3.248201 (24.137 sec)
+1.369... L2-SN:  196.542439 logprob:  0.494734, 0.083789 fisher:  -3.264291 (24.128 sec)
+1.370... L2-SN:  196.562304 logprob:  0.491737, 0.082719 fisher:  -3.260628 (23.580 sec)
+1.371... L2-SN:  196.175796 logprob:  0.496395, 0.083344 fisher:  -3.253468 (24.106 sec)
+1.372... L2-SN:  194.868480 logprob:  0.492489, 0.082375 fisher:  -3.265657 (22.979 sec)
+1.373... L2-SN:  196.538446 logprob:  0.486129, 0.081156 fisher:  -3.241692 (22.950 sec)
+1.374... L2-SN:  196.308174 logprob:  0.492769, 0.082031 fisher:  -3.237010 (24.365 sec)
+1.375... L2-SN:  194.970184 logprob:  0.486401, 0.081359 fisher:  -3.286150 (23.738 sec)
+1.376... L2-SN:  196.031365 logprob:  0.492469, 0.082031 fisher:  -3.254293 (23.151 sec)
+1.377... L2-SN:  194.816365 logprob:  0.480547, 0.078359 fisher:  -3.273867 (23.716 sec)
+1.378... L2-SN:  195.333959 logprob:  0.487193, 0.081562 fisher:  -3.284731 (24.193 sec)
+1.379... L2-SN:  195.737157 logprob:  0.486332, 0.081531 fisher:  -3.285453 (24.635 sec)
+1.380... L2-SN:  194.214200 logprob:  0.484832, 0.081422 fisher:  -3.290877 (25.456 sec)
+1.381... L2-SN:  194.149057 logprob:  0.479070, 0.080266 fisher:  -3.292533 (24.194 sec)
+1.382... L2-SN:  193.418863 logprob:  0.470691, 0.076500 fisher:  -3.300830 (23.867 sec)
+1.383... L2-SN:  194.584844 logprob:  0.478956, 0.079219 fisher:  -3.268820 (23.760 sec)
+1.384... L2-SN:  193.529529 logprob:  0.475211, 0.079812 fisher:  -3.283305 (24.352 sec)
+1.385... L2-SN:  193.826886 logprob:  0.479151, 0.080797 fisher:  -3.294377 (23.260 sec)
+1.386... L2-SN:  193.438342 logprob:  0.471805, 0.077875 fisher:  -3.304851 (22.409 sec)
+1.387... L2-SN:  192.742185 logprob:  0.478078, 0.080094 fisher:  -3.296885 (24.398 sec)
+1.388... L2-SN:  193.006601 logprob:  0.471136, 0.078203 fisher:  -3.302089 (24.376 sec)
+1.389... L2-SN:  192.605246 logprob:  0.467500, 0.078500 fisher:  -3.321709 (24.574 sec)
+1.390... L2-SN:  192.218943 logprob:  0.466461, 0.078156 fisher:  -3.326690 (25.100 sec)
+1.391... L2-SN:  191.457093 logprob:  0.462551, 0.075531 fisher:  -3.307146 (24.514 sec)
+1.392... L2-SN:  193.041043 logprob:  0.470571, 0.078203 fisher:  -3.282691 (24.474 sec)
+1.393... L2-SN:  192.852692 logprob:  0.468492, 0.077234 fisher:  -3.299761 (23.300 sec)
+1.394... L2-SN:  191.369857 logprob:  0.465500, 0.078094 fisher:  -3.323271 (23.144 sec)
+1.395... L2-SN:  191.892652 logprob:  0.456098, 0.076484 fisher:  -3.314790 (25.914 sec)
+1.396... L2-SN:  190.950520 logprob:  0.458493, 0.076469 fisher:  -3.344239 (24.203 sec)
+1.397... L2-SN:  191.091747 logprob:  0.467229, 0.081281 fisher:  -3.327345 (24.084 sec)
+1.398... L2-SN:  191.335081 logprob:  0.460606, 0.078234 fisher:  -3.317559 (26.027 sec)
+1.399... L2-SN:  191.650311 logprob:  0.458469, 0.076453 fisher:  -3.333496 (22.001 sec)
+1.400... L2-SN:  191.093820 logprob:  0.466496, 0.078734 fisher:  -3.314866 
+======================Test output======================
+L2-SN:  194.631341 logprob:  0.435956, 0.071733 fisher:  -3.375316 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 9.133208e-02 [6.777627e-05] 
+Layer 'conv1' biases: 3.612610e-01 [1.402261e-06] 
+Layer 'conv2' weights[0]: 4.494794e-02 [2.318194e-05] 
+Layer 'conv2' biases: 1.983015e-01 [1.007918e-06] 
+Layer 'local3' weights[0]: 2.030779e-02 [3.141071e-06] 
+Layer 'local3' biases: 3.349089e-03 [1.433960e-07] 
+Layer 'local4' weights[0]: 2.348410e-02 [2.651317e-06] 
+Layer 'local4' biases: 5.822606e-03 [3.463179e-07] 
+Layer 'fc5' weights[0]: 1.520070e-02 [2.314325e-06]
+Layer 'fc5' weights[1]: 1.024548e-02 [9.584342e-06] 
+Layer 'fc5' biases: 2.494366e-02 [1.354475e-06] 
+Layer 'fc6' weights[0]: 3.736937e-02 [1.202261e-06] 
+Layer 'fc6' biases: 4.091572e-03 [4.270403e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (25.867 sec)
+1.401... L2-SN:  190.186794 logprob:  0.459316, 0.076859 fisher:  -3.314345 (23.418 sec)
+1.402... L2-SN:  191.578654 logprob:  0.455264, 0.076766 fisher:  -3.292089 (22.332 sec)
+1.403... L2-SN:  190.056114 logprob:  0.457860, 0.077609 fisher:  -3.347635 (22.366 sec)
+1.404... L2-SN:  190.312553 logprob:  0.450184, 0.074469 fisher:  -3.329555 (23.762 sec)
+1.405... L2-SN:  190.755171 logprob:  0.458099, 0.075453 fisher:  -3.320247 (24.530 sec)
+1.406... L2-SN:  189.526919 logprob:  0.450598, 0.077359 fisher:  -3.366453 (23.589 sec)
+1.407... L2-SN:  189.489730 logprob:  0.454848, 0.076797 fisher:  -3.338707 (23.557 sec)
+1.408... L2-SN:  189.706758 logprob:  0.446133, 0.072406 fisher:  -3.344522 (23.402 sec)
+1.409... L2-SN:  188.687695 logprob:  0.445771, 0.075203 fisher:  -3.387567 (23.927 sec)
+1.410... L2-SN:  189.258576 logprob:  0.454597, 0.076992 fisher:  -3.335661 (27.957 sec)
+1.411... L2-SN:  188.852966 logprob:  0.447898, 0.074172 fisher:  -3.334711 (24.384 sec)
+1.412... L2-SN:  190.425950 logprob:  0.453908, 0.076656 fisher:  -3.340997 (24.710 sec)
+1.413... L2-SN:  189.510783 logprob:  0.451005, 0.075297 fisher:  -3.343011 (23.419 sec)
+1.414... L2-SN:  188.502237 logprob:  0.441546, 0.072250 fisher:  -3.371686 (23.965 sec)
+1.415... L2-SN:  189.066829 logprob:  0.443641, 0.073703 fisher:  -3.366118 (22.752 sec)
+1.416... L2-SN:  188.986145 logprob:  0.446122, 0.075625 fisher:  -3.368599 (23.492 sec)
+1.417... L2-SN:  188.872884 logprob:  0.442402, 0.073984 fisher:  -3.350715 (21.752 sec)
+1.418... L2-SN:  187.540682 logprob:  0.445784, 0.074313 fisher:  -3.355242 (22.559 sec)
+1.419... L2-SN:  189.260874 logprob:  0.438879, 0.071609 fisher:  -3.352778 (23.749 sec)
+1.420... L2-SN:  187.982882 logprob:  0.439561, 0.074703 fisher:  -3.374603 (21.891 sec)
+1.421... L2-SN:  187.837252 logprob:  0.438132, 0.073391 fisher:  -3.385203 (22.864 sec)
+1.422... L2-SN:  188.761389 logprob:  0.438767, 0.072266 fisher:  -3.341864 (24.333 sec)
+1.423... L2-SN:  187.495717 logprob:  0.440828, 0.073891 fisher:  -3.366769 (23.753 sec)
+1.424... L2-SN:  187.771119 logprob:  0.435594, 0.072750 fisher:  -3.352551 (23.583 sec)
+1.425... L2-SN:  187.070279 logprob:  0.430843, 0.073234 fisher:  -3.340951 (24.188 sec)
+1.426... L2-SN:  186.856876 logprob:  0.428837, 0.070672 fisher:  -3.375499 (25.732 sec)
+1.427... L2-SN:  186.252332 logprob:  0.431711, 0.072844 fisher:  -3.364282 (21.098 sec)
+1.428... L2-SN:  186.097541 logprob:  0.431402, 0.072109 fisher:  -3.377958 (24.471 sec)
+1.429... L2-SN:  186.077281 logprob:  0.427985, 0.070984 fisher:  -3.376527 (23.209 sec)
+1.430... L2-SN:  186.313263 logprob:  0.435216, 0.073078 fisher:  -3.393221 (24.075 sec)
+1.431... L2-SN:  187.053447 logprob:  0.426107, 0.070813 fisher:  -3.353641 (28.474 sec)
+1.432... L2-SN:  186.481173 logprob:  0.430297, 0.072344 fisher:  -3.367598 (23.765 sec)
+1.433... L2-SN:  184.946142 logprob:  0.427062, 0.071219 fisher:  -3.373603 (24.165 sec)
+1.434... L2-SN:  186.308517 logprob:  0.428527, 0.072203 fisher:  -3.348951 (29.761 sec)
+1.435... L2-SN:  185.288935 logprob:  0.424102, 0.071531 fisher:  -3.391678 (23.890 sec)
+1.436... L2-SN:  185.710872 logprob:  0.430813, 0.073938 fisher:  -3.329056 (22.873 sec)
+1.437... L2-SN:  185.643405 logprob:  0.422946, 0.071547 fisher:  -3.371236 (23.565 sec)
+1.438... L2-SN:  184.713891 logprob:  0.422192, 0.070094 fisher:  -3.396381 (22.952 sec)
+1.439... L2-SN:  184.284596 logprob:  0.419749, 0.069781 fisher:  -3.409591 (23.851 sec)
+1.440... L2-SN:  185.890910 logprob:  0.424144, 0.071219 fisher:  -3.380179 (22.861 sec)
+1.441... L2-SN:  185.063793 logprob:  0.417676, 0.069937 fisher:  -3.385210 (23.602 sec)
+1.442... L2-SN:  185.652168 logprob:  0.418039, 0.067750 fisher:  -3.384604 (22.886 sec)
+1.443... L2-SN:  184.953261 logprob:  0.414816, 0.068797 fisher:  -3.402505 (22.843 sec)
+1.444... L2-SN:  185.117071 logprob:  0.419291, 0.069187 fisher:  -3.400381 (27.656 sec)
+1.445... L2-SN:  183.881249 logprob:  0.417980, 0.071328 fisher:  -3.397281 (24.388 sec)
+1.446... L2-SN:  184.748326 logprob:  0.414816, 0.068547 fisher:  -3.403724 (24.294 sec)
+1.447... L2-SN:  184.387176 logprob:  0.417590, 0.069344 fisher:  -3.385288 (24.032 sec)
+1.448... L2-SN:  183.654474 logprob:  0.413519, 0.069250 fisher:  -3.410077 (25.908 sec)
+1.449... L2-SN:  183.375680 logprob:  0.411713, 0.069562 fisher:  -3.417745 (21.989 sec)
+1.450... L2-SN:  184.293202 logprob:  0.413279, 0.068906 fisher:  -3.437103 
+======================Test output======================
+L2-SN:  177.967247 logprob:  0.425669, 0.068812 fisher:  -3.426391 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 9.585006e-02 [6.301099e-05] 
+Layer 'conv1' biases: 3.887453e-01 [1.227765e-06] 
+Layer 'conv2' weights[0]: 4.679846e-02 [2.328715e-05] 
+Layer 'conv2' biases: 2.122193e-01 [7.990334e-07] 
+Layer 'local3' weights[0]: 1.929601e-02 [3.071681e-06] 
+Layer 'local3' biases: 3.569913e-03 [1.327397e-07] 
+Layer 'local4' weights[0]: 2.296932e-02 [2.643416e-06] 
+Layer 'local4' biases: 6.472436e-03 [3.429396e-07] 
+Layer 'fc5' weights[0]: 1.583442e-02 [2.278302e-06]
+Layer 'fc5' weights[1]: 9.882946e-03 [9.322812e-06] 
+Layer 'fc5' biases: 2.669520e-02 [1.344606e-06] 
+Layer 'fc6' weights[0]: 3.796336e-02 [1.090654e-06] 
+Layer 'fc6' biases: 4.254821e-03 [3.939372e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (56.673 sec)
+1.451... L2-SN:  183.358470 logprob:  0.411105, 0.068937 fisher:  -3.399643 (24.693 sec)
+1.452... L2-SN:  183.631976 logprob:  0.408166, 0.068719 fisher:  -3.408097 (22.280 sec)
+1.453... L2-SN:  183.704601 logprob:  0.411754, 0.068547 fisher:  -3.415930 (23.586 sec)
+1.454... L2-SN:  184.034811 logprob:  0.413179, 0.068531 fisher:  -3.396671 (24.668 sec)
+1.455... L2-SN:  183.276361 logprob:  0.405572, 0.068312 fisher:  -3.407244 (26.258 sec)
+1.456... L2-SN:  183.129607 logprob:  0.407221, 0.068156 fisher:  -3.424731 (33.346 sec)
+1.457... L2-SN:  182.785212 logprob:  0.407856, 0.067531 fisher:  -3.434289 (23.017 sec)
+1.458... L2-SN:  182.733517 logprob:  0.406191, 0.067516 fisher:  -3.405726 (25.747 sec)
+1.459... L2-SN:  181.545281 logprob:  0.403860, 0.068000 fisher:  -3.438788 (22.973 sec)
+1.460... L2-SN:  182.853648 logprob:  0.407623, 0.068797 fisher:  -3.434005 (23.393 sec)
+1.461... L2-SN:  181.781945 logprob:  0.401479, 0.067391 fisher:  -3.428009 (23.033 sec)
+1.462... L2-SN:  182.554229 logprob:  0.404600, 0.068187 fisher:  -3.401983 (23.782 sec)
+1.463... L2-SN:  182.696671 logprob:  0.406059, 0.068656 fisher:  -3.449707 (23.376 sec)
+1.464... L2-SN:  181.260331 logprob:  0.403459, 0.066484 fisher:  -3.438413 (29.082 sec)
+1.465... L2-SN:  182.304925 logprob:  0.400160, 0.066594 fisher:  -3.419425 (21.710 sec)
+1.466... L2-SN:  180.823484 logprob:  0.399890, 0.068000 fisher:  -3.444414 (23.357 sec)
+1.467... L2-SN:  181.621639 logprob:  0.395270, 0.065922 fisher:  -3.450618 (25.185 sec)
+1.468... L2-SN:  181.050188 logprob:  0.395610, 0.066828 fisher:  -3.435694 (23.397 sec)
+1.469... L2-SN:  181.159959 logprob:  0.395389, 0.066031 fisher:  -3.447420 (23.460 sec)
+1.470... L2-SN:  180.996715 logprob:  0.397025, 0.066547 fisher:  -3.424848 (23.646 sec)
+1.471... L2-SN:  181.657565 logprob:  0.398284, 0.065766 fisher:  -3.427460 (24.253 sec)
+1.472... L2-SN:  180.334193 logprob:  0.401704, 0.067367 fisher:  -3.455602 (24.119 sec)
+1.473... L2-SN:  180.363412 logprob:  0.392030, 0.066344 fisher:  -3.433938 (23.384 sec)
+1.474... L2-SN:  180.432780 logprob:  0.392000, 0.065672 fisher:  -3.429551 (23.204 sec)
+1.475... L2-SN:  180.749827 logprob:  0.395524, 0.066406 fisher:  -3.420254 (27.445 sec)
+1.476... L2-SN:  180.854008 logprob:  0.391978, 0.065078 fisher:  -3.442422 (23.376 sec)
+1.477... L2-SN:  180.034135 logprob:  0.387828, 0.062641 fisher:  -3.472021 (22.781 sec)
+1.478... L2-SN:  180.267968 logprob:  0.389461, 0.066875 fisher:  -3.458810 (21.783 sec)
+1.479... L2-SN:  178.860747 logprob:  0.389951, 0.065984 fisher:  -3.486275 (28.277 sec)
+1.480... L2-SN:  179.149553 logprob:  0.390714, 0.066344 fisher:  -3.442946 (26.055 sec)
+1.481... L2-SN:  179.282945 logprob:  0.391097, 0.065250 fisher:  -3.466237 (23.770 sec)
+1.482... L2-SN:  179.599821 logprob:  0.385899, 0.066203 fisher:  -3.448573 (23.880 sec)
+1.483... L2-SN:  179.601768 logprob:  0.387672, 0.063437 fisher:  -3.441116 (23.974 sec)
+1.484... L2-SN:  179.323790 logprob:  0.391400, 0.065812 fisher:  -3.467717 (26.768 sec)
+1.485... L2-SN:  178.671787 logprob:  0.387051, 0.064437 fisher:  -3.474620 (21.627 sec)
+1.486... L2-SN:  179.503739 logprob:  0.383617, 0.064016 fisher:  -3.474516 (23.068 sec)
+1.487... L2-SN:  179.443077 logprob:  0.385358, 0.063891 fisher:  -3.460705 (28.728 sec)
+1.488... L2-SN:  178.641497 logprob:  0.383185, 0.064453 fisher:  -3.463257 (20.981 sec)
+1.489... L2-SN:  177.904220 logprob:  0.383595, 0.064094 fisher:  -3.481911 (20.388 sec)
+1.490... L2-SN:  178.454015 logprob:  0.382249, 0.064719 fisher:  -3.484465 (21.403 sec)
+1.491... L2-SN:  178.407451 logprob:  0.386956, 0.065781 fisher:  -3.461187 (21.732 sec)
+1.492... L2-SN:  178.695471 logprob:  0.382645, 0.065422 fisher:  -3.479935 (22.615 sec)
+1.493... L2-SN:  177.570762 logprob:  0.377719, 0.063594 fisher:  -3.477086 (24.795 sec)
+1.494... L2-SN:  178.893003 logprob:  0.378977, 0.063859 fisher:  -3.468116 (27.609 sec)
+1.495... L2-SN:  178.016426 logprob:  0.379668, 0.063047 fisher:  -3.471011 (22.354 sec)
+1.496... L2-SN:  178.176510 logprob:  0.383022, 0.065422 fisher:  -3.479393 (22.320 sec)
+1.497... L2-SN:  177.540291 logprob:  0.379582, 0.064766 fisher:  -3.504897 (23.871 sec)
+1.498... L2-SN:  177.971872 logprob:  0.380204, 0.063922 fisher:  -3.482484 (23.772 sec)
+1.499... L2-SN:  177.228930 logprob:  0.376120, 0.064266 fisher:  -3.502615 (23.925 sec)
+1.500... L2-SN:  177.764897 logprob:  0.376393, 0.062906 fisher:  -3.491374 
+======================Test output======================
+L2-SN:  174.349031 logprob:  0.386260, 0.063531 fisher:  -3.503355 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.004972e-01 [4.557448e-05] 
+Layer 'conv1' biases: 4.138898e-01 [8.159851e-07] 
+Layer 'conv2' weights[0]: 4.857522e-02 [2.229833e-05] 
+Layer 'conv2' biases: 2.244636e-01 [7.270385e-07] 
+Layer 'local3' weights[0]: 1.836387e-02 [3.160661e-06] 
+Layer 'local3' biases: 3.773100e-03 [1.190461e-07] 
+Layer 'local4' weights[0]: 2.250159e-02 [2.697439e-06] 
+Layer 'local4' biases: 7.096664e-03 [3.297980e-07] 
+Layer 'fc5' weights[0]: 1.637050e-02 [2.168418e-06]
+Layer 'fc5' weights[1]: 9.536380e-03 [9.491636e-06] 
+Layer 'fc5' biases: 2.834300e-02 [1.290237e-06] 
+Layer 'fc6' weights[0]: 3.838773e-02 [1.021986e-06] 
+Layer 'fc6' biases: 4.405988e-03 [3.714424e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (54.556 sec)
+1.501... L2-SN:  176.196609 logprob:  0.370485, 0.061094 fisher:  -3.519169 (23.464 sec)
+1.502... L2-SN:  177.615156 logprob:  0.376134, 0.063172 fisher:  -3.519642 (27.739 sec)
+1.503... L2-SN:  176.838085 logprob:  0.379125, 0.064281 fisher:  -3.477704 (23.266 sec)
+1.504... L2-SN:  176.328792 logprob:  0.374176, 0.064516 fisher:  -3.511054 (23.608 sec)
+1.505... L2-SN:  177.092435 logprob:  0.371334, 0.062328 fisher:  -3.492957 (23.584 sec)
+1.506... L2-SN:  176.944190 logprob:  0.374392, 0.064641 fisher:  -3.497265 (23.294 sec)
+1.507... L2-SN:  176.129420 logprob:  0.371330, 0.061828 fisher:  -3.530513 (23.668 sec)
+1.508... L2-SN:  177.509457 logprob:  0.368497, 0.062047 fisher:  -3.453297 (23.459 sec)
+1.509... L2-SN:  176.209913 logprob:  0.373988, 0.062031 fisher:  -3.480484 (23.982 sec)
+1.510... L2-SN:  176.591441 logprob:  0.373053, 0.062750 fisher:  -3.480071 (24.654 sec)
+1.511... L2-SN:  175.908302 logprob:  0.369848, 0.062469 fisher:  -3.509237 (23.386 sec)
+1.512... L2-SN:  175.759997 logprob:  0.362704, 0.060078 fisher:  -3.512619 (23.277 sec)
+1.513... L2-SN:  175.787876 logprob:  0.364315, 0.061594 fisher:  -3.514335 (23.020 sec)
+1.514... L2-SN:  175.115718 logprob:  0.368333, 0.062484 fisher:  -3.524071 (23.029 sec)
+1.515... L2-SN:  174.489442 logprob:  0.367831, 0.063719 fisher:  -3.512711 (23.084 sec)
+1.516... L2-SN:  175.989557 logprob:  0.367485, 0.062328 fisher:  -3.526690 (23.973 sec)
+1.517... L2-SN:  174.699855 logprob:  0.360629, 0.061094 fisher:  -3.526560 (23.180 sec)
+1.518... L2-SN:  175.221831 logprob:  0.369291, 0.062203 fisher:  -3.530703 (23.917 sec)
+1.519... L2-SN:  174.925075 logprob:  0.361397, 0.060734 fisher:  -3.522629 (25.166 sec)
+1.520... L2-SN:  174.878647 logprob:  0.363940, 0.060672 fisher:  -3.515703 (23.331 sec)
+1.521... L2-SN:  174.758156 logprob:  0.367008, 0.063797 fisher:  -3.515490 (24.117 sec)
+1.522... L2-SN:  175.045659 logprob:  0.363529, 0.060672 fisher:  -3.505709 (23.845 sec)
+1.523... L2-SN:  174.285852 logprob:  0.359697, 0.060437 fisher:  -3.521950 (22.610 sec)
+1.524... L2-SN:  174.240860 logprob:  0.362717, 0.061328 fisher:  -3.534576 (21.846 sec)
+1.525... L2-SN:  174.324656 logprob:  0.361082, 0.060266 fisher:  -3.520742 (24.234 sec)
+1.526... L2-SN:  175.248826 logprob:  0.366092, 0.062625 fisher:  -3.498186 (25.514 sec)
+1.527... L2-SN:  174.075232 logprob:  0.364160, 0.060453 fisher:  -3.508104 (21.987 sec)
+1.528... L2-SN:  175.340214 logprob:  0.360225, 0.059344 fisher:  -3.520272 (23.139 sec)
+1.529... L2-SN:  174.440511 logprob:  0.358389, 0.060594 fisher:  -3.516707 (23.871 sec)
+1.530... L2-SN:  173.250626 logprob:  0.358104, 0.059000 fisher:  -3.532982 (22.830 sec)
+1.531... L2-SN:  173.508542 logprob:  0.353354, 0.060937 fisher:  -3.526530 (23.642 sec)
+1.532... L2-SN:  173.664500 logprob:  0.355897, 0.061891 fisher:  -3.516360 (23.975 sec)
+1.533... L2-SN:  173.851564 logprob:  0.356073, 0.059453 fisher:  -3.524695 (23.144 sec)
+1.534... L2-SN:  173.627162 logprob:  0.354908, 0.059797 fisher:  -3.545290 (23.880 sec)
+1.535... L2-SN:  173.790093 logprob:  0.352511, 0.058797 fisher:  -3.522054 (23.285 sec)
+1.536... L2-SN:  173.064777 logprob:  0.357962, 0.061391 fisher:  -3.556293 (23.975 sec)
+1.537... L2-SN:  173.337916 logprob:  0.357907, 0.061812 fisher:  -3.568047 (24.883 sec)
+1.538... L2-SN:  172.688316 logprob:  0.356937, 0.061969 fisher:  -3.567597 (23.255 sec)
+1.539... L2-SN:  172.806691 logprob:  0.355508, 0.061266 fisher:  -3.550320 (24.212 sec)
+1.540... L2-SN:  172.759235 logprob:  0.358458, 0.059984 fisher:  -3.532654 (22.817 sec)
+1.541... L2-SN:  172.735809 logprob:  0.354280, 0.061062 fisher:  -3.555300 (22.550 sec)
+1.542... L2-SN:  172.536521 logprob:  0.350886, 0.059453 fisher:  -3.541722 (23.849 sec)
+1.543... L2-SN:  173.124449 logprob:  0.354505, 0.061594 fisher:  -3.550312 (22.556 sec)
+1.544... L2-SN:  172.288683 logprob:  0.346816, 0.057563 fisher:  -3.539636 (29.303 sec)
+1.545... L2-SN:  172.326263 logprob:  0.352304, 0.059703 fisher:  -3.563901 (23.461 sec)
+1.546... L2-SN:  170.658735 logprob:  0.346201, 0.058297 fisher:  -3.585643 (21.335 sec)
+1.547... L2-SN:  171.880856 logprob:  0.347543, 0.057484 fisher:  -3.564104 (21.679 sec)
+1.548... L2-SN:  171.984594 logprob:  0.347861, 0.058188 fisher:  -3.556872 (23.157 sec)
+1.549... L2-SN:  171.738511 logprob:  0.349022, 0.058016 fisher:  -3.538105 (23.621 sec)
+1.550... L2-SN:  172.431325 logprob:  0.352131, 0.059844 fisher:  -3.560085 
+======================Test output======================
+L2-SN:  172.198644 logprob:  0.339218, 0.056563 fisher:  -3.566465 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.051255e-01 [5.150343e-05] 
+Layer 'conv1' biases: 4.368920e-01 [7.230632e-07] 
+Layer 'conv2' weights[0]: 5.032475e-02 [2.215011e-05] 
+Layer 'conv2' biases: 2.354335e-01 [5.993791e-07] 
+Layer 'local3' weights[0]: 1.750695e-02 [3.246675e-06] 
+Layer 'local3' biases: 3.961359e-03 [1.155943e-07] 
+Layer 'local4' weights[0]: 2.207949e-02 [2.711878e-06] 
+Layer 'local4' biases: 7.704304e-03 [3.219472e-07] 
+Layer 'fc5' weights[0]: 1.682455e-02 [2.082226e-06]
+Layer 'fc5' weights[1]: 9.219462e-03 [8.742637e-06] 
+Layer 'fc5' biases: 2.989786e-02 [1.125637e-06] 
+Layer 'fc6' weights[0]: 3.867868e-02 [9.775839e-07] 
+Layer 'fc6' biases: 4.548591e-03 [3.462949e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (54.417 sec)
+1.551... L2-SN:  170.959367 logprob:  0.345510, 0.059172 fisher:  -3.571242 (23.804 sec)
+1.552... L2-SN:  171.798329 logprob:  0.346534, 0.058047 fisher:  -3.573979 (22.841 sec)
+1.553... L2-SN:  171.559491 logprob:  0.346667, 0.057859 fisher:  -3.532828 (24.753 sec)
+1.554... L2-SN:  171.502021 logprob:  0.347209, 0.059656 fisher:  -3.563432 (23.742 sec)
+1.555... L2-SN:  171.646864 logprob:  0.345046, 0.057852 fisher:  -3.557099 (21.459 sec)
+1.556... L2-SN:  171.082344 logprob:  0.346211, 0.059891 fisher:  -3.570890 (22.222 sec)
+1.557... L2-SN:  170.815792 logprob:  0.346858, 0.059531 fisher:  -3.574587 (24.389 sec)
+1.558... L2-SN:  171.645161 logprob:  0.341871, 0.056188 fisher:  -3.532027 (22.947 sec)
+1.559... L2-SN:  170.573454 logprob:  0.341116, 0.058391 fisher:  -3.586894 (24.459 sec)
+1.560... L2-SN:  171.125230 logprob:  0.343779, 0.057250 fisher:  -3.575215 (29.917 sec)
+1.561... L2-SN:  170.766389 logprob:  0.343210, 0.057234 fisher:  -3.568328 (24.197 sec)
+1.562... L2-SN:  169.505869 logprob:  0.339097, 0.058141 fisher:  -3.601046 (24.384 sec)
+1.563... L2-SN:  170.431051 logprob:  0.342796, 0.058234 fisher:  -3.550194 (23.830 sec)
+1.564... L2-SN:  169.937443 logprob:  0.340884, 0.057484 fisher:  -3.591550 (23.014 sec)
+1.565... L2-SN:  170.592946 logprob:  0.339833, 0.057156 fisher:  -3.559111 (23.611 sec)
+1.566... L2-SN:  170.055995 logprob:  0.337028, 0.057422 fisher:  -3.581873 (23.809 sec)
+1.567... L2-SN:  169.679290 logprob:  0.342683, 0.058625 fisher:  -3.551503 (30.374 sec)
+1.568... L2-SN:  169.560092 logprob:  0.339788, 0.058844 fisher:  -3.611179 (28.983 sec)
+1.569... L2-SN:  169.919298 logprob:  0.340469, 0.058063 fisher:  -3.592762 (20.698 sec)
+1.570... L2-SN:  170.385163 logprob:  0.342921, 0.058109 fisher:  -3.583144 (22.216 sec)
+1.571... L2-SN:  169.919885 logprob:  0.334490, 0.056188 fisher:  -3.580290 (22.777 sec)
+1.572... L2-SN:  169.512388 logprob:  0.336387, 0.057438 fisher:  -3.600715 (23.644 sec)
+1.573... L2-SN:  168.774453 logprob:  0.334097, 0.056438 fisher:  -3.641745 (23.542 sec)
+1.574... L2-SN:  169.690292 logprob:  0.338781, 0.058766 fisher:  -3.566402 (23.720 sec)
+1.575... L2-SN:  169.745096 logprob:  0.337584, 0.057891 fisher:  -3.591840 (31.865 sec)
+1.576... L2-SN:  169.850379 logprob:  0.334582, 0.056781 fisher:  -3.576967 (24.154 sec)
+1.577... L2-SN:  168.335020 logprob:  0.336315, 0.058672 fisher:  -3.616204 (24.548 sec)
+1.578... L2-SN:  169.832473 logprob:  0.336535, 0.056547 fisher:  -3.559848 (24.129 sec)
+1.579... L2-SN:  169.075106 logprob:  0.330580, 0.054672 fisher:  -3.578977 (26.298 sec)
+1.580... L2-SN:  168.337336 logprob:  0.333933, 0.056172 fisher:  -3.615632 (29.978 sec)
+1.581... L2-SN:  168.824269 logprob:  0.331084, 0.056156 fisher:  -3.597542 (22.582 sec)
+1.582... L2-SN:  168.367918 logprob:  0.331550, 0.055063 fisher:  -3.603827 (23.188 sec)
+1.583... L2-SN:  168.523391 logprob:  0.329636, 0.054578 fisher:  -3.592475 (18.955 sec)
+1.584... L2-SN:  168.234805 logprob:  0.334223, 0.056297 fisher:  -3.586610 (19.663 sec)
+1.585... L2-SN:  168.133211 logprob:  0.331068, 0.056281 fisher:  -3.593884 (20.696 sec)
+1.586... L2-SN:  168.204354 logprob:  0.334412, 0.057469 fisher:  -3.604415 (20.653 sec)
+1.587... L2-SN:  167.377139 logprob:  0.331903, 0.057563 fisher:  -3.620340 (24.563 sec)
+1.588... L2-SN:  168.082664 logprob:  0.328306, 0.054906 fisher:  -3.595635 (20.189 sec)
+1.589... L2-SN:  168.300242 logprob:  0.332263, 0.057781 fisher:  -3.598841 (20.323 sec)
+1.590... L2-SN:  168.151661 logprob:  0.332327, 0.057828 fisher:  -3.609506 (19.521 sec)
+1.591... L2-SN:  167.746891 logprob:  0.329432, 0.056078 fisher:  -3.605856 (19.201 sec)
+1.592... L2-SN:  167.688058 logprob:  0.329291, 0.056031 fisher:  -3.621277 (19.493 sec)
+1.593... L2-SN:  167.819347 logprob:  0.326899, 0.054297 fisher:  -3.594507 (19.297 sec)
+1.594... L2-SN:  168.181288 logprob:  0.331009, 0.057063 fisher:  -3.584271 (19.219 sec)
+1.595... L2-SN:  169.118000 logprob:  0.332183, 0.055906 fisher:  -3.571843 (19.895 sec)
+1.596... L2-SN:  168.049059 logprob:  0.327329, 0.056391 fisher:  -3.613271 (22.085 sec)
+1.597... L2-SN:  166.914726 logprob:  0.325166, 0.054609 fisher:  -3.607532 (19.017 sec)
+1.598... L2-SN:  166.879390 logprob:  0.323333, 0.056422 fisher:  -3.630185 (19.079 sec)
+1.599... L2-SN:  167.646411 logprob:  0.329847, 0.055875 fisher:  -3.606104 (19.861 sec)
+1.600... L2-SN:  166.888156 logprob:  0.324111, 0.055578 fisher:  -3.639097 
+======================Test output======================
+L2-SN:  167.483221 logprob:  0.330235, 0.055719 fisher:  -3.586957 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.095856e-01 [4.001278e-05] 
+Layer 'conv1' biases: 4.581909e-01 [1.502027e-06] 
+Layer 'conv2' weights[0]: 5.204463e-02 [1.838212e-05] 
+Layer 'conv2' biases: 2.453131e-01 [7.198091e-07] 
+Layer 'local3' weights[0]: 1.672244e-02 [3.149979e-06] 
+Layer 'local3' biases: 4.137620e-03 [1.046088e-07] 
+Layer 'local4' weights[0]: 2.169843e-02 [2.653873e-06] 
+Layer 'local4' biases: 8.301130e-03 [3.141344e-07] 
+Layer 'fc5' weights[0]: 1.721057e-02 [1.975072e-06]
+Layer 'fc5' weights[1]: 8.939609e-03 [8.872539e-06] 
+Layer 'fc5' biases: 3.137286e-02 [1.216954e-06] 
+Layer 'fc6' weights[0]: 3.886513e-02 [9.353157e-07] 
+Layer 'fc6' biases: 4.684967e-03 [3.421504e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (48.006 sec)
+1.601... L2-SN:  166.431695 logprob:  0.322668, 0.055609 fisher:  -3.619348 (19.197 sec)
+1.602... L2-SN:  166.104446 logprob:  0.326872, 0.055469 fisher:  -3.642677 (18.269 sec)
+1.603... L2-SN:  166.763901 logprob:  0.325379, 0.055641 fisher:  -3.625723 (18.257 sec)
+1.604... L2-SN:  166.230633 logprob:  0.323144, 0.054328 fisher:  -3.626555 (19.251 sec)
+1.605... L2-SN:  166.198466 logprob:  0.325285, 0.055797 fisher:  -3.646486 (22.302 sec)
+1.606... L2-SN:  167.333269 logprob:  0.329296, 0.058719 fisher:  -3.612010 (20.036 sec)
+1.607... L2-SN:  166.170824 logprob:  0.321495, 0.053750 fisher:  -3.632566 (18.971 sec)
+1.608... L2-SN:  166.281149 logprob:  0.320094, 0.053828 fisher:  -3.620771 (21.640 sec)
+1.609... L2-SN:  166.283836 logprob:  0.321653, 0.054344 fisher:  -3.642338 (19.585 sec)
+1.610... L2-SN:  166.597927 logprob:  0.322049, 0.056563 fisher:  -3.635697 (18.681 sec)
+1.611... L2-SN:  165.962684 logprob:  0.325936, 0.055406 fisher:  -3.621191 (19.247 sec)
+1.612... L2-SN:  166.099380 logprob:  0.321708, 0.056141 fisher:  -3.647461 (19.100 sec)
+1.613... L2-SN:  166.840821 logprob:  0.326060, 0.056078 fisher:  -3.591664 (18.440 sec)
+1.614... L2-SN:  165.995138 logprob:  0.321719, 0.055344 fisher:  -3.631739 (19.562 sec)
+1.615... L2-SN:  166.318386 logprob:  0.317475, 0.053156 fisher:  -3.624735 (19.405 sec)
+1.616... L2-SN:  166.012342 logprob:  0.317629, 0.053969 fisher:  -3.648923 (20.660 sec)
+1.617... L2-SN:  165.639340 logprob:  0.319963, 0.054688 fisher:  -3.639232 (20.115 sec)
+1.618... L2-SN:  165.935832 logprob:  0.320330, 0.055719 fisher:  -3.640031 (19.404 sec)
+1.619... L2-SN:  166.442371 logprob:  0.319443, 0.054000 fisher:  -3.640175 (19.457 sec)
+1.620... L2-SN:  164.769932 logprob:  0.320514, 0.055094 fisher:  -3.658787 (18.901 sec)
+1.621... L2-SN:  164.714418 logprob:  0.313628, 0.053562 fisher:  -3.691512 (19.173 sec)
+1.622... L2-SN:  165.433792 logprob:  0.316646, 0.053328 fisher:  -3.671362 (18.937 sec)
+1.623... L2-SN:  165.702283 logprob:  0.318853, 0.055453 fisher:  -3.662689 (18.910 sec)
+1.624... L2-SN:  165.281320 logprob:  0.318111, 0.055250 fisher:  -3.634829 (19.284 sec)
+1.625... L2-SN:  164.383903 logprob:  0.317300, 0.054844 fisher:  -3.693655 (18.861 sec)
+1.626... L2-SN:  165.331350 logprob:  0.317713, 0.053156 fisher:  -3.641346 (19.293 sec)
+1.627... L2-SN:  164.777549 logprob:  0.314631, 0.053812 fisher:  -3.682628 (22.141 sec)
+1.628... L2-SN:  163.999410 logprob:  0.315347, 0.055188 fisher:  -3.656894 (19.262 sec)
+1.629... L2-SN:  165.709596 logprob:  0.317562, 0.053547 fisher:  -3.649305 (19.228 sec)
+1.630... L2-SN:  164.122985 logprob:  0.313772, 0.053844 fisher:  -3.683783 (20.002 sec)
+1.631... L2-SN:  164.763242 logprob:  0.315691, 0.055016 fisher:  -3.646443 (19.507 sec)
+1.632... L2-SN:  163.930494 logprob:  0.314123, 0.052766 fisher:  -3.689020 (19.409 sec)
+1.633... L2-SN:  165.033451 logprob:  0.315904, 0.054437 fisher:  -3.657860 (19.345 sec)
+1.634... L2-SN:  164.145239 logprob:  0.310365, 0.052797 fisher:  -3.655058 (19.395 sec)
+1.635... L2-SN:  164.175840 logprob:  0.312144, 0.054422 fisher:  -3.657327 (19.516 sec)
+1.636... L2-SN:  164.305486 logprob:  0.313511, 0.053203 fisher:  -3.650148 (18.956 sec)
+1.637... L2-SN:  164.258520 logprob:  0.312921, 0.053641 fisher:  -3.673142 (19.808 sec)
+1.638... L2-SN:  163.334408 logprob:  0.314198, 0.053953 fisher:  -3.673182 (20.325 sec)
+1.639... L2-SN:  164.007203 logprob:  0.311462, 0.053516 fisher:  -3.673761 (20.565 sec)
+1.640... L2-SN:  163.948500 logprob:  0.312455, 0.053031 fisher:  -3.679513 (19.480 sec)
+1.641... L2-SN:  163.995290 logprob:  0.312587, 0.054031 fisher:  -3.673296 (20.180 sec)
+1.642... L2-SN:  163.561245 logprob:  0.311225, 0.054344 fisher:  -3.654911 (19.749 sec)
+1.643... L2-SN:  163.607565 logprob:  0.311833, 0.053297 fisher:  -3.703302 (19.519 sec)
+1.644... L2-SN:  163.873931 logprob:  0.310245, 0.053609 fisher:  -3.687315 (19.119 sec)
+1.645... L2-SN:  163.147681 logprob:  0.306525, 0.052578 fisher:  -3.658790 (19.214 sec)
+1.646... L2-SN:  162.849048 logprob:  0.308141, 0.053234 fisher:  -3.697730 (18.805 sec)
+1.647... L2-SN:  162.967896 logprob:  0.310885, 0.054531 fisher:  -3.713494 (18.987 sec)
+1.648... L2-SN:  163.213380 logprob:  0.309310, 0.053016 fisher:  -3.679806 (21.543 sec)
+1.649... L2-SN:  163.636057 logprob:  0.309372, 0.052891 fisher:  -3.672227 (20.897 sec)
+1.650... L2-SN:  162.840594 logprob:  0.305454, 0.051859 fisher:  -3.680426 
+======================Test output======================
+L2-SN:  163.386986 logprob:  0.310381, 0.052969 fisher:  -3.707696 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.140878e-01 [3.015150e-05] 
+Layer 'conv1' biases: 4.780993e-01 [9.785247e-07] 
+Layer 'conv2' weights[0]: 5.373825e-02 [1.813881e-05] 
+Layer 'conv2' biases: 2.542717e-01 [6.594758e-07] 
+Layer 'local3' weights[0]: 1.600729e-02 [3.217130e-06] 
+Layer 'local3' biases: 4.304874e-03 [1.033350e-07] 
+Layer 'local4' weights[0]: 2.135780e-02 [2.687289e-06] 
+Layer 'local4' biases: 8.889718e-03 [3.140794e-07] 
+Layer 'fc5' weights[0]: 1.754359e-02 [1.886590e-06]
+Layer 'fc5' weights[1]: 8.688117e-03 [8.300603e-06] 
+Layer 'fc5' biases: 3.279393e-02 [1.059041e-06] 
+Layer 'fc6' weights[0]: 3.897292e-02 [8.523812e-07] 
+Layer 'fc6' biases: 4.815449e-03 [3.107782e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (49.447 sec)
+1.651... L2-SN:  162.511376 logprob:  0.306469, 0.053766 fisher:  -3.699619 (18.862 sec)
+1.652... L2-SN:  162.856029 logprob:  0.305729, 0.052000 fisher:  -3.678575 (18.576 sec)
+1.653... L2-SN:  162.404090 logprob:  0.310034, 0.054000 fisher:  -3.698053 (20.107 sec)
+1.654... L2-SN:  162.476768 logprob:  0.304256, 0.052281 fisher:  -3.691966 (19.252 sec)
+1.655... L2-SN:  162.029570 logprob:  0.309148, 0.054875 fisher:  -3.704427 (19.678 sec)
+1.656... L2-SN:  162.681158 logprob:  0.308715, 0.052562 fisher:  -3.704267 (19.488 sec)
+1.657... L2-SN:  162.934676 logprob:  0.305567, 0.052641 fisher:  -3.682031 (21.381 sec)
+1.658... L2-SN:  162.487448 logprob:  0.306515, 0.053328 fisher:  -3.692169 (19.948 sec)
+1.659... L2-SN:  162.475840 logprob:  0.301850, 0.050969 fisher:  -3.701524 (19.906 sec)
+1.660... L2-SN:  162.322859 logprob:  0.304646, 0.052203 fisher:  -3.685764 (19.657 sec)
+1.661... L2-SN:  161.955325 logprob:  0.302489, 0.052078 fisher:  -3.697297 (20.248 sec)
+1.662... L2-SN:  162.489583 logprob:  0.305700, 0.052516 fisher:  -3.678289 (19.366 sec)
+1.663... L2-SN:  161.941594 logprob:  0.304848, 0.053375 fisher:  -3.684759 (19.110 sec)
+1.664... L2-SN:  161.458480 logprob:  0.302351, 0.052312 fisher:  -3.724961 (19.374 sec)
+1.665... L2-SN:  162.174427 logprob:  0.302547, 0.053062 fisher:  -3.695362 (19.286 sec)
+1.666... L2-SN:  160.739270 logprob:  0.303850, 0.054375 fisher:  -3.728066 (19.429 sec)
+1.667... L2-SN:  161.396732 logprob:  0.301554, 0.052125 fisher:  -3.714234 (19.233 sec)
+1.668... L2-SN:  161.696030 logprob:  0.302093, 0.053000 fisher:  -3.713210 (19.665 sec)
+1.669... L2-SN:  161.362663 logprob:  0.299451, 0.051656 fisher:  -3.698879 (20.024 sec)
+1.670... L2-SN:  161.479186 logprob:  0.302974, 0.051078 fisher:  -3.687776 (19.464 sec)
+1.671... L2-SN:  160.929545 logprob:  0.300289, 0.051750 fisher:  -3.697553 (19.907 sec)
+1.672... L2-SN:  160.901728 logprob:  0.301405, 0.052406 fisher:  -3.746883 (19.610 sec)
+1.673... L2-SN:  161.348039 logprob:  0.300222, 0.050391 fisher:  -3.691995 (19.847 sec)
+1.674... L2-SN:  162.124109 logprob:  0.300433, 0.051078 fisher:  -3.683886 (19.022 sec)
+1.675... L2-SN:  161.230807 logprob:  0.298819, 0.051547 fisher:  -3.726634 (19.238 sec)
+1.676... L2-SN:  161.445531 logprob:  0.303931, 0.053469 fisher:  -3.701615 (19.214 sec)
+1.677... L2-SN:  161.572003 logprob:  0.301424, 0.053047 fisher:  -3.710453 (18.873 sec)
+1.678... L2-SN:  161.654415 logprob:  0.302474, 0.052203 fisher:  -3.715113 (18.425 sec)
+1.679... L2-SN:  160.292534 logprob:  0.297357, 0.050875 fisher:  -3.751667 (19.657 sec)
+1.680... L2-SN:  161.058031 logprob:  0.299426, 0.051625 fisher:  -3.729778 (19.347 sec)
+1.681... L2-SN:  160.127500 logprob:  0.298735, 0.052016 fisher:  -3.727990 (19.429 sec)
+1.682... L2-SN:  160.409496 logprob:  0.301735, 0.055359 fisher:  -3.702825 (21.353 sec)
+1.683... L2-SN:  160.713223 logprob:  0.302097, 0.052633 fisher:  -3.712270 (29.313 sec)
+1.684... L2-SN:  160.537487 logprob:  0.299309, 0.052969 fisher:  -3.706459 (17.949 sec)
+1.685... L2-SN:  160.428689 logprob:  0.294730, 0.050906 fisher:  -3.746488 (18.728 sec)
+1.686... L2-SN:  160.168534 logprob:  0.296638, 0.050875 fisher:  -3.746949 (18.260 sec)
+1.687... L2-SN:  160.021532 logprob:  0.299265, 0.052781 fisher:  -3.759937 (18.524 sec)
+1.688... L2-SN:  160.858587 logprob:  0.297160, 0.051672 fisher:  -3.726706 (18.466 sec)
+1.689... L2-SN:  159.554498 logprob:  0.293442, 0.051203 fisher:  -3.713106 (19.292 sec)
+1.690... L2-SN:  160.780058 logprob:  0.296425, 0.050375 fisher:  -3.708970 (19.874 sec)
+1.691... L2-SN:  160.061371 logprob:  0.295172, 0.051750 fisher:  -3.737248 (19.495 sec)
+1.692... L2-SN:  159.704826 logprob:  0.296618, 0.052844 fisher:  -3.721445 (21.707 sec)
+1.693... L2-SN:  159.260239 logprob:  0.296808, 0.052875 fisher:  -3.739610 (19.880 sec)
+1.694... L2-SN:  160.261571 logprob:  0.297426, 0.051953 fisher:  -3.728072 (19.613 sec)
+1.695... L2-SN:  160.173783 logprob:  0.295107, 0.050766 fisher:  -3.728959 (19.629 sec)
+1.696... L2-SN:  159.720253 logprob:  0.296254, 0.052891 fisher:  -3.741314 (19.466 sec)
+1.697... L2-SN:  159.745521 logprob:  0.295874, 0.052469 fisher:  -3.759497 (19.416 sec)
+1.698... L2-SN:  159.027827 logprob:  0.293219, 0.051875 fisher:  -3.731816 (19.244 sec)
+1.699... L2-SN:  158.815378 logprob:  0.291752, 0.050469 fisher:  -3.778991 (18.904 sec)
+1.700... L2-SN:  159.285003 logprob:  0.294844, 0.051469 fisher:  -3.757951 
+======================Test output======================
+L2-SN:  159.571484 logprob:  0.297599, 0.052547 fisher:  -3.765611 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.185022e-01 [2.487891e-05] 
+Layer 'conv1' biases: 4.965703e-01 [6.538109e-07] 
+Layer 'conv2' weights[0]: 5.532624e-02 [1.508439e-05] 
+Layer 'conv2' biases: 2.624119e-01 [4.502498e-07] 
+Layer 'local3' weights[0]: 1.535885e-02 [3.239129e-06] 
+Layer 'local3' biases: 4.462498e-03 [9.446507e-08] 
+Layer 'local4' weights[0]: 2.104789e-02 [2.596587e-06] 
+Layer 'local4' biases: 9.467877e-03 [2.799175e-07] 
+Layer 'fc5' weights[0]: 1.782526e-02 [1.801837e-06]
+Layer 'fc5' weights[1]: 8.472512e-03 [7.609599e-06] 
+Layer 'fc5' biases: 3.418023e-02 [9.157542e-07] 
+Layer 'fc6' weights[0]: 3.901490e-02 [8.462970e-07] 
+Layer 'fc6' biases: 4.938987e-03 [3.146378e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (47.789 sec)
+1.701... L2-SN:  159.201843 logprob:  0.293487, 0.051016 fisher:  -3.751030 (19.818 sec)
+1.702... L2-SN:  159.309647 logprob:  0.295005, 0.053047 fisher:  -3.766265 (21.884 sec)
+1.703... L2-SN:  159.139848 logprob:  0.292996, 0.050313 fisher:  -3.717224 (19.307 sec)
+1.704... L2-SN:  158.794116 logprob:  0.295093, 0.053187 fisher:  -3.749323 (18.953 sec)
+1.705... L2-SN:  159.630980 logprob:  0.290146, 0.048719 fisher:  -3.746254 (18.788 sec)
+1.706... L2-SN:  158.567482 logprob:  0.289370, 0.051234 fisher:  -3.774609 (20.107 sec)
+1.707... L2-SN:  159.530554 logprob:  0.294508, 0.053312 fisher:  -3.753109 (18.925 sec)
+1.708... L2-SN:  158.531332 logprob:  0.291267, 0.051047 fisher:  -3.735928 (18.520 sec)
+1.709... L2-SN:  158.348940 logprob:  0.292434, 0.051656 fisher:  -3.764269 (19.825 sec)
+1.710... L2-SN:  158.610467 logprob:  0.289871, 0.050734 fisher:  -3.760728 (19.537 sec)
+1.711... L2-SN:  157.947515 logprob:  0.288428, 0.050125 fisher:  -3.730702 (18.996 sec)
+1.712... L2-SN:  158.141206 logprob:  0.288599, 0.050359 fisher:  -3.752434 (18.602 sec)
+1.713... L2-SN:  158.043537 logprob:  0.291544, 0.052234 fisher:  -3.771380 (23.419 sec)
+1.714... L2-SN:  158.603721 logprob:  0.288666, 0.049703 fisher:  -3.759039 (25.627 sec)
+1.715... L2-SN:  157.560436 logprob:  0.286245, 0.049563 fisher:  -3.772465 (19.464 sec)
+1.716... L2-SN:  157.560208 logprob:  0.289642, 0.051109 fisher:  -3.751767 (18.995 sec)
+1.717... L2-SN:  157.532881 logprob:  0.288534, 0.050313 fisher:  -3.777771 (19.190 sec)
+1.718... L2-SN:  157.963246 logprob:  0.289703, 0.051187 fisher:  -3.785878 (18.851 sec)
+1.719... L2-SN:  158.180225 logprob:  0.291717, 0.052172 fisher:  -3.768147 (19.427 sec)
+1.720... L2-SN:  157.617206 logprob:  0.284729, 0.051094 fisher:  -3.771893 (21.864 sec)
+1.721... L2-SN:  157.797578 logprob:  0.285589, 0.050922 fisher:  -3.778958 (20.199 sec)
+1.722... L2-SN:  158.352789 logprob:  0.290771, 0.050219 fisher:  -3.703087 (19.274 sec)
+1.723... L2-SN:  157.555570 logprob:  0.291585, 0.052344 fisher:  -3.792890 (22.413 sec)
+1.724... L2-SN:  157.801656 logprob:  0.288496, 0.049484 fisher:  -3.715097 (20.143 sec)
+1.725... L2-SN:  157.892964 logprob:  0.288288, 0.051359 fisher:  -3.786337 (19.217 sec)
+1.726... L2-SN:  157.945990 logprob:  0.286505, 0.049859 fisher:  -3.772777 (18.432 sec)
+1.727... L2-SN:  158.001878 logprob:  0.288620, 0.051062 fisher:  -3.760774 (19.257 sec)
+1.728... L2-SN:  157.302194 logprob:  0.283521, 0.049578 fisher:  -3.786944 (19.207 sec)
+1.729... L2-SN:  158.128377 logprob:  0.290258, 0.051391 fisher:  -3.764038 (19.412 sec)
+1.730... L2-SN:  157.048478 logprob:  0.284402, 0.049750 fisher:  -3.777281 (19.439 sec)
+1.731... L2-SN:  157.224765 logprob:  0.284962, 0.050422 fisher:  -3.779663 (22.392 sec)
+1.732... L2-SN:  157.472481 logprob:  0.283743, 0.049531 fisher:  -3.806997 (19.795 sec)
+1.733... L2-SN:  157.089532 logprob:  0.284489, 0.049484 fisher:  -3.785731 (19.406 sec)
+1.734... L2-SN:  157.287179 logprob:  0.287576, 0.050875 fisher:  -3.766434 (22.926 sec)
+1.735... L2-SN:  156.601463 logprob:  0.282675, 0.050656 fisher:  -3.828204 (18.938 sec)
+1.736... L2-SN:  157.074581 logprob:  0.285093, 0.049375 fisher:  -3.811360 (18.879 sec)
+1.737... L2-SN:  157.414701 logprob:  0.287088, 0.051531 fisher:  -3.794887 (19.151 sec)
+1.738... L2-SN:  156.539498 logprob:  0.285297, 0.050672 fisher:  -3.806682 (19.408 sec)
+1.739... L2-SN:  157.240849 logprob:  0.284688, 0.050047 fisher:  -3.796536 (19.198 sec)
+1.740... L2-SN:  156.875572 logprob:  0.283922, 0.049438 fisher:  -3.805248 (19.645 sec)
+1.741... L2-SN:  157.083708 logprob:  0.287345, 0.050000 fisher:  -3.794503 (19.729 sec)
+1.742... L2-SN:  156.696888 logprob:  0.283426, 0.049891 fisher:  -3.779106 (19.876 sec)
+1.743... L2-SN:  156.359132 logprob:  0.285017, 0.051203 fisher:  -3.794435 (18.943 sec)
+1.744... L2-SN:  157.023763 logprob:  0.280884, 0.049406 fisher:  -3.800801 (20.473 sec)
+1.745... L2-SN:  156.705413 logprob:  0.280939, 0.049469 fisher:  -3.790266 (22.283 sec)
+1.746... L2-SN:  156.641040 logprob:  0.282240, 0.049156 fisher:  -3.786831 (18.961 sec)
+1.747... L2-SN:  156.738946 logprob:  0.282322, 0.049500 fisher:  -3.793844 (19.483 sec)
+1.748... L2-SN:  157.085289 logprob:  0.282043, 0.048719 fisher:  -3.788412 (19.061 sec)
+1.749... L2-SN:  156.748431 logprob:  0.282618, 0.048969 fisher:  -3.812685 (19.699 sec)
+1.750... L2-SN:  155.863743 logprob:  0.281090, 0.049234 fisher:  -3.795977 
+======================Test output======================
+L2-SN:  156.658927 logprob:  0.277440, 0.049016 fisher:  -3.830789 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.227252e-01 [3.296421e-05] 
+Layer 'conv1' biases: 5.141172e-01 [1.189071e-06] 
+Layer 'conv2' weights[0]: 5.691926e-02 [1.706408e-05] 
+Layer 'conv2' biases: 2.699580e-01 [5.469155e-07] 
+Layer 'local3' weights[0]: 1.477286e-02 [3.331181e-06] 
+Layer 'local3' biases: 4.613883e-03 [9.396343e-08] 
+Layer 'local4' weights[0]: 2.077433e-02 [2.689363e-06] 
+Layer 'local4' biases: 1.003863e-02 [2.910465e-07] 
+Layer 'fc5' weights[0]: 1.807042e-02 [1.854695e-06]
+Layer 'fc5' weights[1]: 8.275620e-03 [7.908498e-06] 
+Layer 'fc5' biases: 3.552281e-02 [9.150200e-07] 
+Layer 'fc6' weights[0]: 3.900901e-02 [8.523784e-07] 
+Layer 'fc6' biases: 5.063358e-03 [3.162456e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (46.800 sec)
+1.751... L2-SN:  155.932830 logprob:  0.281216, 0.049969 fisher:  -3.795821 (22.460 sec)
+1.752... L2-SN:  156.607628 logprob:  0.280638, 0.050063 fisher:  -3.803269 (18.836 sec)
+1.753... L2-SN:  155.936232 logprob:  0.283080, 0.049875 fisher:  -3.810870 (19.603 sec)
+1.754... L2-SN:  155.934659 logprob:  0.279698, 0.050125 fisher:  -3.799811 (21.495 sec)
+1.755... L2-SN:  155.680543 logprob:  0.282446, 0.050672 fisher:  -3.797303 (19.138 sec)
+1.756... L2-SN:  155.937000 logprob:  0.281086, 0.049844 fisher:  -3.798779 (19.048 sec)
+1.757... L2-SN:  156.270293 logprob:  0.282504, 0.049906 fisher:  -3.817147 (19.288 sec)
+1.758... L2-SN:  155.279984 logprob:  0.280420, 0.049047 fisher:  -3.827329 (18.752 sec)
+1.759... L2-SN:  155.710413 logprob:  0.280817, 0.049828 fisher:  -3.796168 (19.049 sec)
+1.760... L2-SN:  155.525463 logprob:  0.281865, 0.050937 fisher:  -3.815827 (18.867 sec)
+1.761... L2-SN:  155.542848 logprob:  0.276950, 0.048688 fisher:  -3.803829 (21.626 sec)
+1.762... L2-SN:  155.422939 logprob:  0.280232, 0.049859 fisher:  -3.810027 (19.944 sec)
+1.763... L2-SN:  155.703823 logprob:  0.278099, 0.048719 fisher:  -3.793428 (19.575 sec)
+1.764... L2-SN:  155.470110 logprob:  0.277487, 0.048719 fisher:  -3.820755 (19.849 sec)
+1.765... L2-SN:  154.854579 logprob:  0.276673, 0.048438 fisher:  -3.825990 (19.203 sec)
+1.766... L2-SN:  155.348920 logprob:  0.279879, 0.048344 fisher:  -3.820305 (18.685 sec)
+1.767... L2-SN:  155.761226 logprob:  0.279100, 0.049266 fisher:  -3.817172 (19.425 sec)
+1.768... L2-SN:  155.131618 logprob:  0.276469, 0.049328 fisher:  -3.815859 (19.230 sec)
+1.769... L2-SN:  154.836882 logprob:  0.276227, 0.048734 fisher:  -3.805127 (19.204 sec)
+1.770... L2-SN:  154.552932 logprob:  0.278181, 0.048781 fisher:  -3.847140 (20.033 sec)
+1.771... L2-SN:  155.129997 logprob:  0.279735, 0.051391 fisher:  -3.816271 (20.456 sec)
+1.772... L2-SN:  154.900148 logprob:  0.276446, 0.051172 fisher:  -3.826172 (19.372 sec)
+1.773... L2-SN:  155.448906 logprob:  0.278452, 0.049438 fisher:  -3.814459 (19.512 sec)
+1.774... L2-SN:  154.939027 logprob:  0.276518, 0.049000 fisher:  -3.815845 (19.549 sec)
+1.775... L2-SN:  155.016270 logprob:  0.273822, 0.048203 fisher:  -3.790689 (20.013 sec)
+1.776... L2-SN:  155.253945 logprob:  0.278532, 0.049031 fisher:  -3.834453 (22.874 sec)
+1.777... L2-SN:  154.069169 logprob:  0.274941, 0.048563 fisher:  -3.846515 (19.435 sec)
+1.778... L2-SN:  154.838459 logprob:  0.274131, 0.048188 fisher:  -3.813812 (19.110 sec)
+1.779... L2-SN:  154.259497 logprob:  0.277476, 0.049938 fisher:  -3.828409 (20.440 sec)
+1.780... L2-SN:  154.831925 logprob:  0.275725, 0.048328 fisher:  -3.855711 (21.293 sec)
+1.781... L2-SN:  153.897998 logprob:  0.274418, 0.047781 fisher:  -3.856974 (18.924 sec)
+1.782... L2-SN:  154.559358 logprob:  0.275508, 0.049188 fisher:  -3.820692 (18.668 sec)
+1.783... L2-SN:  154.391013 logprob:  0.278421, 0.050078 fisher:  -3.833421 (19.365 sec)
+1.784... L2-SN:  155.520487 logprob:  0.275845, 0.049703 fisher:  -3.823834 (19.054 sec)
+1.785... L2-SN:  153.939711 logprob:  0.278991, 0.050922 fisher:  -3.873619 (24.674 sec)
+1.786... L2-SN:  153.388901 logprob:  0.274578, 0.048063 fisher:  -3.841738 (19.553 sec)
+1.787... L2-SN:  154.187524 logprob:  0.274591, 0.048734 fisher:  -3.857895 (18.718 sec)
+1.788... L2-SN:  154.007237 logprob:  0.272998, 0.048391 fisher:  -3.872883 (19.492 sec)
+1.789... L2-SN:  154.152085 logprob:  0.277740, 0.050406 fisher:  -3.853098 (18.771 sec)
+1.790... L2-SN:  154.684003 logprob:  0.273150, 0.049047 fisher:  -3.831556 (19.545 sec)
+1.791... L2-SN:  154.325816 logprob:  0.271322, 0.048688 fisher:  -3.827818 (19.534 sec)
+1.792... L2-SN:  154.256584 logprob:  0.275295, 0.049125 fisher:  -3.846610 (19.252 sec)
+1.793... L2-SN:  154.311834 logprob:  0.274175, 0.049031 fisher:  -3.845811 (19.542 sec)
+1.794... L2-SN:  153.468220 logprob:  0.269435, 0.047172 fisher:  -3.868631 (19.381 sec)
+1.795... L2-SN:  154.513590 logprob:  0.274153, 0.047266 fisher:  -3.849698 (19.663 sec)
+1.796... L2-SN:  153.814332 logprob:  0.275686, 0.049063 fisher:  -3.854881 (19.339 sec)
+1.797... L2-SN:  153.684824 logprob:  0.273239, 0.049438 fisher:  -3.832241 (19.805 sec)
+1.798... L2-SN:  153.413666 logprob:  0.271772, 0.047469 fisher:  -3.871082 (19.585 sec)
+1.799... L2-SN:  153.935919 logprob:  0.271789, 0.048422 fisher:  -3.859982 (19.741 sec)
+1.800... L2-SN:  152.892538 logprob:  0.270111, 0.048203 fisher:  -3.842599 
+======================Test output======================
+L2-SN:  151.674671 logprob:  0.272921, 0.052320 fisher:  -3.894695 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.269153e-01 [3.090711e-05] 
+Layer 'conv1' biases: 5.305020e-01 [7.907860e-07] 
+Layer 'conv2' weights[0]: 5.839188e-02 [1.487161e-05] 
+Layer 'conv2' biases: 2.769334e-01 [5.373970e-07] 
+Layer 'local3' weights[0]: 1.424775e-02 [3.350403e-06] 
+Layer 'local3' biases: 4.758604e-03 [8.727039e-08] 
+Layer 'local4' weights[0]: 2.052891e-02 [2.622394e-06] 
+Layer 'local4' biases: 1.060158e-02 [2.779911e-07] 
+Layer 'fc5' weights[0]: 1.828735e-02 [1.750097e-06]
+Layer 'fc5' weights[1]: 8.094861e-03 [7.571559e-06] 
+Layer 'fc5' biases: 3.682584e-02 [8.353583e-07] 
+Layer 'fc6' weights[0]: 3.896673e-02 [8.319886e-07] 
+Layer 'fc6' biases: 5.182385e-03 [3.078674e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (21.300 sec)
+1.801... L2-SN:  153.185656 logprob:  0.273189, 0.049016 fisher:  -3.879101 (20.666 sec)
+1.802... L2-SN:  152.385912 logprob:  0.271825, 0.048016 fisher:  -3.848569 (19.671 sec)
+1.803... L2-SN:  153.531562 logprob:  0.270471, 0.049000 fisher:  -3.866237 (19.790 sec)
+1.804... L2-SN:  153.892908 logprob:  0.273406, 0.049063 fisher:  -3.856278 (19.651 sec)
+1.805... L2-SN:  153.395240 logprob:  0.272837, 0.048953 fisher:  -3.810492 (19.603 sec)
+1.806... L2-SN:  153.079636 logprob:  0.269327, 0.047484 fisher:  -3.883894 (19.359 sec)
+1.807... L2-SN:  153.469560 logprob:  0.274170, 0.050156 fisher:  -3.872557 (19.551 sec)
+1.808... L2-SN:  153.079093 logprob:  0.268824, 0.047359 fisher:  -3.873060 (19.282 sec)
+1.809... L2-SN:  153.635821 logprob:  0.270920, 0.047922 fisher:  -3.869521 (19.131 sec)
+1.810... L2-SN:  152.471093 logprob:  0.270326, 0.048750 fisher:  -3.853826 (19.105 sec)
+1.811... L2-SN:  152.947316 logprob:  0.270328, 0.047484 fisher:  -3.857837 (20.788 sec)
+1.812... L2-SN:  152.859693 logprob:  0.269955, 0.048219 fisher:  -3.868358 (20.965 sec)
+1.813... L2-SN:  153.178210 logprob:  0.266926, 0.047156 fisher:  -3.883308 (19.498 sec)
+1.814... L2-SN:  152.486012 logprob:  0.269540, 0.048063 fisher:  -3.858076 (18.542 sec)
+1.815... L2-SN:  152.247586 logprob:  0.266194, 0.046766 fisher:  -3.848105 (19.079 sec)
+1.816... L2-SN:  152.492724 logprob:  0.267956, 0.048969 fisher:  -3.879198 (18.903 sec)
+1.817... L2-SN:  152.229687 logprob:  0.270211, 0.048703 fisher:  -3.867529 (19.022 sec)
+1.818... L2-SN:  152.040451 logprob:  0.268176, 0.048859 fisher:  -3.902807 (19.006 sec)
+1.819... L2-SN:  152.593891 logprob:  0.271256, 0.048359 fisher:  -3.883144 (19.740 sec)
+1.820... L2-SN:  152.069356 logprob:  0.266134, 0.048328 fisher:  -3.889357 (19.270 sec)
+1.821... L2-SN:  152.556133 logprob:  0.268300, 0.046500 fisher:  -3.881124 (19.104 sec)
+1.822... L2-SN:  152.752282 logprob:  0.266602, 0.046609 fisher:  -3.896513 (20.536 sec)
+1.823... L2-SN:  151.559230 logprob:  0.267283, 0.046891 fisher:  -3.876213 (21.255 sec)
+1.824... L2-SN:  151.919208 logprob:  0.265698, 0.046531 fisher:  -3.881986 (21.753 sec)
+1.825... L2-SN:  152.822773 logprob:  0.267037, 0.046844 fisher:  -3.895548 (19.284 sec)
+1.826... L2-SN:  152.273249 logprob:  0.266704, 0.047266 fisher:  -3.850495 (18.898 sec)
+1.827... L2-SN:  152.293999 logprob:  0.269842, 0.049313 fisher:  -3.883831 (19.441 sec)
+1.828... L2-SN:  152.139441 logprob:  0.264391, 0.046250 fisher:  -3.904048 (18.896 sec)
+1.829... L2-SN:  151.363740 logprob:  0.265507, 0.048516 fisher:  -3.893104 (19.967 sec)
+1.830... L2-SN:  151.678969 logprob:  0.265993, 0.046297 fisher:  -3.878470 (22.229 sec)
+1.831... L2-SN:  152.095127 logprob:  0.267710, 0.047703 fisher:  -3.856906 (19.698 sec)
+1.832... L2-SN:  151.660654 logprob:  0.266224, 0.049844 fisher:  -3.914998 (19.339 sec)
+1.833... L2-SN:  151.618177 logprob:  0.265762, 0.046938 fisher:  -3.874861 (20.959 sec)
+1.834... L2-SN:  151.518483 logprob:  0.268672, 0.049563 fisher:  -3.881336 (19.205 sec)
+1.835... L2-SN:  152.051289 logprob:  0.267490, 0.049219 fisher:  -3.905970 (18.613 sec)
+1.836... L2-SN:  151.367573 logprob:  0.265027, 0.047250 fisher:  -3.879656 (19.087 sec)
+1.837... L2-SN:  152.089143 logprob:  0.267205, 0.048250 fisher:  -3.864039 (18.324 sec)
+1.838... L2-SN:  151.575183 logprob:  0.269091, 0.049984 fisher:  -3.887515 (19.030 sec)
+1.839... L2-SN:  152.264560 logprob:  0.265250, 0.048188 fisher:  -3.864913 (18.010 sec)
+1.840... L2-SN:  151.814099 logprob:  0.265725, 0.046797 fisher:  -3.853492 (21.352 sec)
+1.841... L2-SN:  152.000320 logprob:  0.268486, 0.049063 fisher:  -3.880562 (22.137 sec)
+1.842... L2-SN:  151.274988 logprob:  0.262522, 0.047250 fisher:  -3.913159 (19.272 sec)
+1.843... L2-SN:  151.373944 logprob:  0.263874, 0.046922 fisher:  -3.876310 (19.931 sec)
+1.844... L2-SN:  151.900821 logprob:  0.265454, 0.046906 fisher:  -3.886864 (20.315 sec)
+1.845... L2-SN:  151.114066 logprob:  0.264170, 0.046844 fisher:  -3.913738 (19.401 sec)
+1.846... L2-SN:  151.340998 logprob:  0.262537, 0.047734 fisher:  -3.910277 (20.142 sec)
+1.847... L2-SN:  151.264286 logprob:  0.264059, 0.047969 fisher:  -3.890388 (18.851 sec)
+1.848... L2-SN:  151.393204 logprob:  0.264152, 0.047000 fisher:  -3.887671 (19.376 sec)
+1.849... L2-SN:  151.210270 logprob:  0.264805, 0.048797 fisher:  -3.882289 (19.255 sec)
+1.850... L2-SN:  151.215023 logprob:  0.265822, 0.048844 fisher:  -3.913619 
+======================Test output======================
+L2-SN:  150.751634 logprob:  0.254778, 0.046609 fisher:  -3.949242 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.308497e-01 [2.850280e-05] 
+Layer 'conv1' biases: 5.461154e-01 [1.019170e-06] 
+Layer 'conv2' weights[0]: 5.981414e-02 [1.581308e-05] 
+Layer 'conv2' biases: 2.834294e-01 [4.583098e-07] 
+Layer 'local3' weights[0]: 1.377823e-02 [3.465891e-06] 
+Layer 'local3' biases: 4.898006e-03 [8.944952e-08] 
+Layer 'local4' weights[0]: 2.031227e-02 [2.696154e-06] 
+Layer 'local4' biases: 1.115594e-02 [2.936936e-07] 
+Layer 'fc5' weights[0]: 1.847891e-02 [1.794984e-06]
+Layer 'fc5' weights[1]: 7.936224e-03 [8.069314e-06] 
+Layer 'fc5' biases: 3.810741e-02 [9.362217e-07] 
+Layer 'fc6' weights[0]: 3.889468e-02 [7.423199e-07] 
+Layer 'fc6' biases: 5.298988e-03 [2.716498e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (47.777 sec)
+1.851... L2-SN:  150.703287 logprob:  0.262966, 0.048063 fisher:  -3.920814 (20.081 sec)
+1.852... L2-SN:  151.194973 logprob:  0.262486, 0.045734 fisher:  -3.908131 (24.318 sec)
+1.853... L2-SN:  150.924329 logprob:  0.262980, 0.046719 fisher:  -3.906913 (21.459 sec)
+1.854... L2-SN:  150.111775 logprob:  0.260338, 0.046500 fisher:  -3.908456 (19.148 sec)
+1.855... L2-SN:  150.490603 logprob:  0.262131, 0.046797 fisher:  -3.908828 (19.569 sec)
+1.856... L2-SN:  150.434185 logprob:  0.264390, 0.047578 fisher:  -3.888786 (19.484 sec)
+1.857... L2-SN:  150.973621 logprob:  0.263746, 0.047500 fisher:  -3.898359 (18.960 sec)
+1.858... L2-SN:  150.338944 logprob:  0.263348, 0.047375 fisher:  -3.966255 (19.306 sec)
+1.859... L2-SN:  150.571757 logprob:  0.261300, 0.046750 fisher:  -3.904487 (19.114 sec)
+1.860... L2-SN:  150.682298 logprob:  0.263061, 0.047859 fisher:  -3.906277 (19.681 sec)
+1.861... L2-SN:  150.627950 logprob:  0.261986, 0.048625 fisher:  -3.897090 (19.050 sec)
+1.862... L2-SN:  150.545900 logprob:  0.262618, 0.046938 fisher:  -3.919720 (18.620 sec)
+1.863... L2-SN:  149.857088 logprob:  0.260882, 0.048219 fisher:  -3.912002 (19.302 sec)
+1.864... L2-SN:  150.392817 logprob:  0.261068, 0.048172 fisher:  -3.913785 (21.454 sec)
+1.865... L2-SN:  150.790073 logprob:  0.262817, 0.047125 fisher:  -3.934831 (19.210 sec)
+1.866... L2-SN:  150.273252 logprob:  0.261537, 0.047297 fisher:  -3.917475 (18.883 sec)
+1.867... L2-SN:  151.064986 logprob:  0.260009, 0.046344 fisher:  -3.922198 (18.776 sec)
+1.868... L2-SN:  150.722483 logprob:  0.258033, 0.045187 fisher:  -3.904826 (19.244 sec)
+1.869... L2-SN:  150.161650 logprob:  0.263211, 0.048828 fisher:  -3.900136 (18.747 sec)
+1.870... L2-SN:  150.181494 logprob:  0.261615, 0.046344 fisher:  -3.917910 (19.441 sec)
+1.871... L2-SN:  149.715193 logprob:  0.261948, 0.047828 fisher:  -3.929911 (19.117 sec)
+1.872... L2-SN:  150.516542 logprob:  0.260409, 0.046781 fisher:  -3.897269 (19.751 sec)
+1.873... L2-SN:  150.564780 logprob:  0.262365, 0.047906 fisher:  -3.921896 (18.970 sec)
+1.874... L2-SN:  150.285234 logprob:  0.260396, 0.045984 fisher:  -3.900944 (19.878 sec)
+1.875... L2-SN:  150.116094 logprob:  0.261139, 0.046891 fisher:  -3.929799 (21.239 sec)
+1.876... L2-SN:  150.100677 logprob:  0.258809, 0.046062 fisher:  -3.945143 (19.205 sec)
+1.877... L2-SN:  149.750079 logprob:  0.259476, 0.046703 fisher:  -3.919355 (18.490 sec)
+1.878... L2-SN:  148.906579 logprob:  0.256662, 0.045406 fisher:  -3.946223 (19.728 sec)
+1.879... L2-SN:  149.074410 logprob:  0.259562, 0.046859 fisher:  -3.920157 (19.410 sec)
+1.880... L2-SN:  149.197020 logprob:  0.258387, 0.047234 fisher:  -3.956782 (19.050 sec)
+1.881... L2-SN:  149.368477 logprob:  0.256664, 0.045531 fisher:  -3.959375 (19.486 sec)
+1.882... L2-SN:  149.505323 logprob:  0.257333, 0.045828 fisher:  -3.933056 (22.347 sec)
+1.883... L2-SN:  149.134970 logprob:  0.256568, 0.045094 fisher:  -3.937102 (18.954 sec)
+1.884... L2-SN:  150.458789 logprob:  0.259301, 0.045906 fisher:  -3.892838 (18.935 sec)
+1.885... L2-SN:  149.324394 logprob:  0.257458, 0.047047 fisher:  -3.954183 (20.383 sec)
+1.886... L2-SN:  150.313135 logprob:  0.258432, 0.047141 fisher:  -3.914089 (18.850 sec)
+1.887... L2-SN:  149.604164 logprob:  0.256481, 0.045625 fisher:  -3.914595 (18.797 sec)
+1.888... L2-SN:  148.215629 logprob:  0.259275, 0.046687 fisher:  -3.929967 (18.750 sec)
+1.889... L2-SN:  148.820395 logprob:  0.255569, 0.046312 fisher:  -3.965369 (19.070 sec)
+1.890... L2-SN:  149.396624 logprob:  0.254581, 0.046391 fisher:  -3.950694 (19.126 sec)
+1.891... L2-SN:  149.437941 logprob:  0.257119, 0.046844 fisher:  -3.925037 (19.283 sec)
+1.892... L2-SN:  149.151893 logprob:  0.257270, 0.046437 fisher:  -3.949176 (19.295 sec)
+1.893... L2-SN:  148.682914 logprob:  0.258508, 0.047922 fisher:  -3.966752 (21.402 sec)
+1.894... L2-SN:  148.932028 logprob:  0.255679, 0.046109 fisher:  -3.935403 (19.299 sec)
+1.895... L2-SN:  148.906045 logprob:  0.257660, 0.047234 fisher:  -3.944074 (19.324 sec)
+1.896... L2-SN:  148.580783 logprob:  0.258965, 0.047984 fisher:  -3.949491 (23.089 sec)
+1.897... L2-SN:  148.790021 logprob:  0.259477, 0.047281 fisher:  -3.955170 (19.207 sec)
+1.898... L2-SN:  148.500239 logprob:  0.255855, 0.045844 fisher:  -3.957519 (18.688 sec)
+1.899... L2-SN:  148.407350 logprob:  0.256547, 0.047000 fisher:  -3.937674 (18.992 sec)
+1.900... L2-SN:  148.552003 logprob:  0.257917, 0.046359 fisher:  -3.944510 
+======================Test output======================
+L2-SN:  149.336549 logprob:  0.254963, 0.046547 fisher:  -3.918117 
+------------------------------------------------------- 
+Layer 'conv1' weights[0]: 1.347757e-01 [3.381053e-05] 
+Layer 'conv1' biases: 5.610960e-01 [6.605083e-07] 
+Layer 'conv2' weights[0]: 6.116161e-02 [1.716596e-05] 
+Layer 'conv2' biases: 2.895070e-01 [3.975395e-07] 
+Layer 'local3' weights[0]: 1.336067e-02 [3.681193e-06] 
+Layer 'local3' biases: 5.032974e-03 [8.853385e-08] 
+Layer 'local4' weights[0]: 2.012380e-02 [2.853964e-06] 
+Layer 'local4' biases: 1.170761e-02 [2.921948e-07] 
+Layer 'fc5' weights[0]: 1.864920e-02 [1.766535e-06]
+Layer 'fc5' weights[1]: 7.788976e-03 [8.006550e-06] 
+Layer 'fc5' biases: 3.936220e-02 [8.899698e-07] 
+Layer 'fc6' weights[0]: 3.880079e-02 [7.887806e-07] 
+Layer 'fc6' biases: 5.416532e-03 [2.887682e-07] 
+-------------------------------------------------------
+Saved checkpoint to ../models/deepidn/ConvNet__2015-02-01_16.05.26
+======================================================= (47.294 sec)
+1.901... L2-SN:  148.824686 logprob:  0.257661, 0.046250 fisher:  -3.945195 (19.511 sec)
+1.902... L2-SN:  148.602011 logprob:  0.257196, 0.047344 fisher:  -3.949253 (20.863 sec)
+1.903... L2-SN:  148.432892 logprob:  0.255061, 0.046938 fisher:  -3.953077 (19.654 sec)
+1.904... L2-SN:  148.141138 logprob:  0.253814, 0.045922 fisher:  -3.923467 (19.286 sec)
+1.905... L2-SN:  149.045925 logprob:  0.257441, 0.047188 fisher:  -3.938407 (19.691 sec)
+1.906... L2-SN:  148.400909 logprob:  0.255607, 0.045922 fisher:  -3.956882 (19.487 sec)
+1.907... L2-SN:  148.400791 logprob:  0.255139, 0.046281 fisher:  -3.970061 (19.273 sec)
+1.908... L2-SN:  148.494352 logprob:  0.256111, 0.046578 fisher:  -3.962597 (19.499 sec)
+1.909... L2-SN:  147.975278 logprob:  0.258272, 0.048625 fisher:  -3.962385 (19.179 sec)
+1.910... L2-SN:  148.649107 logprob:  0.258717, 0.047984 fisher:  -3.934644 (19.604 sec)
+1.911... L2-SN:  147.925398 logprob:  0.252592, 0.045625 fisher:  -3.975125 (19.131 sec)
+1.912... L2-SN:  147.649975 logprob:  0.254615, 0.047281 fisher:  -3.978002 (19.591 sec)
+1.913... L2-SN:  147.611607 logprob:  0.250510, 0.045844 fisher:  -3.978101 (20.814 sec)
+1.914... L2-SN:  147.844286 logprob:  0.252650, 0.044766 fisher:  -3.973800 (18.953 sec)
+1.915... L2-SN:  147.715916 logprob:  0.253889, 0.045797 fisher:  -3.972658 (19.462 sec)
+1.916... L2-SN:  147.911598 logprob:  0.256324, 0.048484 fisher:  -3.948178 (19.773 sec)
+1.917... L2-SN:  148.486048 logprob:  0.255961, 0.047516 fisher:  -3.964118 (19.275 sec)
+1.918... L2-SN:  148.333536 logprob:  0.256239, 0.046328 fisher:  -3.966358 (18.771 sec)
+1.919... L2-SN:  148.254320 logprob:  0.254262, 0.046141 fisher:  -3.962019 (21.510 sec)
+1.920... L2-SN:  148.302851 logprob:  0.253800, 0.046516 fisher:  -3.937952 (18.791 sec)
+1.921... L2-SN:  147.860912 logprob:  0.252893, 0.046094 fisher:  -3.974586 (19.129 sec)
+1.922... L2-SN:  148.201667 logprob:  0.252702, 0.044547 fisher:  -3.971312 (18.739 sec)
+1.923... L2-SN:  146.984539 logprob:  0.253618, 0.047484 fisher:  -3.953950 (19.213 sec)
+1.924... L2-SN:  147.505087 logprob:  0.253449, 0.045719 fisher:  -3.970932 (20.661 sec)
+1.925... L2-SN:  147.782529 logprob:  0.253363, 0.045578 fisher:  -3.937538 (19.873 sec)
+1.926... L2-SN:  147.605725 logprob:  0.256287, 0.046562 fisher:  -3.977215 (19.069 sec)
+1.927... L2-SN:  148.167999 logprob:  0.252507, 0.045781 fisher:  -3.960918 (21.458 sec)
+1.928... L2-SN:  148.097443 logprob:  0.253638, 0.046547 fisher:  -3.974759 (24.111 sec)
+1.929... L2-SN:  147.035397 logprob:  0.251365, 0.045828 fisher:  -4.019141 (18.627 sec)
+1.930... L2-SN:  147.549322 logprob:  0.251463, 0.046234 fisher:  -3.968969 (18.743 sec)
+2.1... L2-SN:  147.665827 logprob:  0.253379, 0.046906 fisher:  -3.982782 (19.176 sec)

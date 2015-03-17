@@ -47,7 +47,6 @@ double sqrt(int _X);
 double log(int _X);
 #endif
 
-#undef USE_MKL
 #ifdef USE_MKL
 #include <mkl.h>
 #include <mkl_cblas.h>
@@ -105,8 +104,8 @@ class Matrix {
 private:
     MTYPE* _data;
     bool _ownsData;
-    long _numRows, _numCols;
-    long _numElements;
+    long int _numRows, _numCols;
+    long int _numElements;
     CBLAS_TRANSPOSE _trans;
 
     void _init(MTYPE* data, long int numRows, long int numCols, bool transpose, bool ownsData);
@@ -160,7 +159,7 @@ public:
         return _data;
     }
 
-	inline MTYPE* getDataWrite() const {
+    inline MTYPE* getDataWrite() const {
         return _data;
     }
 
@@ -176,11 +175,11 @@ public:
         return _numCols;
     }
 
-    inline long getNumDataBytes() const {
+    inline long int getNumDataBytes() const {
         return _numElements * sizeof(MTYPE);
     }
 
-    inline long getNumElements() const {
+    inline long int getNumElements() const {
         return _numElements;
     }
 

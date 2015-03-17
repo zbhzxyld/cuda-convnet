@@ -1,0 +1,1 @@
+ shownet.py -f /home/xiangyuzhu/Downloads/convmodel --show-cost=L2-SN --cost-idx=0

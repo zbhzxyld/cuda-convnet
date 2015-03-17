@@ -25,7 +25,7 @@
  */
 
 #include <vector>
-#include <iostream>
+#include <iostream> 
 #include <string>
 
 #include <nvmatrix.cuh>
@@ -33,7 +33,6 @@
 #include <matrix.h>
 #include <convnet.cuh>
 #include <util.cuh>
-#include <cula_lapack_device.h>
 
 using namespace std;
 
@@ -44,7 +43,7 @@ using namespace std;
  */
 ConvNet::ConvNet(PyListObject* layerParams, int minibatchSize, int deviceID) : Thread(false),  _deviceID(deviceID), _data(NULL) {
     try {
-        int numLayers = (int)PyList_GET_SIZE(layerParams);
+        int numLayers = PyList_GET_SIZE(layerParams);
     
         for (int i = 0; i < numLayers; i++) {
             PyObject* paramsDict = PyList_GET_ITEM(layerParams, i);
@@ -99,24 +98,16 @@ Layer* ConvNet::initLayer(string& layerType, PyObject* paramsDict) {
         _layers.push_back(new CrossMapResponseNormLayer(this, paramsDict));
     } else if (layerType == "cnorm") {
         _layers.push_back(new ContrastNormLayer(this, paramsDict));
-    } else if (layerType == "cmrl2norm") {
-        _layers.push_back(new CrossMapResponseL2NormLayer(this, paramsDict));
     } else if (layerType == "softmax") {
         _layers.push_back(new SoftmaxLayer(this, paramsDict));
     } else if (layerType == "eltsum") {
         _layers.push_back(new EltwiseSumLayer(this, paramsDict));
     } else if (layerType == "eltmax") {
         _layers.push_back(new EltwiseMaxLayer(this, paramsDict));
-    } else if (layerType == "eltmul") {
-        _layers.push_back(new EltwiseMulLayer(this, paramsDict));
-	} else if (layerType == "concat") {
-        _layers.push_back(new ConcatLayer(this, paramsDict));
-	} else if (layerType == "neuron") {
+    } else if (layerType == "neuron") {
         _layers.push_back(new NeuronLayer(this, paramsDict));
     } else if (layerType == "nailbed") {
         _layers.push_back(new NailbedLayer(this, paramsDict));
-    } else if (layerType == "landmark") {
-        _layers.push_back(new LandmarkLayer(this, paramsDict));
     } else if (layerType == "blur") {
         _layers.push_back(new GaussianBlurLayer(this, paramsDict));
     } else if (layerType == "resize") {
@@ -125,10 +116,8 @@ Layer* ConvNet::initLayer(string& layerType, PyObject* paramsDict) {
         _layers.push_back(new RGBToYUVLayer(this, paramsDict));
     } else if (layerType == "rgb2lab") {
         _layers.push_back(new RGBToLABLayer(this, paramsDict));
-	} else if (layerType == "shift") {
+    } else if (layerType == "shift") {
         _layers.push_back(new ShiftLayer(this, paramsDict));
-	} else if (layerType == "shift_rand") {
-        _layers.push_back(new ShiftRandLayer(this, paramsDict));
     } else if (layerType == "data") {
         DataLayer *d = new DataLayer(this, paramsDict);
         _layers.push_back(d);
@@ -148,18 +137,18 @@ Layer* ConvNet::initLayer(string& layerType, PyObject* paramsDict) {
  * This executes in a new CPU thread so it's OK to initialize CUDA stuff here. 
  */
 void ConvNet::initCuda() { 
-    cudaSetDevice(_deviceID < 0 ? gpuGetMaxGflopsDeviceId() : _deviceID);
+    cudaSetDevice(_deviceID < 0 ? cutGetMaxGflopsDeviceId() : _deviceID);
     cudaDeviceSetCacheConfig(cudaFuncCachePreferShared);
     cublasInit();
     NVMatrix::initRandom(time(0));
-    copyToGPU();	// copy the parameters of net to GPU
+    copyToGPU();
 }
 
 void* ConvNet::run() {
     initCuda();
 
     while (true) {
-        Worker* worker = _workerQueue.dequeue();	// get a task from the queue and execute it
+        Worker* worker = _workerQueue.dequeue();
         worker->run();
         delete worker;
     }
@@ -198,7 +187,6 @@ void ConvNet::copyToGPU() {
     }
 }
 
-// update weights based on gradients
 void ConvNet::updateWeights() {
     for (int i = 0; i < _layers.size(); i++) {
         _layers[i]->updateWeights();
@@ -212,10 +200,9 @@ void ConvNet::reset() {
 }
 
 int ConvNet::getNumLayers() {
-    return (int)_layers.size();
+    return _layers.size();
 }
 
-// backward propagation
 void ConvNet::bprop(PASS_TYPE passType) {
     for (int i = 0; i < _costs.size(); i++) {
         _costs[i]->bprop(passType);
@@ -223,7 +210,6 @@ void ConvNet::bprop(PASS_TYPE passType) {
     reset();
 }
 
-// forward propagation
 void ConvNet::fprop(PASS_TYPE passType) {
     assert(_data != NULL);
     reset();
@@ -320,7 +306,7 @@ bool ConvNet::checkGradient(const string& name, float eps, Weights& weights) {
 
     Matrix gradCPU;
     weights.getGrad().copyToHost(gradCPU, true);
-    gradCPU.scale(-1.0f / _data->getNumCases());
+    gradCPU.scale(-1.0 / _data->getNumCases());
     float analNorm = gradCPU.norm();
     float numNorm = numGrad.norm();
     numGrad.subtract(gradCPU, diff);

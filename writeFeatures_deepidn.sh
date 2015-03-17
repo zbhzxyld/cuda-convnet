@@ -1,0 +1,1 @@
+python2.7 shownet.py -f /home/xiangyuzhu/projects/cuda-convnet/models/deepidn/ConvNet__2015-02-01_16.05.26/ --data-path=/data1/xiangyuzhu/lfw/batches/part2/ --data-path-test=/data1/xiangyuzhu/lfw/batches/part2/ --write-features=fc5 --feature-path=/data1/xiangyuzhu/lfw/features/deepidn/part2/ --test-range=9999 --data-provider=xgw-1-sn-4213 --gpu=1

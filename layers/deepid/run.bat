@@ -1,0 +1,1 @@
+python /home/xiangyuzhu/Projects/Convnet/convnet.py --data-path=/home/xiangyuzhu/Projects/Convnet/storage2/tiny/LFW/LFW_Part_Full/  --save-path=/home/xiangyuzhu/Projects/Convnet/storage2/tmp --test-range=6  --train-range=1-6  --layer-def=layer-lfw-part-full.cfg  --layer-params=layer-params-lfw-part-full.cfg --data-provider=lfw  --test-freq=13

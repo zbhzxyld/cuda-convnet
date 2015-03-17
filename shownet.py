@@ -22,7 +22,6 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import scipy.io
 import numpy
 import sys
 import getopt as opt
@@ -34,6 +33,7 @@ import random as r
 import numpy.random as nr
 from convnet import ConvNet
 from options import *
+import scipy.io
 
 try:
     import pylab as pl
@@ -167,9 +167,6 @@ class ShowConvNet(ConvNet):
                 num_filters *= layer['modules']
 
         filters = filters.reshape(channels, filters.shape[0]/channels, filters.shape[1])
-        scipy.io.savemat("G:\\byang\\cuda-convnet-L2\\exps\\L2-SN\\filters\\filters_%s" % self.show_filters, {'filters': filters})
-        print "Wrote filter file %s" % self.show_filters
-
         # Convert YUV filters to RGB
         if self.yuv_to_rgb and channels == 3:
             R = filters[0,:,:] + 1.28033 * filters[2,:,:]
@@ -260,7 +257,8 @@ class ShowConvNet(ConvNet):
             print "Wrote feature file %s" % path_out
             if next_data[1] == b1:
                 break
-        #pickle(os.path.join(self.feature_path, 'batches.meta'), {'source_model':self.load_file, 'num_vis':num_ftrs})
+        #pickle(os.path.join(self.feature_path, 'batches.meta'), {'source_model':self.load_file,
+        #                                                         'num_vis':num_ftrs})
                 
     def start(self):
         self.op.print_values()

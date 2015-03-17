@@ -1,0 +1,1 @@
+python ../../convnet.py --data-path=/media/XiangyuZhu_Data/database/webface/batches/part1/ --data-path-test=/media/XiangyuZhu_Data/database/webface/batches/part1/ --save-path=model/part1/ --test-range=1-1 --train-range=1-1 --layer-def=layer-define-webface.cfg --layer-params=layer-params-webface.cfg --test-freq=13 --data-provider=webface3

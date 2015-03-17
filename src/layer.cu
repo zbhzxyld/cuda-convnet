@@ -23,10 +23,8 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <helper_cuda.h>
+#include <cutil_inline.h>
 #include <iostream>
-#include <algorithm>
-#include <vector>
 
 #include <layer_kernels.cuh>
 #include <layer.cuh>
@@ -50,15 +48,12 @@ Layer::Layer(ConvNet* convNet, PyObject* paramsDict, bool trans) :
     
     _numGradProducersNext = 0;
     _foundGradConsumers = false;
-    _gradConsumer = (bool)pyDictGetInt(paramsDict, "gradConsumer");			// if this layer need gradients
-    _actsTarget = pyDictGetInt(paramsDict, "actsTarget");				// the place to hold the activies
-    _actsGradTarget = pyDictGetInt(paramsDict, "actsGradTarget");		// the place to hold the gradients
-    _conserveMem = (bool)pyDictGetInt(paramsDict, "conserveMem");				// release memory frequently
+    _gradConsumer = pyDictGetInt(paramsDict, "gradConsumer");
+    _actsTarget = pyDictGetInt(paramsDict, "actsTarget");
+    _actsGradTarget = pyDictGetInt(paramsDict, "actsGradTarget");
+    _conserveMem = pyDictGetInt(paramsDict, "conserveMem");
     _outputs = _actsTarget < 0 ? new NVMatrix() : NULL;
     _actsGrad = _actsGradTarget < 0 ? new NVMatrix() : NULL;
-
-	_dropout = pyDictGetFloat(paramsDict, "dropout");
-    _dropoutMask = new NVMatrix();
 }
 
 void Layer::fpropNext(PASS_TYPE passType) {
@@ -99,7 +94,7 @@ void Layer::fprop(NVMatrixV& v, PASS_TYPE passType) {
     _inputs.clear();
     _inputs.insert(_inputs.begin(), v.begin(), v.end());
     _outputs = _actsTarget < 0 ? _outputs : _inputs[_actsTarget];
-    _rcvdFInputs = (int)_prev.size();
+    _rcvdFInputs = _prev.size();
     for (NVMatrixV::iterator it = v.begin(); it != v.end(); ++it) {
         (*it)->transpose(_trans);
     }
@@ -116,18 +111,6 @@ void Layer::fprop(NVMatrixV& v, PASS_TYPE passType) {
         }
     }
     fpropNext(passType);
-
-	// drop out 
-	if (passType != PASS_TEST && _dropout > 0.0) {
-        _dropoutMask->resize(getActs().getNumRows(), getActs().getNumCols());
-        _dropoutMask->randomizeUniform();
-        _dropoutMask->biggerThanScalar(_dropout);
-        getActs().eltwiseMult(*_dropoutMask);
-    }
-      
-    if (passType == PASS_TEST && _dropout > 0.0) {
-        getActs().scale(1.0f - _dropout);
-    }
 }
 
 void Layer::bprop(PASS_TYPE passType) {
@@ -144,11 +127,6 @@ void Layer::bprop(NVMatrix& v, PASS_TYPE passType) {
         _prev[i]->getActsGrad().transpose(_trans);
     }
     getActs().transpose(_trans);
-
-	// drop out
-	if (_dropout > 0.0f) {
-      v.eltwiseMult(*_dropoutMask);
-    }
     
     bpropCommon(v, passType);
     
@@ -157,14 +135,14 @@ void Layer::bprop(NVMatrix& v, PASS_TYPE passType) {
         // gradient matrix I'm definitely not sharing.
         for (int i = 0; i < _prev.size(); i++) {
             if (_prev[i]->isGradConsumer() && _actsGradTarget != i) {
-                bpropActs(v, i, _prev[i]->getRcvdBInputs() > 0 ? 1.0f : 0.0f, passType);
+                bpropActs(v, i, _prev[i]->getRcvdBInputs() > 0 ? 1 : 0, passType);
                 _prev[i]->incRcvdBInputs();
             }
         }
         // Then propagate activity gradient to the layer whose activity gradient
         // matrix I'm sharing, if any.
         if (_actsGradTarget >= 0 && _prev[_actsGradTarget]->isGradConsumer()) {
-            bpropActs(v, _actsGradTarget, _prev[_actsGradTarget]->getRcvdBInputs() > 0 ? 1.0f : 0.0f, passType);
+            bpropActs(v, _actsGradTarget, _prev[_actsGradTarget]->getRcvdBInputs() > 0 ? 1 : 0, passType);
             _prev[_actsGradTarget]->incRcvdBInputs();
         }
     }
@@ -313,8 +291,8 @@ WeightLayer::WeightLayer(ConvNet* convNet, PyObject* paramsDict, bool trans, boo
     _biases = new Weights(hBiases, hBiasesInc, epsB, 0, momB, true);
 
     // Epsilons for finite-difference gradient checking operation
-    _wStep = 0.001f;
-    _bStep = 0.002f;
+    _wStep = 0.001;
+    _bStep = 0.002;
     
     delete &weightSourceLayerIndices;
     delete &weightSourceMatrixIndices;
@@ -364,22 +342,17 @@ Weights& WeightLayer::getWeights(int idx) {
     return _weights[idx];
 }
 
-Weights& WeightLayer::getBias() {
-	return *_biases;
-}
-
 /* 
  * =======================
  * FCLayer
  * =======================
  */
 FCLayer::FCLayer(ConvNet* convNet, PyObject* paramsDict) : WeightLayer(convNet, paramsDict, true, false) {
-    _wStep = 0.1f;
-    _bStep = 0.01f;
+    _wStep = 0.1;
+    _bStep = 0.01;
 }
 
 void FCLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//printf("11\n");
     getActs().addProduct(*_inputs[inpIdx], *_weights[inpIdx], scaleTargets, 1);
     if (scaleTargets == 0) {
         getActs().addVector(_biases->getW());
@@ -388,7 +361,6 @@ void FCLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
 
 void FCLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
     NVMatrix& weights_T = _weights[inpIdx].getW().getTranspose();
-	//printf("12\n");
     _prev[inpIdx]->getActsGrad().addProduct(v, weights_T, scaleTargets, 1);
     delete &weights_T;
 }
@@ -405,7 +377,7 @@ void FCLayer::bpropWeights(NVMatrix& v, int inpIdx, PASS_TYPE passType) {
     NVMatrix& prevActs_T = _prev[inpIdx]->getActs().getTranspose();
     float scaleInc = (_weights[inpIdx].getNumUpdates() == 0 && passType != PASS_GC) * _weights[inpIdx].getMom();
     float scaleGrad = passType == PASS_GC ? 1 : _weights[inpIdx].getEps() / numCases;
-    //printf("13\n");
+    
     _weights[inpIdx].getInc().addProduct(prevActs_T, v, scaleInc, scaleGrad);
     
     delete &prevActs_T;
@@ -453,7 +425,7 @@ void LocalLayer::copyToGPU() {
             cudaMalloc(&_filterConns->at(i).dFilterConns, sizeof(int) * _groups->at(i) * _filterChannels->at(i));
             cudaMemcpy(_filterConns->at(i).dFilterConns, _filterConns->at(i).hFilterConns,
                        sizeof(int) * _groups->at(i) * _filterChannels->at(i), cudaMemcpyHostToDevice);
-            getLastCudaError ("cudaMemcpy: failed");
+            cutilCheckMsg("cudaMemcpy: failed");
         }
     }
 }
@@ -465,7 +437,7 @@ void LocalLayer::copyToGPU() {
  */
 ConvLayer::ConvLayer(ConvNet* convNet, PyObject* paramsDict) : LocalLayer(convNet, paramsDict, true) {
     _partialSum = pyDictGetInt(paramsDict, "partialSum");
-    _sharedBiases = (bool)pyDictGetInt(paramsDict, "sharedBiases");
+    _sharedBiases = pyDictGetInt(paramsDict, "sharedBiases");
 }
 
 void ConvLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
@@ -682,84 +654,6 @@ void EltwiseMaxLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PAS
 
 /* 
  * =======================
- * EltwiseMulLayer
- * =======================
- */
-EltwiseMulLayer::EltwiseMulLayer(ConvNet* convNet, PyObject* paramsDict) : Layer(convNet, paramsDict, false) {
-}
-
-void EltwiseMulLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//printf("EltMul: fp %f \n", scaleTargets);
-    if (scaleTargets == 0) {
-		_inputs[inpIdx]->copy(getActs());
-    } else {
-		getActs().eltwiseMult(*_inputs[inpIdx]);
-
-		/*static int i = 0;
-		char fileName[256];
-		sprintf(fileName, "C:\\%d.txt", i++);
-		Matrix temp1;
-		getActs().copyToHost(temp1, true);
-		FILE* fid = fopen(fileName, "wt");
-		for (int i = 0; i < temp1.getNumElements(); i++) {
-			fprintf(fid, "%f\n", temp1.getData()[i]);
-		}
-		fclose(fid);*/
-    }
-}
-
-void EltwiseMulLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//printf("EltMul: bp %f \n", scaleTargets);
-	if (scaleTargets == 0 ) {
-		v.eltwiseMult(*_inputs[1 - inpIdx], _prev[inpIdx]->getActsGrad());
-    } else {
-        assert(&_prev[inpIdx]->getActsGrad() != &v);
-		NVMatrix grad;
-		v.eltwiseMult(*_inputs[1 - inpIdx], grad);
-		_prev[inpIdx]->getActsGrad().add(grad, scaleTargets, 1.0f);
-    }
-}
-
-/* 
- * =======================
- * ConcatLayer
- * =======================
- */
-ConcatLayer::ConcatLayer(ConvNet* convNet, PyObject* paramsDict) : Layer(convNet, paramsDict, false) {
-	_dims = pyDictGetIntV(paramsDict, "dims");
-	_d = 0;
-	_offset.resize(_dims->size(), 0);
-	for (int i = 0; i < _dims->size(); i++) {
-		_d += _dims->at(i);
-		if (i < _dims->size() - 1) 
-			_offset[i + 1] = _offset[i] + _dims->at(i);
-	}
-}
-
-void ConcatLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//printf("fp: %d\n", _offset[inpIdx]);
-    if (scaleTargets == 0) {
-		getActs().resize(_d, _inputs[inpIdx]->getLeadingDim());
-    } 
-	_inputs[inpIdx]->copy(getActs(), 0, -1, 0, -1, _offset[inpIdx], 0);
-}
-
-void ConcatLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//printf("bp: %d\n", _offset[inpIdx]);
-	if (scaleTargets == 0 ) {
-		_prev[inpIdx]->getActsGrad().resize(_dims->at(inpIdx), _inputs[inpIdx]->getLeadingDim());
-		v.copy(_prev[inpIdx]->getActsGrad(), _offset[inpIdx], _offset[inpIdx] + _dims->at(inpIdx), 
-			0, -1, 0, 0);
-    } else {
-		NVMatrix grad(_dims->at(inpIdx), _inputs[inpIdx]->getLeadingDim());
-		v.copy(grad, _offset[inpIdx], _offset[inpIdx] + _dims->at(inpIdx), 
-			0, -1, 0, 0);
-		_prev[inpIdx]->getActsGrad().add(grad, scaleTargets, 1.0f);
-    }
-}
-
-/* 
- * =======================
  * DataLayer
  * =======================
  */
@@ -790,18 +684,13 @@ bool DataLayer::isGradProducer() {
  */
 PoolLayer::PoolLayer(ConvNet* convNet, PyObject* paramsDict, bool trans) 
     : Layer(convNet, paramsDict, trans) {
-	
-	_pool = pyDictGetString(paramsDict, "pool");
-
-	// max, agv, landmark
     _channels = pyDictGetInt(paramsDict, "channels");
     _sizeX = pyDictGetInt(paramsDict, "sizeX");
-	_imgSize = pyDictGetInt(paramsDict, "imgSize");
-
-	// max, agv
     _start = pyDictGetInt(paramsDict, "start");
     _stride = pyDictGetInt(paramsDict, "stride");
     _outputsX = pyDictGetInt(paramsDict, "outputsX");
+    _imgSize = pyDictGetInt(paramsDict, "imgSize");
+    _pool = pyDictGetString(paramsDict, "pool");
 }
 
 PoolLayer& PoolLayer::makePoolLayer(ConvNet* convNet, PyObject* paramsDict) {
@@ -810,9 +699,7 @@ PoolLayer& PoolLayer::makePoolLayer(ConvNet* convNet, PyObject* paramsDict) {
         return *new MaxPoolLayer(convNet, paramsDict);
     } else if(_pool == "avg") {
         return *new AvgPoolLayer(convNet, paramsDict);
-	} else if(_pool == "landmark") {
-		return *new LandmarkPoolLayer(convNet, paramsDict);
-	}
+    }
     throw string("Unknown pooling layer type ") + _pool;
 }
 
@@ -850,22 +737,6 @@ void MaxPoolLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_T
 
 /* 
  * =====================
- * LandmarkPoolLayer
- * =====================
- */
-LandmarkPoolLayer::LandmarkPoolLayer(ConvNet* convNet, PyObject* paramsDict) : PoolLayer(convNet, paramsDict, false) {
-}
-
-void LandmarkPoolLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    convLandmarkPool(*_inputs[0], *_inputs[1], getActs(), _channels, _sizeX, _outputsX, MaxPooler());
-}
-
-void LandmarkPoolLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    convLandmarkMaxUndo(_prev[0]->getActs(), *_inputs[1], v, getActs(), _prev[inpIdx]->getActsGrad(), _sizeX, _outputsX, scaleTargets, 1);
-}
-
-/* 
- * =====================
  * NailbedLayer
  * =====================
  */
@@ -883,28 +754,6 @@ void NailbedLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType)
 
 void NailbedLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
     convBedOfNailsUndo(v, _prev[0]->getActsGrad(), _channels, _imgSize, _start, _stride, scaleTargets, 1);
-}
-
-/* 
- * =====================
- * LandmarkLayer
- * =====================
- */
-LandmarkLayer::LandmarkLayer(ConvNet* convNet, PyObject* paramsDict) : Layer(convNet, paramsDict, false) {
-    _channels = pyDictGetInt(paramsDict, "channels");
-    _outputsX = pyDictGetInt(paramsDict, "outputsX");
-    _imgSize = pyDictGetInt(paramsDict, "imgSize");
-}
-
-void LandmarkLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//convBedOfNails(*_inputs[0], getActs(), _channels, _imgSize, 0, 6, 0, 1);
-    convLandmark(*_inputs[0], *_inputs[1], getActs(), _channels, _imgSize, _outputsX, 0, 1);
-	//printf("%dX%d\n", _inputs[1]->getNumRows(), _inputs[1]->getNumCols());
-}
-
-void LandmarkLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	//convBedOfNailsUndo(v, _prev[0]->getActsGrad(), _channels, _imgSize, 0, 6, scaleTargets, 1);
-    convLandmarkUndo(v, *_inputs[1], _prev[0]->getActsGrad(), _channels, _imgSize, _outputsX, scaleTargets, 1);
 }
 
 /* 
@@ -978,7 +827,7 @@ void RGBToYUVLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_
  * =====================
  */
 RGBToLABLayer::RGBToLABLayer(ConvNet* convNet, PyObject* paramsDict) : Layer(convNet, paramsDict, false) {
-    _center = (bool)pyDictGetInt(paramsDict, "center");
+    _center = pyDictGetInt(paramsDict, "center");
 }
 
 void RGBToLABLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
@@ -1024,7 +873,7 @@ void ResponseNormLayer::truncBwdActs() {
  * =====================
  */
 CrossMapResponseNormLayer::CrossMapResponseNormLayer(ConvNet* convNet, PyObject* paramsDict) : ResponseNormLayer(convNet, paramsDict) {
-    _blocked = (bool)pyDictGetInt(paramsDict, "blocked");
+    _blocked = pyDictGetInt(paramsDict, "blocked");
 }
 
 void CrossMapResponseNormLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
@@ -1065,22 +914,6 @@ void ContrastNormLayer::truncBwdActs() {
 
 /* 
  * =====================
- * CrossMapResponseL2NormLayer
- * =====================
- */
-CrossMapResponseL2NormLayer::CrossMapResponseL2NormLayer(ConvNet* convNet, PyObject* paramsDict) : ResponseNormLayer(convNet, paramsDict) {
-}
-
-void CrossMapResponseL2NormLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    convResponseL2NormCrossMap(*_inputs[0], _denoms, getActs(), _channels);
-}
-
-void CrossMapResponseL2NormLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    convResponseL2NormCrossMapUndo(v, _denoms, _prev[0]->getActs(), getActs(), _prev[0]->getActsGrad(), _channels, scaleTargets, 1);
-}
-
-/* 
- * =====================
  * CostLayer
  * =====================
  */
@@ -1112,47 +945,16 @@ doublev& CostLayer::getCost() {
 CostLayer& CostLayer::makeCostLayer(ConvNet* convNet, string& type, PyObject* paramsDict) {
     if (type == "cost.logreg") {
         return *new LogregCostLayer(convNet, paramsDict);
-    } else if (type == "cost.sum2") {
+	} else if (type == "cost.sum2") {
         return *new SumOfSquaresCostLayer(convNet, paramsDict);
-	} else if (type == "cost.cosine") {
-		return *new CosineCostLayer(convNet, paramsDict);
-	} else if (type == "cost.cosine2") {
-		return *new Cosine2CostLayer(convNet, paramsDict);
-	} else if (type == "cost.cosine3") {
-		return *new Cosine3CostLayer(convNet, paramsDict);
-	} else if (type == "cost.cosine4") {
-		return *new Cosine4CostLayer(convNet, paramsDict);
-	} else if (type == "cost.cosine5") {
-		return *new Cosine5CostLayer(convNet, paramsDict);
-	} else if (type == "cost.agr") {
-		return *new AGRCostLayer(convNet, paramsDict);
-	} else if (type == "cost.fisher") {
-		return *new FisherCostLayer(convNet, paramsDict);
-	} else if (type == "cost.fisher2") {
+    } else if (type == "cost.fisher2") {
 		return *new Fisher2CostLayer(convNet, paramsDict);
-	} else if (type == "cost.knife") {
-		return *new KnifeCostLayer(convNet, paramsDict);
-	} else if (type == "cost.knife2") {
-		return *new Knife2CostLayer(convNet, paramsDict);
-	} else if (type == "cost.dp") {
-		return *new DPCostLayer(convNet, paramsDict);
-	} else if (type == "cost.dp2") {
-		return *new DP2CostLayer(convNet, paramsDict);
-	} else if (type == "cost.attr") {
-		return *new AttrCostLayer(convNet, paramsDict);
-	} else if (type == "cost.l2") {
-		return *new L2CostLayer(convNet, paramsDict);
 	} else if (type == "cost.l2-sn") {
 		return *new L2SNCostLayer(convNet, paramsDict);
-	} else if (type == "cost.cosine-sn") {
-		return *new CosineSNCostLayer(convNet, paramsDict);
-	} else if (type == "cost.l3-sn") {
-		return *new L3SNCostLayer(convNet, paramsDict);
-	} else if (type == "cost.joint1") {
-		return *new Joint1CostLayer(convNet, paramsDict);
-	} else if (type == "cost.l2-reg") {
-		return *new L2regCostLayer(convNet, paramsDict);
-	}
+    } else if (type == "cost.l2-reg") {
+        return *new L2regCostLayer(convNet, paramsDict);
+    }
+
     throw string("Unknown cost layer type ") + type;
 }
 
@@ -1172,16 +974,6 @@ void LogregCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passTy
         int numCases = labels.getNumElements();
         NVMatrix& trueLabelLogProbs = getActs(), correctProbs;
         computeLogregCost(labels, probs, trueLabelLogProbs, correctProbs);
-
-		// for debug
-		/*Matrix temp;
-		probs.copyToHost(temp, true);
-		FILE* fid = fopen("C:\\1.txt", "wt");
-		for (int i = 0; i < temp.getNumElements(); i++) {
-			fprintf(fid, "%f\n", temp.getData()[i]);
-		}
-		fclose(fid);*/
-
         _costv.clear();
         _costv.push_back(-trueLabelLogProbs.sum());
         _costv.push_back(numCases - correctProbs.sum());
@@ -1219,234 +1011,6 @@ void SumOfSquaresCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTarget
     _prev[inpIdx]->getActsGrad().add(*_inputs[0], scaleTargets, -2 * _coeff);
 }
 
-/* 
- * =====================
- * CosineCostLayer
- * =====================
- */
-CosineCostLayer::CosineCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void CosineCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& gallery = *_inputs[1];
-		NVMatrix& probe = *_inputs[2];
-        int numCases = labels.getNumElements();
-        NVMatrix& output = getActs();
-        computeCosineCost(labels, gallery, probe, output);
-        _costv.clear();
-        _costv.push_back(output.sum());
-    }
-}
-
-void CosineCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& gallery = _prev[1]->getActs();
-		NVMatrix& probe = _prev[2]->getActs();
-		NVMatrix& galleryTarget = _prev[1]->getActsGrad();
-		NVMatrix& probeTarget = _prev[2]->getActsGrad();
-
-		computeCosineGrad(labels, gallery, probe, galleryTarget, probeTarget, 
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * Cosine2CostLayer (matrix formulation, dual network)
- * =====================
- */
-Cosine2CostLayer::Cosine2CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void Cosine2CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& gallery = *_inputs[1];
-		NVMatrix& probe = *_inputs[2];
-        int numCases = labels.getNumElements();
-        float cost = computeCosine2Cost(labels, gallery, probe);
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void Cosine2CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& gallery = _prev[1]->getActs();
-		NVMatrix& probe = _prev[2]->getActs();
-		NVMatrix& galleryTarget = _prev[1]->getActsGrad();
-		NVMatrix& probeTarget = _prev[2]->getActsGrad();
-
-		computeCosine2Grad(labels, gallery, probe, galleryTarget, probeTarget, 
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * Cosine3CostLayer (deviance cost, single network)
- * =====================
- */
-Cosine3CostLayer::Cosine3CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void Cosine3CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its two inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        float cost = computeCosine3Cost(labels, data);
-
-		// for debug
-		/*FILE* fid = fopen("c:\\cost.txt", "at");
-		fprintf(fid, "%f\n", cost);
-		fclose(fid);*/
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void Cosine3CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& target = _prev[1]->getActsGrad();
-
-		computeCosine3Grad(labels, data, target, scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * Cosine4CostLayer (fisher cost, single network)
- * =====================
- */
-Cosine4CostLayer::Cosine4CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-	_alpha = pyDictGetFloat(paramsDict, "alpha");
-}
-
-void Cosine4CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its two inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        float cost = computeCosine4Cost(labels, data, _alpha);
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void Cosine4CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& target = _prev[1]->getActsGrad();
-
-		computeCosine4Grad(labels, data, _alpha, target, scaleTargets == 1, _coeff);
-	}
-}
-
-
-/* 
- * =====================
- * Cosine5CostLayer (deviance cost, single network, multi-part score fusion)
- * =====================
- */
-Cosine5CostLayer::Cosine5CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-	_alpha = pyDictGetFloat(paramsDict, "alpha");
-	_beta = pyDictGetFloat(paramsDict, "beta");
-	_gamma = pyDictGetFloat(paramsDict, "gamma");
-}
-
-void Cosine5CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its two inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data1 = *_inputs[1];
-		NVMatrix& data2 = *_inputs[2];
-		NVMatrix& data3 = *_inputs[3];
-        int numCases = labels.getNumElements();
-        float cost = computeCosine5Cost(labels, data1, data2, data3, 
-			_alpha, _beta, _gamma);
-
-		// for debug
-		/*FILE* fid = fopen("c:\\cost.txt", "at");
-		fprintf(fid, "%f\n", cost);
-		fclose(fid);
-*/
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void Cosine5CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data1 = _prev[1]->getActs();
-		NVMatrix& data2 = _prev[2]->getActs();
-		NVMatrix& data3 = _prev[3]->getActs();
-		NVMatrix& target1 = _prev[1]->getActsGrad();
-		NVMatrix& target2 = _prev[2]->getActsGrad();
-		NVMatrix& target3 = _prev[3]->getActsGrad();
-
-		computeCosine5Grad(labels, data1, data2, data3, 
-			_alpha, _beta, _gamma,
-			target1, target2, target3, scaleTargets == 1, _coeff);
-	}
-}
-
-
-/* 
- * =====================
- * FisherCostLayer (dual networks)
- * =====================
- */
-FisherCostLayer::FisherCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void FisherCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& gallery = *_inputs[1];
-		NVMatrix& probe = *_inputs[2];
-        int numCases = labels.getNumElements();
-        float cost = computeFisherCost(labels, gallery, probe);
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void FisherCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& gallery = _prev[1]->getActs();
-		NVMatrix& probe = _prev[2]->getActs();
-		NVMatrix& galleryTarget = _prev[1]->getActsGrad();
-		NVMatrix& probeTarget = _prev[2]->getActsGrad();
-
-		computeFisherGrad(labels, gallery, probe, galleryTarget, probeTarget, 
-			scaleTargets == 1, _coeff);
-	}
-}
 
 /* 
  * =====================
@@ -1483,272 +1047,12 @@ void Fisher2CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PA
 }
 
 
-/* 
- * =====================
- * KnifeCostLayer (Euclidian distance, single network)
- * =====================
- */
-KnifeCostLayer::KnifeCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void KnifeCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its two inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        float cost = computeKnifeCost(labels, data);
-
-		// for debug
-		/*FILE* fid = fopen("c:\\cost.txt", "at");
-		fprintf(fid, "%f\n", cost);
-		fclose(fid);*/
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void KnifeCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& target = _prev[1]->getActsGrad();
-
-		computeKnifeGrad(labels, data, target, 
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * Knife2CostLayer (Cosine similarity, single network)
- * =====================
- */
-Knife2CostLayer::Knife2CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void Knife2CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its two inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        float cost = computeKnife2Cost(labels, data);
-
-		// for debug
-		/*FILE* fid = fopen("c:\\cost.txt", "at");
-		fprintf(fid, "%f\n", cost);
-		fclose(fid);*/
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void Knife2CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& target = _prev[1]->getActsGrad();
-
-		computeKnife2Grad(labels, data, target, 
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * DPCostLayer (Dot product, dual networks)
- * =====================
- */
-DPCostLayer::DPCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void DPCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& gallery = *_inputs[1];
-		NVMatrix& probe = *_inputs[2];
-        int numCases = labels.getNumElements();
-        float cost = computeDPCost(labels, gallery, probe);
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void DPCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& gallery = _prev[1]->getActs();
-		NVMatrix& probe = _prev[2]->getActs();
-		NVMatrix& galleryTarget = _prev[1]->getActsGrad();
-		NVMatrix& probeTarget = _prev[2]->getActsGrad();
-
-		computeDPGrad(labels, gallery, probe, galleryTarget, probeTarget,
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * DP2CostLayer (Dot product, single network)
- * =====================
- */
-DP2CostLayer::DP2CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void DP2CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        float cost = computeDP2Cost(labels, data);
-
-        _costv.clear();
-        _costv.push_back(cost * numCases);
-    }
-}
-
-void DP2CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& target = _prev[1]->getActsGrad();
-
-		computeDP2Grad(labels, data, target, 
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * MixedCostLayer for Age, Gender and Race
- * =====================
- */
-AGRCostLayer::AGRCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void AGRCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& age = *_inputs[0];
-		NVMatrix& gender = *_inputs[1];
-		NVMatrix& race = *_inputs[2];
-		NVMatrix& predict = *_inputs[3];
-        int numCases = age.getNumElements();
-
-        NVMatrix& output = getActs();
-		NVMatrix ageLoss, genderLoss, raceLoss;
-        computeAGRCost(age, gender, race, predict, ageLoss, genderLoss, raceLoss, output);
-        _costv.clear();
-        _costv.push_back(output.sum());
-		_costv.push_back(ageLoss.sum());
-		_costv.push_back(genderLoss.sum());
-		_costv.push_back(raceLoss.sum());
-    }
-}
-
-void AGRCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	assert(inpIdx == 3);
-
-	NVMatrix& age = *_inputs[0];
-	NVMatrix& gender = *_inputs[1];
-	NVMatrix& race = *_inputs[2];
-	NVMatrix& predict = *_inputs[3];
-
-	NVMatrix& target = _prev[3]->getActsGrad();
-
-	computeAGRGrad(age, gender, race, predict, target, 
-		scaleTargets == 1, _coeff);
-}
-
-/* 
- * =====================
- * MixedCostLayer for 21 attributes
- * =====================
- */
-AttrCostLayer::AttrCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void AttrCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& attr = *_inputs[0];
-		NVMatrix& predict = *_inputs[1];
-        int numCases = attr.getNumElements();
-
-        NVMatrix& output = getActs();
-        computeAttrCost(attr, predict, output);
-        _costv.clear();
-        _costv.push_back(output.sum());
-    }
-}
-
-void AttrCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	assert(inpIdx == 1);
-
-	NVMatrix& attr = *_inputs[0];
-	NVMatrix& predict = *_inputs[1];
-	NVMatrix& target = _prev[1]->getActsGrad();
-
-	computeAttrGrad(attr, predict, target, 
-		scaleTargets == 1, _coeff);
-}
-
-
-/* 
- * =====================
- * L2CostLayer for dual network
- * =====================
- */
-L2CostLayer::L2CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-	_m = pyDictGetFloat(paramsDict, "m");
-}
-
-void L2CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& gallery = *_inputs[1];
-		NVMatrix& probe = *_inputs[2];
-        int numCases = labels.getNumElements();
-        NVMatrix& output = getActs();
-        computeL2Cost(labels, gallery, probe, output, _m);
-        _costv.clear();
-        _costv.push_back(output.sum());
-    }
-}
-
-void L2CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& gallery = _prev[1]->getActs();
-		NVMatrix& probe = _prev[2]->getActs();
-		NVMatrix& galleryTarget = _prev[1]->getActsGrad();
-		NVMatrix& probeTarget = _prev[2]->getActsGrad();
-
-		computeL2Grad(labels, gallery, probe, galleryTarget, probeTarget, _m,
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
+/*
  * =====================
  * L2CostLayer for single network
  * =====================
  */
-L2SNCostLayer::L2SNCostLayer(ConvNet* convNet, PyObject* paramsDict) 
+L2SNCostLayer::L2SNCostLayer(ConvNet* convNet, PyObject* paramsDict)
 	: CostLayer(convNet, paramsDict, false) {
 	_m = pyDictGetFloat(paramsDict, "m");
 }
@@ -1779,127 +1083,18 @@ void L2SNCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_
 
 /* 
  * =====================
- * CosineCostLayer for single network
- * =====================
- */
-CosineSNCostLayer::CosineSNCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-}
-
-void CosineSNCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        NVMatrix& output = getActs();
-        computeCosineSNCost(labels, data, output);
-        _costv.clear();
-        _costv.push_back(output.sum());
-    }
-}
-
-void CosineSNCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& dataTarget = _prev[1]->getActsGrad();
-
-		computeCosineSNGrad(labels, data, dataTarget, 
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * L3CostLayer for single network
- * =====================
- */
-L3SNCostLayer::L3SNCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-	_m = pyDictGetFloat(paramsDict, "m");
-}
-
-void L3SNCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-        int numCases = labels.getNumElements();
-        NVMatrix& output = getActs();
-        computeL3SNCost(labels, data, output, _m);
-        _costv.clear();
-        _costv.push_back(output.sum());
-    }
-}
-
-void L3SNCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& dataTarget = _prev[1]->getActsGrad();
-
-		computeL3SNGrad(labels, data, dataTarget, _m,
-			scaleTargets == 1, _coeff);
-	}
-}
-
-/* 
- * =====================
- * Joint1CostLayer for single network
- * =====================
- */
-Joint1CostLayer::Joint1CostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
-	_m = pyDictGetFloat(paramsDict, "m");
-	_lambda = pyDictGetFloat(paramsDict, "lambda");
-}
-
-void Joint1CostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    // This layer uses its three inputs together
-    if (inpIdx == 0) {
-        NVMatrix& labels = *_inputs[0];
-        NVMatrix& data = *_inputs[1];
-		NVMatrix& probs = *_inputs[2];
-        int numCases = labels.getNumElements();
-        NVMatrix& output = getActs();
-        computeJoint1Cost(labels, data, probs, output, _m, _lambda);
-        _costv.clear();
-        _costv.push_back(output.sum());
-    }
-}
-
-void Joint1CostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	if (inpIdx == 1) {
-		NVMatrix& labels = _prev[0]->getActs();
-		NVMatrix& data = _prev[1]->getActs();
-		NVMatrix& dataTarget = _prev[1]->getActsGrad();
-		NVMatrix& probs = _prev[2]->getActs();
-		NVMatrix& probsTarget = _prev[2]->getActsGrad();
-
-		computeJoint1Grad(labels, data, probs, dataTarget, probsTarget, _m, _lambda,
-			scaleTargets == 1, _coeff);
-	}
-}
-
-
-
-
-
-/* 
- * =====================
  * L2 CostLayer for vector regression
  * =====================
  */
 L2regCostLayer::L2regCostLayer(ConvNet* convNet, PyObject* paramsDict) 
-	: CostLayer(convNet, paramsDict, false) {
+    : CostLayer(convNet, paramsDict, false) {
 }
 
 void L2regCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
     // This layer uses its three inputs together
     if (inpIdx == 0) {
         NVMatrix& ground = *_inputs[0];
-		NVMatrix& predict = *_inputs[1];
+        NVMatrix& predict = *_inputs[1];
         int numCases = ground.getNumElements();
 
         NVMatrix& output = getActs();
@@ -1910,19 +1105,18 @@ void L2regCostLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passTyp
 }
 
 void L2regCostLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-	assert(inpIdx == 1);
+    assert(inpIdx == 1);
 
-	NVMatrix& ground = *_inputs[0];
-	NVMatrix& predict = *_inputs[1];
-	NVMatrix& target = _prev[1]->getActsGrad();
+    NVMatrix& ground = *_inputs[0];
+    NVMatrix& predict = *_inputs[1];
+    NVMatrix& target = _prev[1]->getActsGrad();
 
-	computeL2regGrad(ground, predict, target, 
-		scaleTargets == 1, _coeff);
+    computeL2regGrad(ground, predict, target, 
+        scaleTargets == 1, _coeff);
 }
 
 
-
-/* 
+/*
  * =====================
  * ShiftLayer
  * =====================
@@ -1945,34 +1139,5 @@ void ShiftLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYP
 }
 
 void ShiftLayer::copyToGPU() {
-    _filter.copyFromHost(*_hFilter, true);
-}
-
-
-
-/* 
- * =====================
- * ShiftRandLayer
- * =====================
- */
-ShiftRandLayer::ShiftRandLayer(ConvNet* convNet, PyObject* paramsDict) : Layer(convNet, paramsDict, false) {
-    _channels = pyDictGetInt(paramsDict, "channels");
-    _hFilter = pyDictGetMatrix(paramsDict, "filter");
-	srand((int)time(NULL)); 
-}
-
-void ShiftRandLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    convShiftRand(*_inputs[0], _filter, getActs(), _channels);
-}
-
-// This is here just for completeness' sake. Why would you backpropagate
-// through a blur filter?
-void ShiftRandLayer::bpropActs(NVMatrix& v, int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    //NVMatrix& tgt1 = _prev[0]->getRcvdBInputs() > 0 ? _actGradsTmp : _prev[0]->getActsGrad();
-    //convShift(v, _filter, tgt1, _channels);
-    //convShift(tgt1, _filter, _prev[0]->getActsGrad(), _channels);
-}
-
-void ShiftRandLayer::copyToGPU() {
     _filter.copyFromHost(*_hFilter, true);
 }

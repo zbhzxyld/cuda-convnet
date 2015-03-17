@@ -1,0 +1,1 @@
+python shownet.py -f /home/xiangyuzhu/Downloads/convmodel --show-cost=log-prob --cost-idx=0

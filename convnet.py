@@ -29,6 +29,7 @@ from data import *
 from options import *
 from gpumodel import *
 import sys
+sys.path.append('/home/xiangyuzhu/anaconda/lib/python2.7/site-packages')
 import math as m
 import layer as lay
 from convdata import *
@@ -43,7 +44,7 @@ class ConvNet(IGPUModel):
         IGPUModel.__init__(self, "ConvNet", op, load_dic, filename_options, dp_params=dp_params)
         
     def import_model(self):
-        lib_name = "pyconvnet" if is_windows_machine() else "pyconvnet"
+        lib_name = "pyconvnet" if is_windows_machine() else "_ConvNet"
         print "========================="
         print "Importing %s C++ module" % lib_name
         self.libmodel = __import__(lib_name) 
@@ -101,7 +102,6 @@ class ConvNet(IGPUModel):
             self.op.set_value('train_batch_range', '0')
             self.op.set_value('test_batch_range', '0')
             self.op.set_value('data_path', '')
-            self.op.set_value('data_path_test', '')
             
     # Make sure the data provider returned data in proper format
     def parse_batch_data(self, batch_data, train=True):
@@ -176,7 +176,7 @@ class ConvNet(IGPUModel):
         op.add_option("mini", "minibatch_size", IntegerOptionParser, "Minibatch size", default=128)
         op.add_option("layer-def", "layer_def", StringOptionParser, "Layer definition file", set_once=True)
         op.add_option("layer-params", "layer_params", StringOptionParser, "Layer parameter file")
-        op.add_option("check-grads", "check_grads", BooleanOptionParser, "Check gradients and quit?", default=0, excuses=['data_path', 'data_path_test', 'save_path','train_batch_range','test_batch_range'])
+        op.add_option("check-grads", "check_grads", BooleanOptionParser, "Check gradients and quit?", default=0, excuses=['data_path','save_path','train_batch_range','test_batch_range'])
         op.add_option("multiview-test", "multiview_test", BooleanOptionParser, "Cropped DP: test on multiple patches?", default=0, requires=['logreg_name'])
         op.add_option("crop-border", "crop_border", IntegerOptionParser, "Cropped DP: crop border size", default=4, set_once=True)
         op.add_option("logreg-name", "logreg_name", StringOptionParser, "Cropped DP: logreg layer name (for --multiview-test)", default="")
@@ -185,7 +185,7 @@ class ConvNet(IGPUModel):
         op.add_option("conserve-mem", "conserve_mem", BooleanOptionParser, "Conserve GPU memory (slower)?", default=0)
                 
         op.delete_option('max_test_err')
-        op.options["max_filesize_mb"].default = 4000
+        op.options["max_filesize_mb"].default = 0
         op.options["testing_freq"].default = 50
         op.options["num_epochs"].default = 50000
         op.options['dp_type'].default = None
@@ -193,16 +193,24 @@ class ConvNet(IGPUModel):
         DataProvider.register_data_provider('cifar', 'CIFAR', CIFARDataProvider)
         DataProvider.register_data_provider('dummy-cn-n', 'Dummy ConvNet', DummyConvNetDataProvider)
         DataProvider.register_data_provider('cifar-cropped', 'Cropped CIFAR', CroppedCIFARDataProvider)
-        DataProvider.register_data_provider('dummy-face-n', 'Dummy Face', DummyFaceDataProvider)
-
+        DataProvider.register_data_provider('webface1', 'WEB_1', WEBDataProvider_1)
+        DataProvider.register_data_provider('webface3', 'WEB_3', WEBDataProvider_3)
+        DataProvider.register_data_provider('webface4', 'WEB_4', WEBDataProvider_4)
         DataProvider.register_data_provider('xgw-1-sn-4213', 'XGW-55x55x3-SN 4213', XGW1SN4213DataProvider)
-        DataProvider.register_data_provider('xgw-online-55x55-4131', 'XGW Online 55x55x3 with 4131 people', XGW_ONLINE_55x55_4131_DataProvider)
+        DataProvider.register_data_provider('xgw-1-sn-2nd', 'XGW-55x55x3-SN 2nd', XGW1SN2ndDataProvider)
+        DataProvider.register_data_provider('xgw-deepid-online', 'XGW-55x55x3-Deepid Online', XGW_DEEPID_ONLINE_DataProvider)
+        DataProvider.register_data_provider('xgw-deepid-online-65x65-4131', 'XGW-65x65x3-Deepid Online 4213', XGW_DEEPID_ONLINE_65X65_4131_DataProvider)
+        DataProvider.register_data_provider('xgw-deepid-attr-online', 'XGW-55x55x3-Deepid with Attr Online', XGW_DEEPID_ATTR_ONLINE_DataProvider)
+        DataProvider.register_data_provider('xgw-1-sn-4213-attr', 'XGW-55x55x3-Deepid with Attr', XGW_DEEPID_ATTR_DataProvider)
+        DataProvider.register_data_provider('xgw-attr-online', 'XGW-55x55x3-Deepid with Attr', XGW_ATTR_ONLINE_DataProvider)
+        DataProvider.register_data_provider('xgw-deepid-10575-online', 'XGW-55x55x3-Deepid Online 10575', XGW_DEEPID_10575_ONLINE_DataProvider)
 
         return op
     
 if __name__ == "__main__":
     #nr.seed(5)
     nr.seed()
+    random.seed()
     op = ConvNet.get_options_parser()
 
     op, load_dic = IGPUModel.parse_options(op)

@@ -28,7 +28,6 @@
 #define	CONV_UTIL_CUH
 
 #include <nvmatrix.cuh>
-#include <helper_image.h>
 
 void convLocalMaxUndo(NVMatrix& images, NVMatrix& maxGrads, NVMatrix& maxActs, NVMatrix& target,
                       int subsX, int startX, int strideX, int outputsX);
@@ -40,8 +39,6 @@ void convLocalAvgUndo(NVMatrix& avgGrads, NVMatrix& target,
                       float scaleTargets, float scaleOutput);
 void convLocalMaxUndo(NVMatrix& images, NVMatrix& maxGrads, NVMatrix& maxActs, NVMatrix& target,
                       int subsX, int startX, int strideX, int outputsX, float scaleTargets, float scaleOutput);
-void convLandmarkMaxUndo(NVMatrix& images, NVMatrix& landmarks, NVMatrix& maxGrads, NVMatrix& maxActs, NVMatrix& target,
-                      int subsX, int outputsX, float scaleTargets, float scaleOutput);
 
 void convResponseNorm(NVMatrix& images, NVMatrix& denoms, NVMatrix& target, int numFilters, int sizeX, float addScale, float powScale);
 void convResponseNormUndo(NVMatrix& outGrads, NVMatrix& denoms, NVMatrix& inputs, NVMatrix& acts, NVMatrix& target, int numFilters,
@@ -53,16 +50,10 @@ void convContrastNormUndo(NVMatrix& outGrads, NVMatrix& denoms, NVMatrix& meanDi
 void convGaussianBlur(NVMatrix& images, NVMatrix& filter, NVMatrix& target, bool horiz, int numChannels,
                       float scaleTargets, float scaleOutputs);
 void convShift(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels);
-void convShiftRand(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels);
 void convBedOfNails(NVMatrix& images, NVMatrix& target, int numChannels, int imgSize, int startX,
                     int strideX, float scaleTargets, float scaleOutput);
 void convBedOfNailsUndo(NVMatrix& actsGrad, NVMatrix& target, int numChannels, int imgSize,
                         int startX, int strideX, float scaleTargets, float scaleOutput);
-
-void convLandmark(NVMatrix& images, NVMatrix& landmarks, NVMatrix& target, int numChannels, int imgSize, int outputsX,
-						float scaleTargets, float scaleOutput);
-void convLandmarkUndo(NVMatrix& actsGrad, NVMatrix& landmarks, NVMatrix& target, int numChannels, int imgSize, int outputsX,
-                        float scaleTargets, float scaleOutput);
 
 void convResizeBilinear(NVMatrix& images, NVMatrix& target, int imgSize, int tgtSize, float scale);
 void convRGBToYUV(NVMatrix& images, NVMatrix& target);
@@ -77,9 +68,6 @@ void convResponseNormCrossMapUndo(NVMatrix& outGrads, NVMatrix& denoms, NVMatrix
                          int sizeF, float addScale, float powScale, bool blocked, float scaleTargets, float scaleOutput);
 void convResponseNormCrossMap(NVMatrix& images, NVMatrix& denoms, NVMatrix& target, int numFilters, int sizeF, float addScale,
                               float powScale, bool blocked);
-void convResponseL2NormCrossMapUndo(NVMatrix& outGrads, NVMatrix& denoms, NVMatrix& inputs, NVMatrix& acts, NVMatrix& target, int numFilters,
-                         float scaleTargets, float scaleOutput);
-void convResponseL2NormCrossMap(NVMatrix& images, NVMatrix& denoms, NVMatrix& target, int numFilters);
 
 class AvgPooler {
 public:
@@ -333,101 +321,6 @@ __global__ void kLocalPool2(float* imgs, float* target, const int imgSize, const
 }
 
 /*
- * Block size B_YxB_X
- * blockIdx.x determines output.x, image idx in batches of B_X*imgsPerThread
- * blockIdx.y determines output.y, filter idx in batches of B_Y*filtersPerThread
- * 
- * So each block does one output for some number of images/filters.
- * 
- * threadIdx.x determines img idx
- * threadIdx.y determines filter idx
- * 
- * imgs:        (numFilters, imgPixels, numImages)
- * landmarks:	(numOutputs * 2, numImages)
- * target:      (numFilters, numOutputs, numImages)
- * 
- * numImages must be divisible by B_X*imgsPerThread if checkCaseBounds is false
- */
-
-template<class Agg, int B_Y, int B_X, int imgsPerThread, int filtersPerThread, bool checkCaseBounds>
-__global__ void kLandmarkPool(float* imgs, float* landmarks, float* target, 
-						   const int imgSize, const int numFilters,
-                           const int numImages, const int subsX, 
-                           const int outputsX, Agg agg) {
-    const int numImgBlocks = DIVUP(numImages,B_X*imgsPerThread);
-    const int numFilterBlocks = DIVUP(numFilters, B_Y*filtersPerThread);
-    const int outputIdxX = blockIdx.x / numImgBlocks;
-    const int outputIdxY = blockIdx.y / numFilterBlocks;
-    const int blockImgIdx = (blockIdx.x % numImgBlocks) * B_X * imgsPerThread;
-    const int blockFilterIdx = (blockIdx.y % numFilterBlocks) * B_Y * filtersPerThread;
-    const int myFilterIdx = (blockFilterIdx + threadIdx.y*filtersPerThread);
-    if (myFilterIdx >= numFilters) {
-        return;
-    }
-    
-    const int outputIdx = outputIdxY * outputsX + outputIdxX;
-    const int numOutputs = outputsX * outputsX;
-    const int imgPixels = imgSize * imgSize;
-    
-    const int imgIdx = blockImgIdx + threadIdx.x;
-    
-    imgs += myFilterIdx * imgPixels * numImages + imgIdx;
-	landmarks += imgIdx;
-    target += (myFilterIdx * numOutputs + outputIdx) * numImages + imgIdx;
-    
-    float prod[filtersPerThread][imgsPerThread];
-    #pragma unroll
-    for (int f = 0; f < filtersPerThread; f++) {
-        #pragma unroll
-        for (int i = 0; i < imgsPerThread; i++) {
-            prod[f][i] = agg.getBaseValue(); 
-        }
-    }
-    
-	#pragma unroll
-    for (int i = 0; i < imgsPerThread; i++) {
-		int startImgPxX = landmarks[numImages * (2 * outputIdxX) + i * B_X] - subsX / 2;
-		int startImgPxY = landmarks[numImages * (2 * outputIdxX + 1) + i * B_X] - subsX / 2;
-
-		int loopStartY = MAX(0, startImgPxY);
-		int loopStartX = MAX(0, startImgPxX);
-		int loopEndY = MIN(imgSize, startImgPxY + subsX);
-		int loopEndX = MIN(imgSize, startImgPxX + subsX);
-
-		for (int y = loopStartY; y < loopEndY; y++) {
-			for (int x = loopStartX; x < loopEndX; x++) {
-				const int imgPx = y * imgSize + x;
-                if (!checkCaseBounds || imgIdx + i * B_X < numImages) {
-                    #pragma unroll
-                    for (int f = 0; f < filtersPerThread; f++) {
-                        prod[f][i] = agg(prod[f][i], imgs[(f * imgPixels + imgPx) * numImages + i * B_X]);
-                    }
-                }
-            }
-        }
-    }
-    
-    #pragma unroll
-    for (int i = 0; i < imgsPerThread; i++) {
-		const int startImgPxX = landmarks[numImages * (2 * outputIdxX) + i * B_X] - subsX / 2;
-		const int startImgPxY = landmarks[numImages * (2 * outputIdxX + 1) + i * B_X] - subsX / 2;
-
-		const int loopStartY = MAX(0, startImgPxY);
-		const int loopStartX = MAX(0, startImgPxX);
-		const int loopEndY = MIN(imgSize, startImgPxY + subsX);
-		const int loopEndX = MIN(imgSize, startImgPxX + subsX);
-		const int regionSize = (loopEndY - loopStartY) * (loopEndX - loopStartX);
-
-        if (!checkCaseBounds || imgIdx + i * B_X < numImages) {
-            #pragma unroll
-            for (int f = 0; f < filtersPerThread; f++) {
-                target[f * numOutputs * numImages + i * B_X] = agg.output(prod[f][i], regionSize); 
-            }
-        }
-    }
-}
-
-/*
  * imgs:        (numFilters, imgPixels, numImages)
  * target:      (numFilters, outputs, numImages)
  */
@@ -440,14 +333,9 @@ void convLocalPool(NVMatrix& images, NVMatrix& target, int numFilters,
     int imgSize = int(sqrt(imgPixels));
     assert(imgSize * imgSize == imgPixels);
     
-	/*printf("convLocalPool, images, dim1: %d, dim2: %d, stride: %d\n", 
-		images.getLeadingDim(), images.getFollowingDim(), 
-		images.getStride());*/
-
     assert(!images.isTrans());
     assert(!target.isTrans());
     assert(images.isContiguous());
-
 //    assert(numFilters % 4 == 0);
 //    assert(numImages % 128 == 0);
     
@@ -625,114 +513,8 @@ void convLocalPool(NVMatrix& images, NVMatrix& target, int numFilters,
 
     }
 
-    getLastCudaError ("convLocalPool: kernel execution failed");
+    cutilCheckMsg("convLocalPool: kernel execution failed");
 }
-
-/*
- * imgs:        (numFilters, imgPixels, numImages)
- * target:      (numFilters, outputs, numImages)
- */
-template<class Pooler>
-void convLandmarkPool(NVMatrix& images, NVMatrix& landmarks, NVMatrix& target, int numFilters,
-                   int subsX, int outputsX, Pooler pooler) {
-    int numImages = images.getNumCols();
-    int imgPixels = images.getNumRows() / numFilters;
-    assert(images.getNumRows() == numFilters * imgPixels);
-    int imgSize = int(sqrt(imgPixels));
-    assert(imgSize * imgSize == imgPixels);
-    
-	/*printf("convLandmarkPool, images, dim1: %d, dim2: %d\n", 
-		images.getLeadingDim(), images.getFollowingDim());*/
-
-    assert(!images.isTrans());
-    assert(!target.isTrans());
-    assert(images.isContiguous());
-
-//    assert(numFilters % 4 == 0);
-//    assert(numImages % 128 == 0);
-    
-    int outputs = outputsX * outputsX;
-    target.resize(numFilters*outputs, numImages);
-
-    int filtersPerThread = numFilters % 8 == 0 ? 2 : 1;
-    int imgsPerThread = numImages % 128 == 0 ? 4 : numImages % 64 == 0 ? 2 : 1;
-    bool checkCaseBounds = numImages % (32*imgsPerThread) != 0;
-    dim3 threads(32, 4);
-    dim3 blocks(DIVUP(numImages,32*imgsPerThread) * outputsX, DIVUP(numFilters, 4 * filtersPerThread) * outputsX);
-    if (imgsPerThread == 4) {
-        if (filtersPerThread == 1) {
-            if (checkCaseBounds) {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 4, 1, true>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 4, 1, true><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            } else {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 4, 1, false>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 4, 1, false><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            }
-        } else {
-            if (checkCaseBounds) {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 4, 2, true>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 4, 2, true><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            } else {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 4, 2, false>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 4, 2, false><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            }
-        }
-    } else if (imgsPerThread == 2) {
-        if (filtersPerThread == 1) {
-            if (checkCaseBounds) {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 2, 1, true>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 2, 1, true><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            } else {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 2, 1, false>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 2, 1, false><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            }
-        } else {
-            if (checkCaseBounds) {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 2, 2, true>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 2, 2, true><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            } else {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 2, 2, false>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 2, 2, false><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            }
-        }
-    } else {
-        if (filtersPerThread == 1) {
-            if (checkCaseBounds) {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 1, 1, true>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 1, 1, true><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            } else {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 1, 1, false>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 1, 1, false><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            }
-        } else {
-            if (checkCaseBounds) {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 1, 2, true>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 1, 2, true><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            } else {
-                cudaFuncSetCacheConfig(kLandmarkPool<Pooler, 4, 32, 1, 2, false>, cudaFuncCachePreferL1);
-                kLandmarkPool<Pooler, 4, 32, 1, 2, false><<<blocks, threads>>>(images.getDevData(), landmarks.getDevData(), target.getDevData(),
-                                                                    imgSize, numFilters, numImages, subsX, outputsX, pooler);
-            }
-        }
-    }
-
-    getLastCudaError ("convLandmarkPool: kernel execution failed");
-}
-
-
-
-
 
 #endif	/* CONV_UTIL_CUH */
 

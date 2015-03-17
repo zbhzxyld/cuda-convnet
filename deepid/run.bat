@@ -1,0 +1,1 @@
+python ../convnet.py --data-path=/home/xiangyuzhu/projects/matlab/webfacebatch/batches/ --save-path=/home/xiangyuzhu/projects/cuda-convnet/models/deepid/ --test-range=36-39 --train-range=1-35 --layer-def=net-define-Joint-m0-4213.cfg --layer-params=net-params-Joint-0.0025-1.cfg --data-provider=xgw-deepid-online --test-freq=8 --epochs=10 --gpu=0

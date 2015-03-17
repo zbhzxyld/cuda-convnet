@@ -38,10 +38,13 @@ VENDOR_ID_REGEX = re.compile('^vendor_id\s+: (\S+)')
 GPU_LOCK_NO_SCRIPT = -2
 GPU_LOCK_NO_LOCK = -1
 
+
+#!!!!changed!!!!!!
 try:
     import magic
-    ms = magic.open(magic.MAGIC_NONE)
-    ms.load()
+    #ms = magic.open(magic.MAGIC_NONE)
+    #ms.load()
+    ms = None
 except ImportError: # no magic module
     ms = None
 

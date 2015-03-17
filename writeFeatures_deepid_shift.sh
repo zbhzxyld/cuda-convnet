@@ -1,0 +1,1 @@
+python shownet.py -f /home/xiangyuzhu/projects/cuda-convnet/models/deepid_shift/ConvNet__2015-02-22_16.12.49  --data-path=/data1/xiangyuzhu/lfw/batches_65x65/part2/ --data-path-test=/data1/xiangyuzhu/lfw/batches_65x65/part2 --write-features=fc5 --feature-path=/data1/xiangyuzhu/lfw/features/deepid_shift/part2/ --test-range=9999 --data-provider=xgw-1-sn-4213 --gpu=1

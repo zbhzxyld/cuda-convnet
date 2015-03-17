@@ -1,0 +1,2 @@
+python /home/xiangyuzhu/projects/cuda-convnet/convnet.py --data-path=/data1/xiangyuzhu/casia-webface/deepid2/part2/ --data-path-test=/data1/xiangyuzhu/casia-webface/deepid2/part2 --save-path=../models/deepid2 --test-range=1701-1782 --train-range=1-1700 --layer-def=net-define-Joint-m0-10575.cfg --layer-params=net-params-Joint-0.0025-1.cfg --data-provider=xgw-deepid-10575-online --test-freq=50 --epochs=1 --gpu=1
+
