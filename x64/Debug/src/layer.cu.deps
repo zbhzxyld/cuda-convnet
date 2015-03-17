@@ -239,18 +239,16 @@ c:\program files\nvidia gpu computing toolkit\cuda\v6.0\include\host_defines.h
 c:\program files\nvidia gpu computing toolkit\cuda\v6.0\include\vector_functions.h
 c:\program files\nvidia gpu computing toolkit\cuda\v6.0\include\device_launch_parameters.h
 c:\program files\nvidia gpu computing toolkit\cuda\v6.0\include\vector_types.h
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.0\common\inc\helper_cuda.h
-f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
-f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
-f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.0\common\inc\helper_string.h
-f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\fstream
+f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
@@ -319,8 +317,6 @@ f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
-f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string
-f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\algorithm
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\memory
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\intrin.h
@@ -408,6 +404,10 @@ f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxshared
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vector
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfunctional
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.0\common\inc\helper_cuda.h
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.0\common\inc\helper_string.h
+f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\fstream
+f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\map
 f:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtree
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.0\include\cublas.h

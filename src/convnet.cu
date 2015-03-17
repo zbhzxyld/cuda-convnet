@@ -33,7 +33,6 @@
 #include <matrix.h>
 #include <convnet.cuh>
 #include <util.cuh>
-#include <cula_lapack_device.h>
 
 using namespace std;
 

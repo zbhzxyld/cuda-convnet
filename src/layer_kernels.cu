@@ -27,7 +27,6 @@
 #include <assert.h>
 
 #include <layer_kernels.cuh>
-#include <cula_lapack_device.h>
 
 __global__ void kLabel2Weight(const float* labels, const uint len, const bool tri, const float w1, const float w2, float* weight) {
     int x = blockDim.x * blockIdx.x + threadIdx.x;
