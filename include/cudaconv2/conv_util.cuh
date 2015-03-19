@@ -53,7 +53,7 @@ void convContrastNormUndo(NVMatrix& outGrads, NVMatrix& denoms, NVMatrix& meanDi
 void convGaussianBlur(NVMatrix& images, NVMatrix& filter, NVMatrix& target, bool horiz, int numChannels,
                       float scaleTargets, float scaleOutputs);
 void convShift(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels);
-void convShiftRand(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels);
+void convShiftRand(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels, bool test);
 void convBedOfNails(NVMatrix& images, NVMatrix& target, int numChannels, int imgSize, int startX,
                     int strideX, float scaleTargets, float scaleOutput);
 void convBedOfNailsUndo(NVMatrix& actsGrad, NVMatrix& target, int numChannels, int imgSize,

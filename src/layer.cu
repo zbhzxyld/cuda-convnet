@@ -1961,7 +1961,13 @@ ShiftRandLayer::ShiftRandLayer(ConvNet* convNet, PyObject* paramsDict) : Layer(c
 }
 
 void ShiftRandLayer::fpropActs(int inpIdx, float scaleTargets, PASS_TYPE passType) {
-    convShiftRand(*_inputs[0], _filter, getActs(), _channels);
+	bool test;
+	if(passType == PASS_TEST)
+		test = true;
+	else
+		test = false;
+	
+    convShiftRand(*_inputs[0], _filter, getActs(), _channels, test);
 }
 
 // This is here just for completeness' sake. Why would you backpropagate

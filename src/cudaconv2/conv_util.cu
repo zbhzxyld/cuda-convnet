@@ -3708,7 +3708,7 @@ void convShift(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChan
  * filter:      (filterSize, filterSize, filterSize*filterSize)
  * target:      (numChannels, imgPixels, numImages)
  */
-void convShiftRand(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels) {
+void convShiftRand(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int numChannels, bool test) {
     int numImages = images.getNumCols();
     int imgPixels = images.getNumRows() / numChannels;
     int imgSize = int(sqrt(imgPixels));
@@ -3750,7 +3750,12 @@ void convShiftRand(NVMatrix& images, NVMatrix& filter, NVMatrix& target, int num
 	for(n = 0; n < target.getNumCols(); n++)
 	{
 		// randomly choose a filter from filter banks
-		f = rand() % numFilters;
+		if(!test)
+			f = rand() % numFilters; //train
+		else
+			f = 60;
+
+
 		// the cth channels
 		for(c = 0; c < numChannels; c++)
 		{

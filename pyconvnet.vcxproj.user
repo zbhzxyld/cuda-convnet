@@ -4,7 +4,7 @@
     <LocalDebuggerCommand>F:\Program Files (x86)\Anaconda\python.exe</LocalDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>convnet.py --data-path=G:\database\webface\batches\debug\ --data-path-test=G:\database\webface\batches\debug\ --data-provider=xgw-online-55x55-4131  --layer-def=F:\Projects\deeplearning\cuda-convnet\layers_win\deepid2_shift\net-define-Joint-m0-4213.cfg --layer-params=F:\Projects\deeplearning\cuda-convnet\layers_win\deepid2_shift\net-params-Joint-0.0025-1.cfg --save-path=F:\Projects\deeplearning\cuda-convnet\models_win\deepid2_shift\ --test-range=1-1 --train-range=1-1 --test-freq=50 --epochs=50 --gpu=0</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>shownet.py -f F:\Projects\deeplearning\models\deepid_shift\ConvNet__2015-03-18_10.49.01 --data-path=G:\database\lfw\batches_65x65\part2 --data-path-test=G:\database\lfw\batches_65x65\part2 --write-features=fc5 --feature-path=G:\database\lfw\features\deepid_shift\part2 --test-range=9999 --data-provider=xgw-1-sn-4213 --gpu=0</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

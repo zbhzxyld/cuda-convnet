@@ -202,7 +202,7 @@ class XGW1SN4213DataProvider(DataProvider):
         #datadic = scipy.io.loadmat('G:\\byang\\40x40x2-SN\\data_train_%d.mat' % (batchnum))
         #datadic = scipy.io.loadmat('I:\\byang\\data\\DeepID2\\p2\\20+4\\data_train_%d.mat' % (batchnum))
         #datadic = scipy.io.loadmat('I:\\byang\\data\\DeepID2\\p2\\358+20\\data_batch_%d.mat' % (batchnum))
-        datadic = scipy.io.loadmat('%s\\data_batch_%d.mat' % (self.data_dir, batchnum))
+        datadic = scipy.io.loadmat('%s/data_batch_%d.mat' % (self.data_dir, batchnum))
         d={}
         d['data'] = n.require(-datadic['m']+datadic['imgs'], dtype=n.single, requirements='C')
         d['labels'] = n.require(datadic['labels'].reshape((1, d['data'].shape[1])), dtype=n.single, requirements='C') - 1

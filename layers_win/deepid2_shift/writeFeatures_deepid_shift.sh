@@ -1,0 +1,1 @@
+python shownet.py -f F:\Projects\deeplearning\models\deepid_shift\ConvNet__2015-03-18_10.49.01 --data-path=G:\database\lfw\batches_65x65\part2 --data-path-test=G:\database\lfw\batches_65x65\part2 --write-features=fc5 --feature-path=G:\database\lfw\features\deepid_shift\part2 --test-range=9999 --data-provider=xgw-1-sn-4213 --gpu=1
