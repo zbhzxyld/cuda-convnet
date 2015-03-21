@@ -198,6 +198,7 @@ class ConvNet(IGPUModel):
         DataProvider.register_data_provider('xgw-1-sn-4213', 'XGW-55x55x3-SN 4213', XGW1SN4213DataProvider)
         DataProvider.register_data_provider('xgw-online-55x55-4131', 'XGW Online 55x55x3 with 4131 people', XGW_ONLINE_55x55_4131_DataProvider)
         DataProvider.register_data_provider('xgw-deepid-online-65x65-4131', 'XGW-65x65x3-Deepid Online 4213', XGW_DEEPID_ONLINE_65X65_4131_DataProvider)
+        DataProvider.register_data_provider('xgw-heter-online-55x55-2', 'XGW-55x55x3-Heterogeneous Online 2', XGW_HETER_ONLINE_55X55_2_DataProvider)
         return op
     
 if __name__ == "__main__":

@@ -311,4 +311,58 @@ class XGW_DEEPID_ONLINE_65X65_4131_DataProvider(DataProvider):
     def get_num_classes(self):
         return 4131
 
-                
+
+
+# XGW - xgw-25crop - part2 - 55x55x3-SN online
+class XGW_HETER_ONLINE_55X55_2_DataProvider(DataProvider):
+    def __init__(self, data_dir, batch_range, init_epoch=1, init_batchnum=None, dp_params={}, test=False):
+        DataProvider.__init__(self, data_dir, batch_range, init_epoch, init_batchnum, dp_params, test)
+        root_batch_gal = h5py.File('%s/root_batch_gal.mat'%(self.data_dir), 'r')
+        root_batch_pro = h5py.File('%s/root_batch_pro.mat'%(self.data_dir), 'r')
+
+        self.num_colors = 3
+        self.img_size = 55
+
+
+        self.m_gal = root_batch_gal['m'][:,:].T
+        self.imgs_gal = root_batch_gal['imgs'][:,:].T
+
+        self.m_pro = root_batch_pro['m'][:,:].T
+        self.imgs_pro = root_batch_pro['imgs'][:,:].T
+
+
+
+    def get_next_batch(self):
+        #epoch, batchnum, datadic = DataProvider.get_next_batch(self)
+        epoch, batchnum = self.curr_epoch, self.curr_batchnum
+        self.advance_batch()
+
+        # random shuffle
+        datadic = scipy.io.loadmat('%s/data_batch_%d.mat' % (self.data_dir, batchnum))
+        index = datadic['index']-1
+
+        index_gal = index[0,:]
+        index_pro = index[1,:]
+        d = {}
+        d['data_gal'] = n.require(self.imgs_gal[:,index_gal] - self.m_gal, dtype=n.single, requirements='C')
+        d['data_pro'] = n.require(self.imgs_pro[:,index_pro] - self.m_pro, dtype=n.single, requirements='C')
+        labels = n.zeros((1, d['data_gal'].shape[1]))
+        labels[0, 0:labels.shape[1]:2] = 1
+        d['labels'] = n.require(labels.reshape((1, d['data_gal'].shape[1])), dtype=n.single, requirements='C')
+        return epoch, batchnum, [d['data_gal'], d['data_pro'], d['labels']]
+
+
+    # Returns the dimensionality of the two data matrices returned by get_next_batch
+    # idx is the index of the matrix.
+    def get_data_dims(self, idx=0):
+        return self.img_size**2 * self.num_colors if idx < 2 else 1
+
+    # Takes as input an array returned by get_next_batch
+    # Returns a (numCases, imgSize, imgSize, 3) array which can be
+    # fed to pylab for plotting.
+    # This is used by shownet.py to plot test case predictions.
+    def get_plottable_data(self, data):
+        return n.require(data.T.reshape(data.shape[1], self.img_size, self.img_size), dtype=n.single)
+
+    def get_num_classes(self):
+        return 2
